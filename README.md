@@ -1,24 +1,52 @@
-# README
+# _Proposed_ API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Organizations
 
-Things you may want to cover:
+### List all organizations
 
-* Ruby version
+```
+get /organizations
+```
 
-* System dependencies
+Sample response: 
 
-* Configuration
+```json
+{
+  "organizations": [
+    {"name": "academy", "logo_url":"http://...", "private": false},
+    {"name": "alcal", "private": true}
+  ]
+}
+```
 
-* Database creation
+### Get single organization by name
 
-* Database initialization
+```
+get /organizations/:name
+```
+Sample response: 
 
-* How to run the test suite
+```json
+{
+  "name":"academy",
+  "logo_url":"http://...", 
+  "private": false,
+  "description": "...",
+  "book_slug": "MumukiProject/mumuki-libro-metaprogramacion",
+  "contact_email": "issues@mumuki.org",
+  "login_methods": ["twitter", "facebook", "google"]
+}
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+### Organization CSS theme
 
-* Deployment instructions
+```
+get /themes/:name
+```
+Sample response: 
 
-* ...
+```css
+a { color: red; }
+```
+
+
