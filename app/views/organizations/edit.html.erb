@@ -1,2 +1,14 @@
 <h1>Organizations#edit</h1>
 <p>Find me in app/views/organizations/edit.html.erb</p>
+
+
+<%= form_for @organization do |f| %>
+  <%= f.text_field :name %>
+  <%= f.text_area :description %>
+  <%= f.text_field :book_slug %>
+  <%= f.text_field :logo_url %>
+  <%= f.text_field :contact_email %>
+  <%= f.text_area :theme_stylesheet %>
+ #login_methods:string
+ #private:boolean
+<% end %>
