@@ -20,12 +20,12 @@ group :development, :test do
   gem 'faker'
 end
 
-gem 'mumukit-core', '~> 0.1'
-gem 'mumukit-nuntius', '~> 0.3'
+#gem 'mumukit-core', '~> 0.1'
+#gem 'mumukit-nuntius', '~> 0.3'
 
 gem 'nprogress-rails'
 gem 'bootstrap-sass', '~> 3.3.5'
-gem 'font-awesome-rails'
+gem 'font-awesome-rails', '~> 4.7.0'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-dev-awesome'

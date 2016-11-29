@@ -201,7 +201,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   factory_girl_rails
   faker
-  font-awesome-rails
+  font-awesome-rails (~> 4.7.0)
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
