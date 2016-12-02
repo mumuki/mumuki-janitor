@@ -79,19 +79,78 @@ Scopes are simply two-level contexts, without any explicit semantic. They exact 
 
 ### Create single user
 
+This is a generic user creation request. 
+
 Minimal permission: `janitor`
+
+```
+POST /users
+```
+
+Sample request body: 
+
+```json
+{
+  "first_name": "María", 
+  "last_name": "Casas",
+  "email": "maryK345@foobar.edu.ar", 
+  "uids": [],
+  "permissions": {
+     "student": "cpt/*:rte/*",
+     "teacher": "ppp/2016-2q"
+  } 
+}
+```
 
 ### Update single user
 
+This is a way of updating user basic data. Permissions are ignored. 
+
+**Minimal permission**: `janitor`
+
+```
+PATCH /users/:uid
+```
+
+Sample request body: 
+
+```json
+{
+  "first_name": "María", 
+  "last_name": "Casas",
+  "email": "maryK345@foobar.edu.ar"
+}
+```
+
+### Add student to course
+
+Creates the student if necesssary, an updates permissions. 
+
+```
+PUT /course/:id/students/:uid
+```
+
 Minimal permission: `janitor`
+
+### Create batch course
+
+Minimal permission: `janitor`
+
+Creates the students if necesssary, an updates permissions. 
+
+```
+POST /course/:id/students/
+```
+
 
 ### Destroy single user
 
 Minimal permission: `owner`
 
-### Create batch course
+```
+DELETE /users/:uid
+```
 
-Minimal permission: `janitor`
 
 ## Courses
 
@@ -103,7 +162,7 @@ Minimal permission: `janitor`
 get /organizations
 ```
 
-Sample response: 
+Sample response body: 
 
 ```json
 {
@@ -119,7 +178,7 @@ Sample response:
 ```
 get /organizations/:name
 ```
-Sample response: 
+Sample response body: 
 
 ```json
 {
@@ -138,7 +197,7 @@ Sample response:
 ```
 get /themes/:name
 ```
-Sample response: 
+Sample response body: 
 
 ```css
 a { color: red; }
