@@ -77,6 +77,22 @@ Scopes are simply two-level contexts, without any explicit semantic. They exact 
 
 ## Users
 
+### Create single user
+
+Minimal permission: `janitor`
+
+### Update single user
+
+Minimal permission: `janitor`
+
+### Destroy single user
+
+Minimal permission: `owner`
+
+### Create batch course
+
+Minimal permission: `janitor`
+
 ## Courses
 
 ## Organizations
