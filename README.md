@@ -40,14 +40,38 @@ Mumuki Janitor is a RESTful service and GUI that allows to
 Janitor Permissions are composed of two elements: 
 
 * a role, that states which operations a user or API client can perform. Roles are:
-  * `student`
-  * `teacher`
-  * `teacher-admin`
+  * `student`: they can solve exercises in Atheneum
+  * `teacher`: they can
+    * enter the classroom
+    * see student progress
+    * comment solutions
+    * follow students
+    * create examsn
+  * `teacher-admin` (aka `professor`)
+    * same permissions as `teacher`  and
+    * add more teachers to courses
   * `writer`
-  * `librarian`
+    * create content in the editor
+  * `writer-admin` (aka `librarian`)
+     * same permissions as `writer` and
+     * destoy content
   * `janitor`
-  * `janitor-admin`
+     * enter this Janitor application
+     * can create users and courses and assign permissions equal or lower to herself 
+  * `janitor-admin` (aka instance `owner`)
+     * same permissions than a `janitor`, and
+     * can create organizations 
 * a scope, that states in which context the operation can be performed. Scopes are always expressed with a slug, that allows `primary-scope/secondary-scope` you specify are most two-level scopes. 
+
+## Scopes details
+
+Scopes are simply two-level contexts, without any explicit semantic. They exact meaning is set by each role: 
+
+* students: `organization/_`
+* teacher and teacher-admin: `organization/course`
+* janitor: `organization/_`
+* janitor-admin: `_/_`
+* writer and writer-admin: `organization/content` 
 
 # API
 
