@@ -145,7 +145,7 @@ POST /course/:id/students
 
 Creates the teacher if necessary, and updates her permissions.
 
-**Minimal permission**: `janitor`
+**Minimal permission**: `teacher-admin`, `janitor`
 
 ```
 POST /course/:id/teachers
@@ -193,7 +193,7 @@ POST /course/:id/batches
 
 ### Detach student from course
 
-**Minimal permission**: `teacher-admin`
+**Minimal permission**: `janitor`
 
 ```
 DELETE /course/:id/students/:uid
@@ -201,7 +201,7 @@ DELETE /course/:id/students/:uid
 
 ### Detach teacher from course
 
-**Minimal permission**: `teacher-admin`
+**Minimal permission**: `janitor`
 
 ```
 DELETE /course/:id/teachers/:uid
