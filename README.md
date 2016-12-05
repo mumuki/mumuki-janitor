@@ -19,7 +19,7 @@ Mumuki Janitor is a RESTful service and GUI that allows to
 1. As a janitor-admin user, log in into janitor
 2. Create an organization
 3. Create some courses and set subscription mode
-   * User closed subscription mode if you will manually add each student to the course - either by CSV, API or in a one by one basis.
+   * Use closed subscription mode if you will manually add each student to the course - either by CSV, API or in a one by one basis.
    * Use open subscription mode if you will just share an subscription link among your students.
 4. Create some users and teachers
    1. Specify their full name and email - which will be it's primary `uid` -, and zero or more alternative `uid`s
@@ -81,7 +81,7 @@ Scopes are simply two-level contexts, without any explicit semantic. They exact 
 
 This is a generic user creation request. 
 
-Minimal permission: `janitor`
+**Minimal permission**: `janitor`
 
 ```
 POST /users
@@ -109,7 +109,7 @@ This is a way of updating user basic data. Permissions are ignored.
 **Minimal permission**: `janitor`
 
 ```
-PATCH /users/:uid
+PUT /users/:uid
 ```
 
 Sample request body: 
@@ -124,35 +124,131 @@ Sample request body:
 
 ### Add student to course
 
-Creates the student if necesssary, an updates permissions. 
+Creates the student if necessary, and updates her permissions.
+
+**Minimal permission**: `janitor`
 
 ```
-PUT /course/:id/students/:uid
+POST /course/:id/students
 ```
 
-Minimal permission: `janitor`
-
-### Create batch course
-
-Minimal permission: `janitor`
-
-Creates the students if necesssary, an updates permissions. 
-
-```
-POST /course/:id/students/
+```json
+{
+  "first_name": "María", 
+  "last_name": "Casas",
+  "email": "maryK345@foobar.edu.ar",
+  "uids": []
+}
 ```
 
+### Add teacher to course
+
+Creates the teacher if necessary, and updates her permissions.
+
+**Minimal permission**: `janitor`
+
+```
+POST /course/:id/teachers
+```
+
+```json
+{
+  "first_name": "Erica", 
+  "last_name": "Gonzalez",
+  "email": "egonzalez@foobar.edu.ar",
+  "uids": []
+}
+```
+
+### Add a batch of users to a course
+
+Creates every user if necesssary, an updates permissions. 
+
+**Minimal permission**: `janitor`
+
+```
+POST /course/:id/batches
+```
+
+```json
+{
+  "students": [
+    {
+      "first_name": "Tupac", 
+      "last_name": "Lincoln",
+      "email": "tliconln@foobar.edu.ar",
+      "uids": ["tupac.lincoln@gugel.com"]
+    }  
+  ],
+  "teachers": [
+    {
+      "first_name": "Erica", 
+      "last_name": "Gonzalez",
+      "email": "egonzalez@foobar.edu.ar",
+      "uids": []
+    }  
+  ]
+}
+```
+
+### Detach student from course
+
+**Minimal permission**: `teacher-admin`
+
+```
+DELETE /course/:id/students/:uid
+```
+
+### Detach teacher from course
+
+**Minimal permission**: `teacher-admin`
+
+```
+DELETE /course/:id/teachers/:uid
+```
 
 ### Destroy single user
 
-Minimal permission: `owner`
+**Minimal permission**: `owner`
 
 ```
 DELETE /users/:uid
 ```
 
-
 ## Courses
+
+### Create single course
+
+**Minimal permission**: `janitor`
+
+```
+POST /organization/:id/courses/
+```
+
+```json
+{
+   "name":"....",
+   "subscription_mode": "open"
+}
+```
+
+### Archive single course
+
+**Minimal permission**: `janitor`
+
+```
+DELETE /organization/:id/courses/:id
+```
+
+### Destroy single course
+
+**Minimal permission**: `owner`
+
+```
+DELETE /courses/:id
+```
+
+
 
 ## Organizations
 
