@@ -3,6 +3,7 @@ module Api
     def create
       user = User.create! user_params
       user.update_permissions! params[:user][:permissions]
+      Mumukit::Nuntius::EventPublisher.publish 'UserChanged', user: user.as_json
       render json: { user: user.as_json }
     end
 
