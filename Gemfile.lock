@@ -39,6 +39,7 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    amq-protocol (2.0.1)
     arel (7.1.4)
     autoprefixer-rails (6.5.3)
       execjs
@@ -46,6 +47,8 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.2)
+    bunny (2.6.1)
+      amq-protocol (>= 2.0.1)
     byebug (9.0.6)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
@@ -94,6 +97,9 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.9.1)
     multi_json (1.12.1)
+    mumukit-nuntius (1.0.0)
+      activesupport (>= 4.1)
+      bunny (~> 2.3)
     nio4r (1.2.1)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
@@ -205,6 +211,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
+  mumukit-nuntius (~> 1.0.0)
   nprogress-rails
   pg
   puma (~> 3.0)
