@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :edit, :create, :update]
   namespace :api do
     resources :users, only: [:create]
-    put '/users/:email' => 'users#update'
+    put '/users/:uid' => 'users#update', uid: /[\w.@]+/
   end
 end

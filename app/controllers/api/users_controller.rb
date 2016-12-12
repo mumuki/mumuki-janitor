@@ -7,16 +7,16 @@ module Api
     end
 
     def update
-      @user.update! user_params.except([:email, :permissions])
+      @user.update! user_params.except([:email, :permissions, :uid])
       render json: { user: @user }
     end
 
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, permissions: Mumukit::Auth::Permissions.keys)
+      body_params.require(:user).permit(:first_name, :last_name, :email, permissions: Mumukit::Auth::Permissions.keys)
     end
 
     def set_user
-      @user = User.find_by(email: user_params[:email])
+      @user = User.find_by(uid: params[:uid])
     end
     
   end

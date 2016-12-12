@@ -4,7 +4,7 @@ module Api
 
     private
 
-    def params
+    def body_params
       ActionController::Parameters.new JSON.parse(request.raw_post)
     end
   end
