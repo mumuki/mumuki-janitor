@@ -7,6 +7,5 @@ module Api
     def params
       ActionController::Parameters.new JSON.parse(request.raw_post)
     end
-
   end
 end
