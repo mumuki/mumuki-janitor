@@ -14,6 +14,7 @@ describe Api::UsersController, type: :controller do
     it { expect(response.status).to eq 200 }
     it { expect(User.count).to eq 1 }
     it { expect(User.first.permissions).to eq('student' => 'foo/*') }
+    it { expect(User.first.uid).to eq 'foo@bar.com'
   end
 
   context 'put' do
@@ -21,6 +22,7 @@ describe Api::UsersController, type: :controller do
     before { put :update, { user: {email: 'foo@bar.com', first_name: 'Fede'} }.to_json}
 
     it { expect(User.first.first_name).to eq('Fede') }
+    it { expect(User.first.uid).to eq 'foo@bar.com'
   end
 
 end
