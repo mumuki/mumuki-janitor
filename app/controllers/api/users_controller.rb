@@ -11,6 +11,8 @@ module Api
       render json: { user: @user }
     end
 
+    private
+    
     def user_params
       params.require(:user).permit(:first_name, :last_name, :email, permissions: Mumukit::Auth::Permissions.keys)
     end
@@ -18,6 +20,5 @@ module Api
     def set_user
       @user = User.find_by(uid: params[:id])
     end
-    
   end
 end
