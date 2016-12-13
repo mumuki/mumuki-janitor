@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :api_client do
-    permissions "MyString"
-    name "MyString"
-    token "MyString"
+    name "foo"
+    permissions { {student: 'foo/*'} }
   end
 end

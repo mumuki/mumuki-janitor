@@ -2,7 +2,7 @@ class ApiClient < ApplicationRecord
 
   serialize :permissions, JSON
 
-  validates_presence_of :name, :permissions
+  validates_presence_of :name
   before_create :set_token
 
   private

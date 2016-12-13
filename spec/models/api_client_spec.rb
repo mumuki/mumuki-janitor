@@ -1,5 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ApiClient, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe ApiClient, type: :model do
+  let(:api_client) {create :api_client}
+  it { expect(api_client.token).to eq Mumukit::Auth::Token.encode(api_client.permissions) }
 end
