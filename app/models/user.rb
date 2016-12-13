@@ -6,10 +6,6 @@ class User < ApplicationRecord
   before_validation :set_uid
   after_save :notify!
 
-  def update_permissions!(data)
-    update!(permissions: data)
-  end
-
   private
 
   def set_uid
