@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-gem 'sqlite3'
+gem 'pg'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -20,8 +20,8 @@ group :development, :test do
   gem 'faker'
 end
 
-#gem 'mumukit-core', '~> 0.1'
-#gem 'mumukit-nuntius', '~> 0.3'
+gem 'mumukit-nuntius', '~> 1.0.0'
+gem 'mumukit-auth', '~> 1.0.2'
 
 gem 'nprogress-rails'
 gem 'bootstrap-sass', '~> 3.3.5'
