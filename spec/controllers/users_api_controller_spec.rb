@@ -9,20 +9,21 @@ describe Api::UsersController, type: :controller do
     }
   end
   context 'post' do
-    before { post :create, { user: user_json }.to_json}
+    before { post :create, params: { user: user_json }}
 
     it { expect(response.status).to eq 200 }
     it { expect(User.count).to eq 1 }
     it { expect(User.first.permissions).to eq('student' => 'foo/*') }
-    it { expect(User.first.uid).to eq 'foo@bar.com'
+    it { expect(User.first.uid).to eq 'foo@bar.com' }
   end
 
   context 'put' do
-    before { post :create, { user: user_json }.to_json}
-    before { put :update, { user: {email: 'foo@bar.com', first_name: 'Fede'} }.to_json}
+    before { User.create! user_json }
+    before { put :update,  params: { id: 'foo@bar.com', user: {first_name: 'Fede'}}}
 
+    it { expect(response.status).to eq 200 }
     it { expect(User.first.first_name).to eq('Fede') }
-    it { expect(User.first.uid).to eq 'foo@bar.com'
+    it { expect(User.first.uid).to eq 'foo@bar.com' }
   end
 
 end

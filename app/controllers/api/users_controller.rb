@@ -12,11 +12,11 @@ module Api
     end
 
     def user_params
-      body_params.require(:user).permit(:first_name, :last_name, :email, permissions: Mumukit::Auth::Permissions.keys)
+      params.require(:user).permit(:first_name, :last_name, :email, permissions: Mumukit::Auth::Permissions.keys)
     end
 
     def set_user
-      @user = User.find_by(uid: params[:uid])
+      @user = User.find_by(uid: params[:id])
     end
     
   end
