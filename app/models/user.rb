@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-  serialize :permissions, JSON
+  include WithPermissions
 
   validates_presence_of :first_name, :last_name, :email, :uid
   before_validation :set_uid

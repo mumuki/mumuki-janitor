@@ -1,6 +1,6 @@
 class ApiClient < ApplicationRecord
 
-  serialize :permissions, JSON
+  include WithPermissions
 
   validates_presence_of :name
   before_create :set_token
