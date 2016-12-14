@@ -3,6 +3,9 @@ module WithPermissions
 
   included do
     serialize :permissions, JSON
-  end
 
+    def self.parse!(params)
+      params.merge!(permissions: JSON.parse(params[:permissions]))
+    end
+  end
 end

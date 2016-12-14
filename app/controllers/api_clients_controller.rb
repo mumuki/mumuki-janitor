@@ -17,6 +17,6 @@ class ApiClientsController < ApplicationController
   end
 
   def parse_permissions
-    params[:api_client][:user_attributes].merge!(permissions: JSON.parse(params[:api_client][:user_attributes][:permissions]))
+    ApiClient.parse! params[:api_client][:user_attributes]
   end
 end
