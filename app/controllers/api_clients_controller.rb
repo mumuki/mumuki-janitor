@@ -11,6 +11,6 @@ class ApiClientsController < ApplicationController
   private
 
   def api_client_params
-    params.require(:api_client).permit(:name, :permissions)
+    params.require(:api_client).permit(:description, :permissions)
   end
 end
