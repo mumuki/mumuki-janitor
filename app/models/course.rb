@@ -1,9 +1,14 @@
 class Course < ApplicationRecord
 
-  validates_presence_of :uid, :slug, :shifts, :code, :days, :period,
-                        :description, :subscription_mode, :organization_id
-  before_validation :set_uid, :set_submission_mode
-  after_validation :notify!
+  include WithSubscriptionMode
+
+  validates_presence_of :uid, :slug, :shifts, :code, :days, :period, :description, :organization_id
+
+  before_validation :set_uid, :set_organization
+  before_create :set_organization
+  after_save :notify!
+
+  belongs_to :organization
 
   private
 
@@ -15,8 +20,8 @@ class Course < ApplicationRecord
     Mumukit::Nuntius::EventPublisher.publish 'CourseChanged', course: self.as_json
   end
 
-  def set_submission_mode
-    self.subscription_mode = [:open, :closed].find_index(subscription_mode)
+  def set_organization
+    self.organization = Organization.find_by(name: slug.split('/').first)
   end
 
 end
