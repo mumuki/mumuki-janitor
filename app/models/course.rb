@@ -10,6 +10,12 @@ class Course < ApplicationRecord
 
   belongs_to :organization
 
+  def add_student!(user)
+    student = User.where(uid: user[:uid]).first_or_create(user)
+    student.add_student_permission! slug
+    student.save!
+  end
+
   private
 
   def set_uid
