@@ -4,6 +4,7 @@ class ApiClient < ApplicationRecord
 
   validates_presence_of :description
   before_create :set_token
+  belongs_to :user
 
   private
 

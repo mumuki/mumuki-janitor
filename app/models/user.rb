@@ -5,6 +5,7 @@ class User < ApplicationRecord
   validates_presence_of :first_name, :last_name, :email, :uid
   before_validation :set_uid
   after_save :notify!
+  has_many :api_clients
 
   private
 
