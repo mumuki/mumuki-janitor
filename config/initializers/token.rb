@@ -2,10 +2,9 @@ require 'jwt'
 
 module Mumukit::Auth
   class Token
-    def self.encode(permissions)
+    def self.generate_token
       JWT.encode(
-          {aud: Mumukit::Auth.config.client_id,
-           permissions: permissions},
+          {aud: Mumukit::Auth.config.client_id},
           decoded_secret)
     end
   end
