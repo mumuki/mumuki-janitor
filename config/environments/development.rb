@@ -51,13 +51,7 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-
-
-  config.auth0_client_id = ENV['MUMUKI_AUTH0_CLIENT_ID']
-  config.auth0_client_secret = ENV['MUMUKI_AUTH0_CLIENT_SECRET']
-  config.auth0_domain = ENV['MUMUKI_AUTH0_DOMAIN']
-  Mumukit::Auth.configure do |c|
-    c.client_id = config.auth0_client_id
-    c.client_secret = config.auth0_client_secret
-  end
+  config.auth_client_id = ENV['MUMUKI_AUTH0_CLIENT_ID']
+  config.auth_client_secret = ENV['MUMUKI_AUTH0_CLIENT_SECRET']
+  config.auth_domain = ENV['MUMUKI_AUTH0_DOMAIN']
 end
