@@ -1,5 +1,10 @@
 <%= form_for @api_client do |f| %>
-    <%= f.text_field :name %>
-    <%= f.text_area :permissions %>
+    <%= f.text_field :description %>
+    <%= f.fields_for :user do |user| %>
+        <%= user.text_field :first_name %>
+        <%= user.text_field :last_name %>
+        <%= user.text_field :email %>
+        <%= user.text_area :permissions %>
+    <% end %>
     <%= f.submit :save %>
 <% end %>
