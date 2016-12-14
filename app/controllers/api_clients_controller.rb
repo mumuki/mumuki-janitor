@@ -17,6 +17,6 @@ class ApiClientsController < ApplicationController
   end
 
   def parse_permissions
-    ApiClient.parse! params[:api_client][:user_attributes]
+    User.parse! params[:api_client][:user_attributes]
   end
 end

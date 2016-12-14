@@ -1,7 +1,5 @@
 class ApiClient < ApplicationRecord
 
-  include WithPermissions
-
   belongs_to :user
 
   before_create :set_token
