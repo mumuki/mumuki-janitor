@@ -8,7 +8,7 @@ describe Api::CoursesController, type: :controller do
      days: %w(monday wednesday),
      period: '2016',
      description: 'test course',
-     subscription_mode: :closed}
+     subscription_mode: 'closed'}
   end
 
   let!(:organization) { create :organization, name: 'foo' }
@@ -21,6 +21,8 @@ describe Api::CoursesController, type: :controller do
     it { expect(Course.first.uid).to eq 'foo/bar' }
     it { expect(Course.first.subscription_mode).to eq SubscriptionMode::Closed }
     it { expect(Course.first.organization).to eq(organization) }
+    it { expect(Course.first.shifts).to eq(%w(morning)) }
+    it { expect(Course.first.days).to eq(%w(monday wednesday)) }
   end
 
 end

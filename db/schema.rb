@@ -18,9 +18,9 @@ ActiveRecord::Schema.define(version: 20161213145945) do
   create_table "courses", force: :cascade do |t|
     t.string   "uid"
     t.string   "slug"
-    t.string   "days"
+    t.string   "days",                                       array: true
     t.string   "code"
-    t.string   "shifts"
+    t.string   "shifts",                                     array: true
     t.string   "period"
     t.string   "description"
     t.integer  "subscription_mode", default: 0
