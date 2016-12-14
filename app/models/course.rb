@@ -17,7 +17,7 @@ class Course < ApplicationRecord
   end
 
   def notify!
-    Mumukit::Nuntius::EventPublisher.publish 'CourseChanged', course: self.as_json
+    NotificationMode.notify_event! 'CourseChanged', course: self.as_json
   end
 
   def set_organization
