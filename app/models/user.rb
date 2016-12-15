@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :api_clients
 
   def add_student_permission!(permission)
-    add_permission! :student, permission
+    add_permission! 'student', permission
   end
 
   private

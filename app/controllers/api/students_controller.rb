@@ -4,13 +4,13 @@ module Api
 
     def create
       @course.add_student!(user_params)
-      render status: :created
+      render json: { status: :created }
     end
 
     private
 
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :uid)
+      params.require(:student).permit(:first_name, :last_name, :email, :uid)
     end
 
     def set_course
