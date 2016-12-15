@@ -14,7 +14,7 @@ module Api
     private
 
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, permissions: Mumukit::Auth::Permissions.keys)
+      params.require(:user).permit(:first_name, :last_name, :email, permissions: Mumukit::Auth::Roles::ROLES)
     end
 
     def set_user
