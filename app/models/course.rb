@@ -27,7 +27,7 @@ class Course < ApplicationRecord
   end
 
   def set_organization
-    self.organization = Organization.find_by(name: slug.split('/').first)
+    self.organization = Organization.find_by(name: Mumukit::Auth::Slug.parse(slug).first)
   end
 
 end
