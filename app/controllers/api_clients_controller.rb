@@ -13,7 +13,7 @@ class ApiClientsController < ApplicationController
   private
 
   def api_client_params
-    params.require(:api_client).permit(:description, user_attributes: [:first_name, :last_name, :email, permissions: Mumukit::Auth::Permissions.keys])
+    params.require(:api_client).permit(:description, user_attributes: [:first_name, :last_name, :email, permissions: Mumukit::Auth::Roles::ROLES])
   end
 
   def parse_permissions
