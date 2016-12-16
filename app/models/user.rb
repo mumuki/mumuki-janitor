@@ -2,10 +2,13 @@ class User < ApplicationRecord
 
   include WithPermissions
 
-  validates_presence_of :first_name, :last_name, :email, :uid
+  has_many :api_clients
+
+  after_initialize :init
   before_validation :set_uid
   after_save :notify!
-  has_many :api_clients
+
+  validates_presence_of :first_name, :last_name, :email, :uid
 
   def add_student_permission!(permission)
     add_permission! 'student', permission
@@ -14,10 +17,7 @@ class User < ApplicationRecord
   private
 
   def add_permission!(type, permission)
-    self.permissions[type] ||= ''
-    permissions = self.permissions[type].split(':')
-    permissions << permission
-    self.permissions[type] = permissions.join(':')
+    self.permissions.add_permission! type, permission
   end
 
   def set_uid
@@ -26,6 +26,12 @@ class User < ApplicationRecord
 
   def notify!
     NotificationMode.notify_event! 'UserChanged', user: self.as_json
+  end
+
+  private
+
+  def init
+    self.permissions ||= Mumukit::Auth::Permissions.parse({})
   end
 
 end
