@@ -4,7 +4,6 @@ class User < ApplicationRecord
 
   has_many :api_clients
 
-  after_initialize :init
   before_validation :set_uid
   after_save :notify!
 
@@ -26,12 +25,6 @@ class User < ApplicationRecord
 
   def notify!
     NotificationMode.notify_event! 'UserChanged', user: self.as_json
-  end
-
-  private
-
-  def init
-    self.permissions ||= Mumukit::Auth::Permissions.parse({})
   end
 
 end
