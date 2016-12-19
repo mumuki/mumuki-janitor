@@ -58,7 +58,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.11.1)
-    concurrent-ruby (1.0.2)
+    concurrent-ruby (1.0.3)
     daybreak (0.3.0)
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
@@ -98,9 +98,9 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
-    minitest (5.9.1)
+    minitest (5.10.1)
     multi_json (1.12.1)
-    mumukit-auth (2.2.0)
+    mumukit-auth (2.2.1)
       daybreak
       jwt
       mumukit-core (~> 0.4.2)
