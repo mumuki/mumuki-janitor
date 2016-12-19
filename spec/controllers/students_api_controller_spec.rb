@@ -12,7 +12,7 @@ describe Api::StudentsController, type: :controller do
   let!(:course) { create :course }
 
   context 'post' do
-    let(:params) {{ student: student_json, organization: 'academy', repository: 'example' }}
+    let(:params) {{ student: student_json, organization: 'academy', course: 'example' }}
 
     context 'when user does not exist' do
 

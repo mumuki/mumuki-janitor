@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :users, only: [:create, :update]
     resources :courses, only: [:create]
-    '/courses/:organization/:repository'.tap do |it|
+    '/courses/:organization/:course'.tap do |it|
       post "#{it}/students" => 'students#create'
     end
   end
