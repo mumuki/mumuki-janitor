@@ -29,14 +29,14 @@ describe Api::StudentsController, type: :controller do
     end
     context 'when user exist' do
       context 'and have no permissions' do
-        before { create :user }
+        before { create :user, student_json }
         before { post :create, params: params}
         it { expect(response.status).to eq 200 }
         it { expect(User.count).to eq 1 }
         it { expect(User.first.permissions.student? 'academy/example').to be true }
       end
       context 'and have permissions' do
-        before { create :user, permissions: { student: 'foo/bar' } }
+        before { create :user, student_json.merge(permissions: { student: 'foo/bar' }) }
         before { post :create, params: params}
         it { expect(response.status).to eq 200 }
         it { expect(User.count).to eq 1 }
