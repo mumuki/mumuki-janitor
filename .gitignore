@@ -12,6 +12,9 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
+# Ignore the default daybreak file database
+permissions.db
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
