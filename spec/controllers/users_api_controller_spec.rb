@@ -5,7 +5,7 @@ describe Api::UsersController, type: :controller do
     {first_name: 'foo',
      last_name: 'bar',
      email: 'foo@bar.com',
-     permissions: {student: 'foo/*'}
+     permissions: {student: 'foo/_'}
     }
   end
   context 'post' do
@@ -13,7 +13,7 @@ describe Api::UsersController, type: :controller do
 
     it { expect(response.status).to eq 200 }
     it { expect(User.count).to eq 1 }
-    it { expect(User.first.permissions.student? 'foo/*').to be true }
+    it { expect(User.first.permissions.student? 'foo/_').to be true }
     it { expect(User.first.uid).to eq 'foo@bar.com' }
   end
 
