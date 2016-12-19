@@ -59,6 +59,7 @@ GEM
       execjs
     coffee-script-source (1.11.1)
     concurrent-ruby (1.0.2)
+    daybreak (0.3.0)
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
     erubis (2.7.0)
@@ -99,7 +100,8 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.9.1)
     multi_json (1.12.1)
-    mumukit-auth (2.0.0)
+    mumukit-auth (2.2.0)
+      daybreak
       jwt
       mumukit-core (~> 0.4.2)
     mumukit-core (0.4.2)
@@ -230,7 +232,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
-  mumukit-auth (~> 2.0.0)
+  mumukit-auth (~> 2.2.0)
   mumukit-nuntius (~> 1.0.0)
   nprogress-rails
   pg

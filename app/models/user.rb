@@ -2,12 +2,22 @@ class User < ApplicationRecord
 
   include WithPermissions
 
-  validates_presence_of :first_name, :last_name, :email, :uid
-  before_validation :set_uid
-  after_save :notify!
   has_many :api_clients
 
+  before_validation :set_uid
+  after_save :notify!
+
+  validates_presence_of :first_name, :last_name, :email, :uid
+
+  def add_student_permission!(grant)
+    add_permission! :student, grant
+  end
+
   private
+
+  def add_permission!(role, grant)
+    self.permissions.add_permission! role, grant
+  end
 
   def set_uid
     self.uid = email

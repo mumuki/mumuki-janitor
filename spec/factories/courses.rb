@@ -1,6 +1,11 @@
 FactoryGirl.define do
   factory :course do
-    name "MyString"
+    slug 'academy/example'
+    period '2016'
+    code 'K2003'
+    shifts %w(morning)
+    days %w(monday wednesday)
+    description 'test'
     subscription_mode SubscriptionMode::Open
     organization_id 1
   end

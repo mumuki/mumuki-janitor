@@ -24,7 +24,7 @@ group :development, :test do
 end
 
 gem 'mumukit-nuntius', '~> 1.0.0'
-gem 'mumukit-auth', '~> 2.0.0'
+gem 'mumukit-auth', '~> 2.2.0'
 
 gem 'nprogress-rails'
 gem 'bootstrap-sass', '~> 3.3.5'

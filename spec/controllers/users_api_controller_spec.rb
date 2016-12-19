@@ -13,7 +13,7 @@ describe Api::UsersController, type: :controller do
 
     it { expect(response.status).to eq 200 }
     it { expect(User.count).to eq 1 }
-    it { expect(User.first.permissions).to eq('student' => 'foo/*') }
+    it { expect(User.first.permissions.student? 'foo/*').to be true }
     it { expect(User.first.uid).to eq 'foo@bar.com' }
   end
 
