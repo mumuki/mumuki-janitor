@@ -129,7 +129,7 @@ Creates the student if necessary, and updates her permissions.
 **Minimal permission**: `janitor`
 
 ```
-POST /course/:id/students
+POST /courses/:organization/:repository/students
 ```
 
 ```json
