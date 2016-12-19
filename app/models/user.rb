@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :api_clients
 
   before_validation :set_uid
-  after_save :notify!
+  after_save :notify!, :set_permissions!
 
   validates_presence_of :first_name, :last_name, :email, :uid
 
@@ -25,6 +25,10 @@ class User < ApplicationRecord
 
   def notify!
     NotificationMode.notify_event! 'UserChanged', user: self.as_json
+  end
+
+  def set_permissions!
+    Mumukit::Auth::Store.new(:permissions).set! uid, permissions
   end
 
 end
