@@ -140,6 +140,13 @@ POST /courses/:organization/:course/students
   "uids": []
 }
 ```
+**Response**
+```json
+{ 
+  "status": "created",
+  "uid": "maryK345@foobar.edu.ar"
+}
+```
 
 ### Add teacher to course
 
