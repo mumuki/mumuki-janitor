@@ -8,13 +8,12 @@ module Api
       Mumukit::Auth::Token.decode_header(authorization_header).verify_client!
     end
 
-    def authorization_header
-      request.env['HTTP_AUTHORIZATION']
-    end
-
     def set_api_client
       @api_client = ApiClient.find_by!(token: authorization_header.split(' ').last)
     end
-  end
 
+    def authorization_header
+      request.env['HTTP_AUTHORIZATION']
+    end
+  end
 end
