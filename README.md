@@ -47,18 +47,18 @@ Janitor Permissions are composed of two elements:
     * comment solutions
     * follow students
     * create examsn
-  * `teacher-admin` (aka `professor`)
+  * `headmaster`
     * same permissions as `teacher`  and
     * add more teachers to courses
   * `writer`
     * create content in the editor
-  * `writer-admin` (aka `librarian`)
+  * `editor`
      * same permissions as `writer` and
      * destoy content
   * `janitor`
      * enter this Janitor application
-     * can create users and courses and assign permissions equal or lower to herself 
-  * `janitor-admin` (aka instance `owner`)
+     * can create users and courses and assign permissions equal or lower to herself
+  * `owner`
      * same permissions than a `janitor`, and
      * can create organizations 
 * a scope, that states in which context the operation can be performed. Scopes are always expressed with a slug, that allows `primary-scope/secondary-scope` you specify are most two-level scopes. 
