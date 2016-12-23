@@ -68,10 +68,10 @@ Janitor Permissions are composed of two elements:
 Scopes are simply two-level contexts, without any explicit semantic. They exact meaning is set by each role: 
 
 * students: `organization/_`
-* teacher and teacher-admin: `organization/course`
+* teacher and headmaster: `organization/course`
+* writer and editor: `organization/content` 
 * janitor: `organization/_`
-* janitor-admin: `_/_`
-* writer and writer-admin: `organization/content` 
+* owner: `_/_`
 
 # API
 
@@ -145,7 +145,7 @@ POST /courses/:organization/:course/students
 
 Creates the teacher if necessary, and updates her permissions.
 
-**Minimal permission**: `teacher-admin`, `janitor`
+**Minimal permission**: `headmaster`, `janitor`
 
 ```
 POST /course/:id/teachers
