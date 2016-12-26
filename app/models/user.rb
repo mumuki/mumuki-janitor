@@ -32,10 +32,7 @@ class User < ApplicationRecord
   end
 
   def set_permissions!
-    Mumukit::Auth::Store.new(:permissions).tap do |db|
-      db.set! uid, permissions
-      db.close
-    end
+    Mumukit::Auth::Store.set! uid, permissions
   end
 
 end
