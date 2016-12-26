@@ -5,8 +5,8 @@ module Api
     before_action :protect!, only: :create
 
     def create
-      @course.add_student!(user_params)
-      render json: { status: :created }
+      user = @course.add_student(user_params)
+      render json: user.as_json
     end
 
     private

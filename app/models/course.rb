@@ -10,10 +10,11 @@ class Course < ApplicationRecord
 
   belongs_to :organization
 
-  def add_student!(user)
-    student = User.where(uid: user[:uid]).first_or_create(user)
-    student.add_student_permission! slug
-    student.save!
+  def add_student(user)
+    User.where(uid: user[:uid]).first_or_create(user).tap do |s|
+      s.add_student_permission! slug
+      s.save!
+    end
   end
 
   private
