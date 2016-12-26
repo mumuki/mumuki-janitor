@@ -7,7 +7,14 @@ describe Api::UsersController, type: :controller do
     {first_name: 'foo',
      last_name: 'bar',
      email: 'foo@bar.com',
-     permissions: {student: 'foo/_'}
+     permissions: {student: 'test/bar'}
+    }
+  end
+  let(:owner_json) do
+    {first_name: 'foo',
+     last_name: 'bar',
+     email: 'foo@bar.com',
+     permissions: {owner: '*'}
     }
   end
   context 'post' do
@@ -15,8 +22,14 @@ describe Api::UsersController, type: :controller do
 
     it { expect(response.status).to eq 200 }
     it { expect(User.count).to eq 2 }
-    it { expect(User.last.permissions.student? 'foo/_').to be true }
+    it { expect(User.last.permissions.student? 'test/_').to be true }
     it { expect(User.last.uid).to eq 'foo@bar.com' }
+  end
+
+  context 'post without permissions' do
+    before { post :create, params: { user: owner_json }}
+
+    it { expect(response.status).to eq 403 }
   end
 
   context 'put' do

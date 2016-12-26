@@ -1,6 +1,7 @@
 module Api
   class UsersController < BaseController
     before_action :set_user, only: :update
+    before_action :protect_all!, only: [:create, :update]
     def create
       user = User.create! user_params
       render json: { user: user }
@@ -19,6 +20,10 @@ module Api
 
     def set_user
       @user = User.find_by(uid: params[:id])
+    end
+
+    def protect_all!
+      @api_client.protect_all! user_params[:permissions]
     end
   end
 end
