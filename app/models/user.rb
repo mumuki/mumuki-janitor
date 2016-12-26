@@ -7,10 +7,15 @@ class User < ApplicationRecord
   before_validation :set_uid
   after_save :notify!, :set_permissions!
 
-  validates_presence_of :first_name, :last_name, :email, :uid
+  validates_presence_of :first_name, :last_name, :uid
 
   def add_student_permission!(grant)
     add_permission! :student, grant
+  end
+
+  def update_permissions!(new_permissions)
+    self.permissions = permissions.merge Mumukit::Auth::Permissions.parse(new_permissions)
+    save!
   end
 
   private
@@ -20,7 +25,7 @@ class User < ApplicationRecord
   end
 
   def set_uid
-    self.uid = email
+    self.uid ||= email
   end
 
   def notify!
