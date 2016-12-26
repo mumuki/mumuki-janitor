@@ -111,7 +111,7 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
-    mumukit-auth (3.3.0)
+    mumukit-auth (3.4.0)
       daybreak
       jwt
       mumukit-core (~> 0.4)
@@ -245,7 +245,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
-  mumukit-auth (~> 3.3.0)
+  mumukit-auth (~> 3.3)
   mumukit-nuntius (~> 2.0)
   nprogress-rails
   pg
