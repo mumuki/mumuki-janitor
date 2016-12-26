@@ -20,7 +20,7 @@ module WithDynamicErrors
     render json: {}, status: 500
   end
 
-  def forbidden
-    render  json: {}, status: 403
+  def forbidden(exception)
+    render  json: {error: exception.message}, status: 403
   end
 end
