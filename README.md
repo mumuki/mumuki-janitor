@@ -1,18 +1,18 @@
-Mumuki Janitor
+Mumuki Office
 ==============
 
 > Authorization and API Authentication solution for the Mumuki Platform
 
-Mumuki Janitor is a RESTful service and GUI that allows to
+Mumuki Office is a RESTful service and GUI that allows to
 
-* manage core Mumuki Platform authorization concepts 
+* manage core Mumuki Platform authorization concepts
   * CRUD users and their permissions
-  * CRUD organization 
+  * CRUD organization
   * CRUD courses
 * authorize user operations across mumuki applications
 * authenticate API clients using JWT tokens
 
-# Sample Flows 
+# Sample Flows
 
 ## Basic Platform Permissions Setup
 
@@ -33,11 +33,11 @@ Mumuki Janitor is a RESTful service and GUI that allows to
 3. Create a API Client
   1. Set client permissions
   2. Set client logical name
-  3. This will generate a private JWT. Use it to authenticate API calls in any Platform application within a `Authorizaion: Bearer <TOKEN>` 
+  3. This will generate a private JWT. Use it to authenticate API calls in any Platform application within a `Authorizaion: Bearer <TOKEN>`
 
 # Permissions
 
-Janitor Permissions are composed of two elements: 
+Office Permissions are composed of two elements:
 
 * a role, that states which operations a user or API client can perform. Roles are:
   * `student`: they can solve exercises in Atheneum
@@ -56,20 +56,20 @@ Janitor Permissions are composed of two elements:
      * same permissions as `writer` and
      * destoy content
   * `janitor`
-     * enter this Janitor application
+     * enter this Office application
      * can create users and courses and assign permissions equal or lower to herself
   * `owner`
      * same permissions than a `janitor`, and
-     * can create organizations 
-* a scope, that states in which context the operation can be performed. Scopes are always expressed with a slug, that allows `primary-scope/secondary-scope` you specify are most two-level scopes. 
+     * can create organizations
+* a scope, that states in which context the operation can be performed. Scopes are always expressed with a slug, that allows `primary-scope/secondary-scope` you specify are most two-level scopes.
 
 ## Scopes details
 
-Scopes are simply two-level contexts, without any explicit semantic. They exact meaning is set by each role: 
+Scopes are simply two-level contexts, without any explicit semantic. They exact meaning is set by each role:
 
 * student: `organization/course`
 * teacher and headmaster: `organization/course`
-* writer and editor: `organization/content` 
+* writer and editor: `organization/content`
 * janitor: `organization/_`
 * owner: `_/_`
 
@@ -79,7 +79,7 @@ Scopes are simply two-level contexts, without any explicit semantic. They exact 
 
 ### Create single user
 
-This is a generic user creation request. 
+This is a generic user creation request.
 
 **Minimal permission**: `janitor`
 
@@ -87,24 +87,24 @@ This is a generic user creation request.
 POST /users
 ```
 
-Sample request body: 
+Sample request body:
 
 ```json
 {
-  "first_name": "María", 
+  "first_name": "María",
   "last_name": "Casas",
-  "email": "maryK345@foobar.edu.ar", 
+  "email": "maryK345@foobar.edu.ar",
   "uids": [],
   "permissions": {
      "student": "cpt/*:rte/*",
      "teacher": "ppp/2016-2q"
-  } 
+  }
 }
 ```
 
 ### Update single user
 
-This is a way of updating user basic data. Permissions are ignored. 
+This is a way of updating user basic data. Permissions are ignored.
 
 **Minimal permission**: `janitor`
 
@@ -112,11 +112,11 @@ This is a way of updating user basic data. Permissions are ignored.
 PUT /users/:uid
 ```
 
-Sample request body: 
+Sample request body:
 
 ```json
 {
-  "first_name": "María", 
+  "first_name": "María",
   "last_name": "Casas",
   "email": "maryK345@foobar.edu.ar"
 }
@@ -134,7 +134,7 @@ POST /courses/:organization/:course/students
 
 ```json
 {
-  "first_name": "María", 
+  "first_name": "María",
   "last_name": "Casas",
   "email": "maryK345@foobar.edu.ar",
   "uids": []
@@ -153,7 +153,7 @@ POST /course/:id/teachers
 
 ```json
 {
-  "first_name": "Erica", 
+  "first_name": "Erica",
   "last_name": "Gonzalez",
   "email": "egonzalez@foobar.edu.ar",
   "uids": []
@@ -162,7 +162,7 @@ POST /course/:id/teachers
 
 ### Add a batch of users to a course
 
-Creates every user if necesssary, an updates permissions. 
+Creates every user if necesssary, an updates permissions.
 
 **Minimal permission**: `janitor`
 
@@ -174,19 +174,19 @@ POST /course/:id/batches
 {
   "students": [
     {
-      "first_name": "Tupac", 
+      "first_name": "Tupac",
       "last_name": "Lincoln",
       "email": "tliconln@foobar.edu.ar",
       "uids": ["tupac.lincoln@gugel.com"]
-    }  
+    }
   ],
   "teachers": [
     {
-      "first_name": "Erica", 
+      "first_name": "Erica",
       "last_name": "Gonzalez",
       "email": "egonzalez@foobar.edu.ar",
       "uids": []
-    }  
+    }
   ]
 }
 ```
@@ -258,7 +258,7 @@ DELETE /courses/:id
 get /organizations
 ```
 
-Sample response body: 
+Sample response body:
 
 ```json
 {
@@ -274,12 +274,12 @@ Sample response body:
 ```
 get /organizations/:name
 ```
-Sample response body: 
+Sample response body:
 
 ```json
 {
   "name":"academy",
-  "logo_url":"http://...", 
+  "logo_url":"http://...",
   "private": false,
   "description": "...",
   "book_slug": "MumukiProject/mumuki-libro-metaprogramacion",
@@ -293,7 +293,7 @@ Sample response body:
 ```
 get /themes/:name
 ```
-Sample response body: 
+Sample response body:
 
 ```css
 a { color: red; }

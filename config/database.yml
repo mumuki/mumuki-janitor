@@ -8,13 +8,13 @@ common: &common
 
 test:
   <<: *common
-  database: janitor_test
+  database: office_test
   pool: 5
   timeout: 5000
 
 development:
   <<: *common
-  database: janitor_development
+  database: office_development
   pool: 5
   timeout: 5000
 
