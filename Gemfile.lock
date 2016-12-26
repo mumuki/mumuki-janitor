@@ -97,17 +97,20 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
+    mimemagic (0.3.2)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
-    mumukit-auth (2.2.1)
+    multi_xml (0.6.0)
+    multipart-post (2.0.0)
+    mumukit-auth (3.3.0)
       daybreak
       jwt
-      mumukit-core (~> 0.4.2)
-    mumukit-core (0.4.2)
+      mumukit-core (~> 0.4)
+    mumukit-core (0.4.3)
       activesupport (>= 4.1)
       i18n (~> 0.7)
-      rack (~> 2.0)
+      rack (>= 1.5)
     mumukit-nuntius (1.0.0)
       activesupport (>= 4.1)
       bunny (~> 2.3)
@@ -233,7 +236,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
-  mumukit-auth (~> 2.2.0)
+  mumukit-auth (~> 3.3.0)
   mumukit-nuntius (~> 1.0.0)
   nprogress-rails
   pg
