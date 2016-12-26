@@ -41,6 +41,8 @@ GEM
       tzinfo (~> 1.1)
     amq-protocol (2.0.1)
     arel (7.1.4)
+    auth0 (4.0.0)
+      httmultiparty (~> 0.3.16)
     autoprefixer-rails (6.5.3)
       execjs
     bootstrap-sass (3.3.7)
@@ -76,6 +78,12 @@ GEM
       railties (>= 3.2, < 5.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    httmultiparty (0.3.16)
+      httparty (>= 0.7.3)
+      mimemagic
+      multipart-post
+    httparty (0.14.0)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     jbuilder (2.6.1)
       activesupport (>= 3.0.0, < 5.1)
@@ -226,6 +234,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  auth0
   bootstrap-sass (~> 3.3.5)
   byebug
   coffee-rails (~> 4.2)
