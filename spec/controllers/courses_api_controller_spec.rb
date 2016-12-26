@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Api::CoursesController, type: :controller do
-  before { @request.env["HTTP_AUTHORIZATION"] = api_client.token }
+  before { set_api_client }
   let(:api_client) { create :api_client }
   let(:course_json) do
     {slug: 'foo/bar',
