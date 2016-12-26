@@ -83,4 +83,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.queueless_mode = ENV['MUMUKI_QUEUELESS_MODE']
+  config.auth_client_id = ENV['MUMUKI_AUTH0_CLIENT_ID']
+  config.auth_client_secret = ENV['MUMUKI_AUTH0_CLIENT_SECRET']
+  config.auth_domain = ENV['MUMUKI_AUTH0_DOMAIN']
 end
