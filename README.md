@@ -40,27 +40,32 @@ Mumuki Office is a RESTful service and GUI that allows to
 Office Permissions are composed of two elements:
 
 * a role, that states which operations a user or API client can perform. Roles are:
-  * `student`: they can solve exercises in Atheneum
-  * `teacher`: they can
+  * `student`: 
+    * they can solve exercises in Atheneum
+  * `teacher`: 
+    * same permissions as `student` and
     * enter the classroom
     * see student progress
     * comment solutions
     * follow students
-    * create examsn
+    * create exams
   * `headmaster`
-    * same permissions as `teacher`  and
+    * same permissions as `teacher` and
     * add more teachers to courses
   * `writer`
     * create content in the editor
   * `editor`
-     * same permissions as `writer` and
-     * destoy content
+    * same permissions as `writer` and
+    * destoy content
   * `janitor`
-     * enter this Office application
-     * can create users and courses and assign permissions equal or lower to herself
+    * same permissions as `headmaster` and
+    * enter this Office application
+    * can create users and courses and assign permissions equal or lower to herself
   * `owner`
-     * same permissions than a `janitor`, and
-     * can create organizations
+    * same permissions as `janitor` and `editor`, and
+    * can create organizations   
+  * Take a look to [the permissions hierarchy](https://yuml.me/diagram/plain/class/[Owner]%5E-[Janitor],%20[Janitor]%5E-[Headmaster],%20[Headmaster]%5E-[Teacher],%20[Teacher]%5E-[Student],%20,%20[Owner]%5E-[Editor],%20[Editor]%5E-[Writer])
+  
 * a scope, that states in which context the operation can be performed. Scopes are always expressed with a slug, that allows `primary-scope/secondary-scope` you specify are most two-level scopes.
 
 ## Scopes details
