@@ -1,7 +1,7 @@
 module Api
   class BaseController < ApplicationController
     protect_from_forgery with: :null_session
-    before_filter :verify_authorization_header, :set_api_client
+    before_action :verify_authorization_header, :set_api_client
     private
 
     def verify_authorization_header
