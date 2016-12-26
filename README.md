@@ -67,7 +67,7 @@ Janitor Permissions are composed of two elements:
 
 Scopes are simply two-level contexts, without any explicit semantic. They exact meaning is set by each role: 
 
-* students: `organization/_`
+* student: `organization/course`
 * teacher and headmaster: `organization/course`
 * writer and editor: `organization/content` 
 * janitor: `organization/_`
