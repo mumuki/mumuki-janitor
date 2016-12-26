@@ -14,8 +14,7 @@ class User < ApplicationRecord
   end
 
   def update_permissions!(new_permissions)
-    self.permissions = permissions.merge Mumukit::Auth::Permissions.parse(new_permissions)
-    save!
+    self.update! permissions: permissions.merge(Mumukit::Auth::Permissions.parse(new_permissions))
   end
 
   private
