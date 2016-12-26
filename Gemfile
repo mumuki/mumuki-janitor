@@ -26,7 +26,7 @@ group :development, :test do
   gem 'faker'
 end
 
-gem 'mumukit-nuntius', '~> 2.0.0'
+gem 'mumukit-nuntius', '~> 2.0'
 gem 'mumukit-auth', '~> 3.3.0'
 
 gem 'nprogress-rails'

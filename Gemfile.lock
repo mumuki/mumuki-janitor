@@ -119,7 +119,7 @@ GEM
       activesupport (>= 4.1)
       i18n (~> 0.7)
       rack (>= 1.5)
-    mumukit-nuntius (2.0.0)
+    mumukit-nuntius (2.1.0)
       activesupport (>= 4.1)
       bunny (~> 2.3)
     nio4r (1.2.1)
@@ -246,7 +246,7 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   mumukit-auth (~> 3.3.0)
-  mumukit-nuntius (~> 2.0.0)
+  mumukit-nuntius (~> 2.0)
   nprogress-rails
   pg
   pry
