@@ -16,6 +16,7 @@
 permissions.db
 
 # Ignore all logfiles and tempfiles.
+nuntius.log
 /log/*
 /tmp/*
 !/log/.keep
