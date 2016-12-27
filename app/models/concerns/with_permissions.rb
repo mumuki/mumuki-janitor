@@ -15,13 +15,13 @@ module WithPermissions
     end
 
     def update_permissions!(new_permissions)
-      self.update! permissions: permissions.merge(Mumukit::Auth::Permissions.parse(new_permissions))
+      update! permissions: permissions.merge(Mumukit::Auth::Permissions.parse(new_permissions))
     end
 
     private
 
     def add_permission!(role, grant)
-      self.permissions.add_permission! role, grant
+      permissions.add_permission! role, grant
     end
 
     def set_permissions!

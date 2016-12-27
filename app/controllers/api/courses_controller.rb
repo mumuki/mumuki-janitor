@@ -5,6 +5,7 @@ module Api
 
     def create
       course = Course.create! course_params
+      course.notify!
       render json: { course: course }
     end
 

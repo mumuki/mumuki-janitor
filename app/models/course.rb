@@ -6,25 +6,25 @@ class Course < ApplicationRecord
 
   before_validation :set_uid, :set_organization
   before_create :set_organization
-  after_save :notify!
 
   belongs_to :organization
 
-  def add_student(user)
+  def add_student!(user)
     User.where(uid: user[:uid]).first_or_create(user).tap do |s|
       s.add_student_permission! slug
       s.save!
+      s.notify!
     end
+  end
+
+  def notify!
+    NotificationMode.notify_event! 'CourseChanged', course: self.as_json
   end
 
   private
 
   def set_uid
     self.uid = slug
-  end
-
-  def notify!
-    NotificationMode.notify_event! 'CourseChanged', course: self.as_json
   end
 
   def set_organization

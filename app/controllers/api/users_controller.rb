@@ -4,11 +4,13 @@ module Api
     before_action :protect_all!, only: [:create, :update]
     def create
       user = User.create! user_params
+      user.notify!
       render json: { user: user }
     end
 
     def update
       @user.update! user_params.except([:email, :permissions, :uid])
+      @user.notify!
       render json: { user: @user }
     end
 
