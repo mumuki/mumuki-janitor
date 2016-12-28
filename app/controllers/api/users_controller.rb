@@ -1,7 +1,7 @@
 module Api
   class UsersController < BaseController
     before_action :set_user, only: :update
-    before_action :protect_all!, only: [:create, :update]
+    before_action :protect_delegation!, only: [:create, :update]
     def create
       user = User.create! user_params
       user.notify!
@@ -24,8 +24,8 @@ module Api
       @user = User.find_by(uid: params[:id])
     end
 
-    def protect_all!
-      @api_client.protect_all! user_params[:permissions]
+    def protect_delegation!
+      @api_client.protect_delegation! user_params[:permissions]
     end
   end
 end
