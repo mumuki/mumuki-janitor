@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates_presence_of :first_name, :last_name, :uid
 
   def self.import_from_json!(user_data)
-    User.where(uid: user_data[:uid]).update_or_create(user_data).save!
+    User.where(uid: user_data[:uid]).assign_first(user_data).save!
   end
 
   def notify!
