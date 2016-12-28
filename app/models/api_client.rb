@@ -11,7 +11,6 @@ class ApiClient < ApplicationRecord
 
   accepts_nested_attributes_for :user
 
-
   private
 
   def set_token
