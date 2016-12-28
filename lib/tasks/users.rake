@@ -38,8 +38,9 @@ def create_user(u)
           writer: u.dig('app_metadata', 'bibliotheca', 'permissions'),
       }.compact
   }
-  user = User.where(uid: user_params[:uid]).update_or_create user_params.except(:permissions)
+  user = User.where(uid: user_params[:uid]).assign_first user_params.except(:permissions)
   user.update_permissions! user_params[:permissions]
+  user.notify!
 rescue => e
   puts "Couldn't create #{u['email']} because of:\n\n #{e}"
 end
