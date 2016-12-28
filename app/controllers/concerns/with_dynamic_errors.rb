@@ -9,18 +9,24 @@ module WithDynamicErrors
     rescue_from Mumukit::Auth::UnauthorizedAccessError, with: :forbidden
   end
 
-  def not_found
-    render json: {}, status: 404
+  def not_found(e)
+    render_with_status e, 404
   end
 
   private
 
-  def internal_server_error(exception)
-    Rails.logger.error "Internal server error: #{exception} \n#{exception.backtrace.join("\n")}"
-    render json: {}, status: 500
+  def internal_server_error(e)
+    Rails.logger.error "Internal server error: #{e} \n#{e.backtrace.join("\n")}"
+    render_with_status e, 500
   end
 
-  def forbidden(exception)
-    render  json: {error: exception.message}, status: 403
+  def forbidden(e)
+    render_with_status e, 403
+  end
+
+  private
+
+  def render_with_status(e, status)
+    render  json: {error: e.message}, status: status
   end
 end
