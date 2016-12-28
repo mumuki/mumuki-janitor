@@ -1,6 +1,9 @@
 module Api
   class BaseController < ApplicationController
     protect_from_forgery with: :null_session
+
+    include WithDynamicErrors
+
     before_action :verify_authorization_header, :set_api_client
     private
 
