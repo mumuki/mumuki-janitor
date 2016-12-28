@@ -18,7 +18,7 @@ class Course < ApplicationRecord
   end
 
   def notify!
-    Mumukit::Nuntius.notify_event! 'CourseChanged', course: self.as_json
+    Mumukit::Nuntius.notify_event!({course: self.as_json}, 'CourseChanged')
   end
 
   private

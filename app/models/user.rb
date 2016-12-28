@@ -14,7 +14,7 @@ class User < ApplicationRecord
   end
 
   def notify!
-    Mumukit::Nuntius.notify_event! 'UserChanged', user: self.as_json
+    Mumukit::Nuntius.notify_event!({user: self.as_json}, 'UserChanged')
   end
 
   private
