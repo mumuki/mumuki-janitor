@@ -1,6 +1,7 @@
 class Course < ApplicationRecord
 
   include WithSubscriptionMode
+  extend WithImport
 
   validates_presence_of :uid, :slug, :shifts, :code, :days, :period, :description, :organization_id
 
