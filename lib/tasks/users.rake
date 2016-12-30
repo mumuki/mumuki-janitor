@@ -5,8 +5,8 @@ namespace :users do
     puts "Migrating users from auth0...\n\n\n"
 
     auth0 = Auth0Client.new(
-        :client_id => ENV['MUMUKI_AUTH_CLIENT_ID'],
-        :token => ENV['MUMUKI_AUTH_API_TOKEN'],
+        :client_id => ENV['MUMUKI_AUTH0_CLIENT_ID'],
+        :token => ENV['MUMUKI_AUTH0_API_TOKEN'],
         :domain => "mumuki.auth0.com",
         :api_version => 2
     )
