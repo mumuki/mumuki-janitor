@@ -12,7 +12,7 @@ module Api
     private
 
     def user_params
-      params.require(:student).permit(:first_name, :last_name, :email, :uid)
+      params.require(:student).permit(:first_name, :last_name, :email, :uid, :image_url)
     end
 
     def set_course
