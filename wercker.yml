@@ -1,7 +1,7 @@
 box: ruby:2.3.1
 
 services:
-- postgres
+ - postgres
 
 build:
   steps:
@@ -9,6 +9,10 @@ build:
       name: Clear bundle cache
       code: rm -rf /pipeline/cache/bundle-install/ruby/2.3.1/cache/bundler/git/*
   - bundle-install
+  - rails-database-yml
+  - script:
+      name: Set up db
+      code: bundle exec rake db:schema:load RAILS_ENV=test
   - script:
       name: rspec
       code: bundle exec rspec
