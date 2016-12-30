@@ -1,4 +1,7 @@
 [![Build Status](https://travis-ci.org/mumuki/mumuki-office.svg?branch=master)](https://travis-ci.org/mumuki/mumuki-office)
+[![Code Climate](https://codeclimate.com/github/mumuki/mumuki-office/badges/gpa.svg)](https://codeclimate.com/github/mumuki/mumuki-office)
+[![Test Coverage](https://codeclimate.com/github/mumuki/mumuki-office/badges/coverage.svg)](https://codeclimate.com/github/mumuki/mumuki-office)
+[![Issue Count](https://codeclimate.com/github/mumuki/mumuki-office/badges/issue_count.svg)](https://codeclimate.com/github/mumuki/mumuki-office)
 
 Mumuki Office
 ==============
