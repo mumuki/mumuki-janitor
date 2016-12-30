@@ -14,6 +14,8 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
+gem 'auth0'
+
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'pry'
@@ -24,8 +26,8 @@ group :development, :test do
   gem 'faker'
 end
 
-gem 'mumukit-nuntius', '~> 1.0.0'
-gem 'mumukit-auth', '~> 2.2.0'
+gem 'mumukit-nuntius', '~> 2.0'
+gem 'mumukit-auth', '~> 3.3'
 
 gem 'nprogress-rails'
 gem 'bootstrap-sass', '~> 3.3.5'

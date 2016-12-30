@@ -24,3 +24,7 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
 end
+
+def set_api_client
+  @request.env["HTTP_AUTHORIZATION"] = api_client.token
+end

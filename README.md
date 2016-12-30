@@ -150,6 +150,23 @@ POST /courses/:organization/:course/students
   "uids": []
 }
 ```
+**Response**
+```json
+{ 
+  "uid": "maryK345@foobar.edu.ar",
+  "first_name": "María",
+  "last_name": "Casas",
+  "email": "maryK345@foobar.edu.ar"
+}
+```
+**Forbidden Response**
+```json
+{
+  "status": 403,
+  "error": "Exception"
+}
+```
+
 
 ### Add teacher to course
 

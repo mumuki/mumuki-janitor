@@ -6,6 +6,9 @@ class ApiClient < ApplicationRecord
 
   validates_presence_of :description
 
+  delegate :permissions, to: :user
+  delegate :protect!, :protect_delegation!, to: :permissions
+
   accepts_nested_attributes_for :user
 
   private

@@ -1,30 +1,22 @@
 class User < ApplicationRecord
 
   include WithPermissions
+  extend WithImport
 
   has_many :api_clients
 
   before_validation :set_uid
-  after_save :notify!
+  after_commit :set_permissions!
 
-  validates_presence_of :first_name, :last_name, :email, :uid
+  validates_presence_of :first_name, :last_name, :uid
 
-  def add_student_permission!(grant)
-    add_permission! :student, grant
+  def notify!
+    Mumukit::Nuntius.notify_event!({user: self.as_json}, 'UserChanged')
   end
 
   private
 
-  def add_permission!(role, grant)
-    self.permissions.add_permission! role, grant
-  end
-
   def set_uid
-    self.uid = email
+    self.uid ||= email
   end
-
-  def notify!
-    NotificationMode.notify_event! 'UserChanged', user: self.as_json
-  end
-
 end

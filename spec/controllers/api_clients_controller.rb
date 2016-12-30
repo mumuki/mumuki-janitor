@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe ApiClientsController, type: :controller do
+  before { @request.env["HTTP_AUTHORIZATION"] = api_client.token }
+  let(:api_client) { create :api_client }
   let(:api_client_json) do
     {description: 'foo',
      user_attributes: user_json

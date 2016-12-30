@@ -7,6 +7,9 @@ require 'rspec/rails'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  config.before(:each) do
+    allow_any_instance_of(Mumukit::Auth::Store).to receive(:set!)
+  end
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
