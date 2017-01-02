@@ -37,11 +37,14 @@ end
 def create_user(u)
   first_name = u['given_name'] || u['name'].split(' ').first
   last_name = u['family_name'] || u['name'].split(' ').last
+  uid =  u['email'] || u['user_id']
   user_params = {
       first_name: first_name,
       last_name: last_name,
       email: u['email'],
-      uid: u['email'] || u['user_id'],
+      social_id: u['user_id'],
+      image_url: u['picture'],
+      uid: uid,
       permissions: {
           student: u.dig('app_metadata', 'atheneum', 'permissions'),
           teacher: u.dig('app_metadata', 'classroom', 'permissions'),
