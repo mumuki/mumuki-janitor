@@ -147,7 +147,6 @@ POST /courses/:organization/:course/students
   "first_name": "María",
   "last_name": "Casas",
   "email": "maryK345@foobar.edu.ar",
-  "uids": []
 }
 ```
 **Response**
@@ -163,6 +162,53 @@ POST /courses/:organization/:course/students
 ```json
 {
   "status": 403,
+  "error": "Exception"
+}
+```
+
+### Detach student from course
+
+Remove student permissions from a course.
+
+**Minimal permission**: `janitor`
+
+```
+POST /courses/:organization/:course/students/:uid/detach
+```
+
+**Response**
+```json
+{
+  "status": "created",
+}
+```
+**Not Found Response**
+```json
+{
+  "status": 404,
+  "error": "Exception"
+}
+```
+
+### Attach student to course
+
+Add student permissions to a course.
+
+**Minimal permission**: `janitor`
+
+```
+POST /courses/:organization/:course/students/:uid/attach
+```
+**Response**
+```json
+{
+  "status": "created",
+}
+```
+**Not Found Response**
+```json
+{
+  "status": 404,
   "error": "Exception"
 }
 ```
