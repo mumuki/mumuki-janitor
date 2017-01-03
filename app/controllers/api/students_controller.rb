@@ -2,21 +2,23 @@ module Api
   class StudentsController < BaseController
     before_action :set_slug
     before_action :set_course
+    before_action :set_user, except: :create
     before_action :protect!
 
     def create
-      user = @course.add_student!(user_params)
+      user = User.create_if_necessary(user_params)
+      user.attach! @course
       render json: user.as_json
     end
 
     def attach
-      @course.attach!(params[:uid])
-      render json: {status: :created}
+      @user.attach! @course
+      head :ok
     end
 
     def detach
-      @course.detach!(params[:uid])
-      render json: {status: :created}
+      @user.detach! @course
+      head :ok
     end
 
     private
@@ -26,7 +28,11 @@ module Api
     end
 
     def set_course
-      @course = Course.find_by(slug: @slug)
+      @course = Course.find_by!(slug: @slug)
+    end
+
+    def set_user
+      @user = User.find_by!(uid: params[:uid])
     end
 
     def set_slug

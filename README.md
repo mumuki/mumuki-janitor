@@ -176,17 +176,14 @@ Remove student permissions from a course.
 POST /courses/:organization/:course/students/:uid/detach
 ```
 
-**Response**
-```json
-{
-  "status": "created",
-}
-```
+**Response**: status code: 200
+
+
 **Not Found Response**
 ```json
 {
   "status": 404,
-  "error": "Exception"
+  "error": "Couldn't find User"
 }
 ```
 
@@ -199,17 +196,13 @@ Add student permissions to a course.
 ```
 POST /courses/:organization/:course/students/:uid/attach
 ```
-**Response**
-```json
-{
-  "status": "created",
-}
-```
+**Response**: status code: 200
+
 **Not Found Response**
 ```json
 {
   "status": 404,
-  "error": "Exception"
+  "error": "Couldn't find User"
 }
 ```
 

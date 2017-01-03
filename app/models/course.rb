@@ -10,18 +10,6 @@ class Course < ApplicationRecord
 
   belongs_to :organization
 
-  def add_student!(user)
-    User.where(uid: user[:uid]).first_or_create(user).attach! self
-  end
-
-  def attach!(uid)
-    User.find_by!(uid: uid).attach! self
-  end
-
-  def detach!(uid)
-    User.find_by!(uid: uid).detach! self
-  end
-
   def notify!
     Mumukit::Nuntius.notify_event!({course: event_json}, 'CourseChanged')
   end

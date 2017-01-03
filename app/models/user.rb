@@ -24,6 +24,10 @@ class User < ApplicationRecord
     Mumukit::Nuntius.notify_event!({user: self.as_json}, 'UserChanged')
   end
 
+  def self.create_if_necessary(user)
+    User.where(uid: user[:uid]).first_or_create(user)
+  end
+
   private
 
   def save_and_notify!
