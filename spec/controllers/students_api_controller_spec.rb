@@ -75,4 +75,23 @@ describe Api::StudentsController, type: :controller do
     end
 
   end
+
+  context 'detach student' do
+    let(:params) {{ uid: student_json[:uid], organization: 'test', course: 'example' }}
+
+    context 'when user does not exist' do
+      before { post :detach, params: params}
+      it { expect(response.status).to eq 404 }
+    end
+
+    context 'when user exist' do
+      context 'and have permissions' do
+        before { create :user, student_json.merge(permissions: { student: 'test/example' }) }
+        before { post :detach, params: params}
+        it { expect(response.status).to eq 200 }
+        it { expect(User.last.permissions.student? 'test/example').to be false }
+      end
+    end
+
+  end
 end
