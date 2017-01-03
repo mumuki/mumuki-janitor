@@ -12,14 +12,12 @@ class User < ApplicationRecord
 
   def attach!(course)
     add_student_permission! course.slug
-    save!
-    notify!
+    save_and_notify!
   end
 
   def detach!(course)
     remove_student_permission! course.slug
-    save!
-    notify!
+    save_and_notify!
   end
 
   def notify!
@@ -27,6 +25,11 @@ class User < ApplicationRecord
   end
 
   private
+
+  def save_and_notify!
+    save!
+    notify!
+  end
 
   def set_uid
     self.uid ||= email
