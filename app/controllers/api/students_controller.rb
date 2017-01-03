@@ -1,12 +1,17 @@
 module Api
   class StudentsController < BaseController
-    before_action :set_slug, only: :create
-    before_action :set_course, only: :create
-    before_action :protect!, only: :create
+    before_action :set_slug, only: [:create, :attach]
+    before_action :set_course, only: [:create, :attach]
+    before_action :protect!, only: [:create, :attach]
 
     def create
       user = @course.add_student!(user_params)
       render json: user.as_json
+    end
+
+    def attach
+      @course.attach!(params[:uid])
+      render json: {status: :created}
     end
 
     private

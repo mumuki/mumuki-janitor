@@ -10,6 +10,12 @@ class User < ApplicationRecord
 
   validates_presence_of :first_name, :last_name, :uid
 
+  def attach!(course)
+    add_student_permission! course.slug
+    save!
+    notify!
+  end
+
   def notify!
     Mumukit::Nuntius.notify_event!({user: self.as_json}, 'UserChanged')
   end

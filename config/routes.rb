@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :courses, only: [:create]
     '/courses/:organization/:course'.tap do |it|
       post "#{it}/students" => 'students#create'
+      post "#{it}/students/:uid/attach" => 'students#attach'
     end
   end
 end
