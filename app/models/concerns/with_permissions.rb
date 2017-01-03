@@ -14,6 +14,10 @@ module WithPermissions
       add_permission! :student, grant
     end
 
+    def remove_student_permission!(grant)
+      remove_permission! :student, grant
+    end
+
     def update_permissions!(new_permissions)
       update! permissions: permissions.merge(Mumukit::Auth::Permissions.parse(new_permissions))
     end
@@ -22,6 +26,10 @@ module WithPermissions
 
     def add_permission!(role, grant)
       permissions.add_permission! role, grant
+    end
+
+    def remove_permission!(role, grant)
+      permissions.remove_permission! role, grant
     end
 
     def set_permissions!

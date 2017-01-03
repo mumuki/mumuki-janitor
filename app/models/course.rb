@@ -10,14 +10,6 @@ class Course < ApplicationRecord
 
   belongs_to :organization
 
-  def add_student!(user)
-    User.where(uid: user[:uid]).first_or_create(user).tap do |s|
-      s.add_student_permission! slug
-      s.save!
-      s.notify!
-    end
-  end
-
   def notify!
     Mumukit::Nuntius.notify_event!({course: event_json}, 'CourseChanged')
   end
