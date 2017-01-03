@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     '/courses/:organization/:course'.tap do |it|
       post "#{it}/students" => 'students#create'
       post "#{it}/students/:uid/attach" => 'students#attach'
+      post "#{it}/students/:uid/detach" => 'students#detach'
     end
   end
 end

@@ -22,6 +22,10 @@ class Course < ApplicationRecord
     User.find_by!(uid: uid).attach! self
   end
 
+  def detach!(uid)
+    User.find_by!(uid: uid).detach! self
+  end
+
   def notify!
     Mumukit::Nuntius.notify_event!({course: event_json}, 'CourseChanged')
   end

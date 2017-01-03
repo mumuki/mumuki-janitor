@@ -16,6 +16,12 @@ class User < ApplicationRecord
     notify!
   end
 
+  def detach!(course)
+    remove_student_permission! course.slug
+    save!
+    notify!
+  end
+
   def notify!
     Mumukit::Nuntius.notify_event!({user: self.as_json}, 'UserChanged')
   end
