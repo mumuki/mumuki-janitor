@@ -49,4 +49,30 @@ describe Api::StudentsController, type: :controller do
 
     end
   end
+
+  context 'attach student' do
+    let(:params) {{ uid: student_json[:uid], organization: 'test', course: 'example' }}
+
+    context 'when user does not exist' do
+      before { post :attach, params: params}
+      it { expect(response.status).to eq 404 }
+    end
+
+    context 'when user exist' do
+      context 'and have no permissions' do
+        before { create :user, student_json }
+        before { post :attach, params: params}
+        it { expect(response.status).to eq 200 }
+        it { expect(User.last.permissions.student? 'test/example').to be true }
+      end
+      context 'and have permissions' do
+        before { create :user, student_json.merge(permissions: { student: 'foo/bar' }) }
+        before { post :attach, params: params}
+        it { expect(response.status).to eq 200 }
+        it { expect(User.last.permissions.student? 'test/example').to be true }
+        it { expect(User.last.permissions.student? 'foo/bar').to be true }
+      end
+    end
+
+  end
 end
