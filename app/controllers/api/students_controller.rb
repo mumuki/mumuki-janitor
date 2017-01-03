@@ -1,8 +1,8 @@
 module Api
   class StudentsController < BaseController
-    before_action :set_slug, only: [:create, :attach, :detach]
-    before_action :set_course, only: [:create, :attach, :detach]
-    before_action :protect!, only: [:create, :attach, :detach]
+    before_action :set_slug
+    before_action :set_course
+    before_action :protect!
 
     def create
       user = @course.add_student!(user_params)
