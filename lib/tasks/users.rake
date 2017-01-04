@@ -4,12 +4,7 @@ namespace :users do
   task populate: :environment do
     puts "Migrating users from auth0...\n\n\n"
 
-    auth0 = Auth0Client.new(
-        :client_id => ENV['MUMUKI_AUTH0_CLIENT_ID'],
-        :token => ENV['MUMUKI_AUTH0_API_TOKEN'],
-        :domain => "mumuki.auth0.com",
-        :api_version => 2
-    )
+    auth0 = create_auth0_client
     page = 0
     users = auth0.get_users per_page: 100
     while users.present?
@@ -21,6 +16,22 @@ namespace :users do
       users = auth0.get_users(page: page, per_page: 100)
     end
   end
+  task :import, [:social_id] do |_, args|
+    social_id = args[:social_id]
+    puts "Importing user #{social_id} from auth0...\n\n\n"
+
+    auth0 = create_auth0_client
+    auth0_profile = auth0.user(social_id)
+    create_user auth0_profile
+  end
+end
+
+def create_auth0_client
+  Auth0Client.new(
+        :client_id => ENV['MUMUKI_AUTH0_CLIENT_ID'],
+        :token => ENV['MUMUKI_AUTH0_API_TOKEN'],
+        :domain => "mumuki.auth0.com",
+        :api_version => 2)
 end
 
 def create_user(u)
