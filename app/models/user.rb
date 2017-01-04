@@ -10,13 +10,13 @@ class User < ApplicationRecord
 
   validates_presence_of :first_name, :last_name, :uid
 
-  def attach!(course)
-    add_student_permission! course.slug
+  def attach!(role, course)
+    add_permission! role, course.slug
     save_and_notify!
   end
 
-  def detach!(course)
-    remove_student_permission! course.slug
+  def detach!(role, course)
+    remove_permission! role, course.slug
     save_and_notify!
   end
 

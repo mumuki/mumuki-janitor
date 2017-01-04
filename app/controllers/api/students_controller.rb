@@ -7,17 +7,17 @@ module Api
 
     def create
       user = User.create_if_necessary(user_params)
-      user.attach! @course
+      user.attach! :student, @course
       render json: user.as_json
     end
 
     def attach
-      @user.attach! @course
+      @user.attach! :student, @course
       head :ok
     end
 
     def detach
-      @user.detach! @course
+      @user.detach! :student, @course
       head :ok
     end
 
