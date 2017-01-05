@@ -1,5 +1,5 @@
 module Api
-  class PeopleController < BaseController
+  class RolesController < BaseController
     before_action :set_slug
     before_action :set_course
     before_action :set_user, except: :create
