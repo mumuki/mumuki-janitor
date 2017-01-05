@@ -25,6 +25,7 @@ class User < ApplicationRecord
   end
 
   def self.create_if_necessary(user)
+    user[:uid] ||= user[:email]
     User.where(uid: user[:uid]).first_or_create(user)
   end
 
