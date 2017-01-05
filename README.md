@@ -128,7 +128,8 @@ Sample request body:
 {
   "first_name": "María",
   "last_name": "Casas",
-  "email": "maryK345@foobar.edu.ar"
+  "email": "maryK345@foobar.edu.ar",
+  "uid": "maryK345@foobar.edu.ar"
 }
 ```
 
@@ -147,6 +148,7 @@ POST /courses/:organization/:course/students
   "first_name": "María",
   "last_name": "Casas",
   "email": "maryK345@foobar.edu.ar",
+  "uid": "maryK345@foobar.edu.ar"
 }
 ```
 **Response**
@@ -222,7 +224,7 @@ POST /course/:id/teachers
   "first_name": "Erica",
   "last_name": "Gonzalez",
   "email": "egonzalez@foobar.edu.ar",
-  "uids": []
+  "uid": "egonzalez@foobar.edu.ar"
 }
 ```
 
@@ -243,7 +245,7 @@ POST /course/:id/batches
       "first_name": "Tupac",
       "last_name": "Lincoln",
       "email": "tliconln@foobar.edu.ar",
-      "uids": ["tupac.lincoln@gugel.com"]
+      "uid": "tliconln@foobar.edu.ar"
     }
   ],
   "teachers": [
@@ -251,7 +253,7 @@ POST /course/:id/batches
       "first_name": "Erica",
       "last_name": "Gonzalez",
       "email": "egonzalez@foobar.edu.ar",
-      "uids": []
+      "uid": "egonzalez@foobar.edu.ar"
     }
   ]
 }
