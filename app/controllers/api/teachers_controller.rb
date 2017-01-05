@@ -1,5 +1,5 @@
 module Api
-  class TeachersController < PeopleController
+  class TeachersController < RolesController
     private
 
     def role
