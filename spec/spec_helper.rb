@@ -28,3 +28,9 @@ end
 def set_api_client
   @request.env["HTTP_AUTHORIZATION"] = api_client.token
 end
+
+class String
+  def parse_as_json
+    JSON.parse(self, symbolize_names: true)
+  end
+end
