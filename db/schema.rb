@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170113064743) do
+ActiveRecord::Schema.define(version: 20170113072929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,14 +42,15 @@ ActiveRecord::Schema.define(version: 20170113064743) do
     t.text     "description"
     t.string   "logo_url"
     t.string   "login_methods"
-    t.boolean  "private"
+    t.boolean  "private",          default: false
     t.string   "contact_email"
     t.text     "theme_stylesheet"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.string   "books",            default: [],              array: true
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "books",            default: [],                 array: true
     t.string   "locale"
     t.string   "terms_of_service"
+    t.index ["private"], name: "index_organizations_on_private", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
