@@ -4,7 +4,7 @@ describe Api::OrganizationsController, type: :controller do
 
   context 'GET' do
     let!(:public_organization) { create :organization, id: 1, name: 'public' }
-    let!(:private_organization) { create :organization, id: 2, name: 'test', private: true }
+    let!(:private_organization) { create :organization, id: 2, name: 'private', private: true }
 
     def check_status!(status)
       expect(response.status).to eq status
@@ -26,14 +26,36 @@ describe Api::OrganizationsController, type: :controller do
 
     context 'GET /organizations/:id' do
       before { set_api_client }
-      before { get :show, params: { id: 2 } }
 
-      context 'with a random user' do
-        let(:api_client) { create :api_client, role: :editor, grant: 'another_organization/*' }
+      context 'with a public organization' do
+        before { get :show, params: { id: 1 } }
 
-        it { check_status! 403 }
+        context 'with a user without permissions' do
+          let(:api_client) { create :api_client, role: :editor, grant: 'another_organization/*' }
+
+          it { check_status! 200 }
+        end
+      end
+
+      context 'with a private organization' do
+        before { get :show, params: { id: 2 } }
+
+        context 'with a user without permissions' do
+          let(:api_client) { create :api_client, role: :editor, grant: 'another_organization/*' }
+
+          it { check_status! 403 }
+        end
+
+        context 'with a user with permissions' do
+          let(:api_client) { create :api_client, role: :janitor, grant: 'private/*' }
+
+          it { check_status! 200 }
+          it { check_fields_presence! response }
+        end
       end
     end
+
+
   end
 
 end
