@@ -1,6 +1,6 @@
 class Organization < ApplicationRecord
   validates :name, :uniqueness => true, :format => { :with => /\A[-a-z0-9_]*\z/ }
-  validates_presence_of :contact_email, :name, :locale
+  validates_presence_of :name, :contact_email, :locale
   validates :books, :at_least_one => true
   validates :login_methods, :at_least_one => true
   validates :locale, :inclusion => { :in => %w(es-AR en-US) }

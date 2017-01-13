@@ -28,7 +28,7 @@ module Api
       protect_for_owner! organization
 
       organization.update_attributes organization_params
-      organization.validate
+      organization.save!
       render json: organization
     end
 
