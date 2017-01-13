@@ -12,7 +12,7 @@ module Api
     end
 
     def show
-      organization = Organization.find id_param
+      organization = Organization.find_by_name id_param
       protect_for_janitor!(organization) if (organization.private)
       render json: organization
     end
@@ -24,7 +24,7 @@ module Api
     end
 
     def update
-      organization = Organization.find id_param
+      organization = Organization.find_by_name id_param
       protect_for_owner! organization
 
       organization.update_attributes organization_params

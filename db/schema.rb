@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170113202636) do
+ActiveRecord::Schema.define(version: 20170113211012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20170113202636) do
     t.string   "locale"
     t.string   "terms_of_service"
     t.string   "login_methods",    default: [],                 array: true
+    t.index ["name"], name: "index_organizations_on_name", using: :btree
     t.index ["private"], name: "index_organizations_on_private", using: :btree
   end
 

@@ -329,12 +329,10 @@ get /organizations
 Sample response body:
 
 ```json
-{
-  "organizations": [
-    {"name": "academy", "logo_url":"http://...", "private": false},
-    {"name": "alcal", "private": true}
-  ]
-}
+[
+{"name": "academy", "contact_email": "a@a.com", "locale": "es-AR", "login_methods": ["facebook"], "books": ["libro"], "logo_url":"http://...", "private": false},
+{"name": "alcal", "private": true}
+]
 ```
 
 ### Get single organization by name

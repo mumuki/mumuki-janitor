@@ -11,8 +11,8 @@ describe Api::OrganizationsController, type: :controller do
   end
 
   context 'GET' do
-    let!(:public_organization) { create :organization, id: 1, name: 'public' }
-    let!(:private_organization) { create :organization, id: 2, name: 'private', private: true }
+    let!(:public_organization) { create :organization, name: 'public' }
+    let!(:private_organization) { create :organization, name: 'private', private: true }
 
     context 'GET /organizations' do
       before { get :index }
@@ -27,7 +27,7 @@ describe Api::OrganizationsController, type: :controller do
       before { set_api_client }
 
       context 'with a public organization' do
-        before { get :show, params: { id: 1 } }
+        before { get :show, params: { id: 'public' } }
 
         context 'with a user without permissions' do
           let(:api_client) { create :api_client, role: :editor, grant: 'another_organization/*' }
@@ -37,7 +37,7 @@ describe Api::OrganizationsController, type: :controller do
       end
 
       context 'with a private organization' do
-        before { get :show, params: { id: 2 } }
+        before { get :show, params: { id: 'private' } }
 
         context 'with a user without permissions' do
           let(:api_client) { create :api_client, role: :editor, grant: 'another_organization/*' }
@@ -88,8 +88,8 @@ describe Api::OrganizationsController, type: :controller do
 
   context 'PUT /organizations/:id' do
     before { set_api_client }
-    let!(:public_organization) { create :organization, id: 1, name: 'existing-organization', contact_email: "first_email@gmail.com" }
-    let(:update_json) { { id: 1, contact_email: 'second_email@gmail.com' } }
+    let!(:public_organization) { create :organization, name: 'existing-organization', contact_email: "first_email@gmail.com" }
+    let(:update_json) { { id: 'existing-organization', contact_email: 'second_email@gmail.com' } }
 
     context 'with the owner permissions' do
       let(:api_client) { create :api_client, role: :owner, grant: 'existing-organization/*' }
