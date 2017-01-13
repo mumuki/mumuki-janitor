@@ -1,30 +1,19 @@
 require 'rails_helper'
 
-describe Api::CoursesController, type: :controller do
-  before { set_api_client }
-  let(:api_client) { create :api_client }
-  let(:course_json) do
-    {slug: 'test/bar',
-     shifts: %w(morning),
-     code: 'k2003',
-     days: %w(monday wednesday),
-     period: '2016',
-     description: 'test course',
-     subscription_mode: 'closed'}
-  end
+describe Api::OrganizationsController, type: :controller do
 
-  let!(:organization) { create :organization, name: 'test' }
+  context 'GET' do
+    let!(:public_organization) { create :organization, name: 'public' }
+    let!(:private_organization) { create :organization, name: 'test', private: true }
 
-  context 'post' do
-    before { post :create, params: { course: course_json }}
+    context 'GET /organizations' do
+      before { get :index }
+      let!(:body) { JSON.parse(response.body, symbolize_names: true) }
 
-    it { expect(response.status).to eq 200 }
-    it { expect(Course.count).to eq 1 }
-    it { expect(Course.first.uid).to eq 'test/bar' }
-    it { expect(Course.first.subscription_mode).to eq SubscriptionMode::Closed }
-    it { expect(Course.first.organization).to eq(organization) }
-    it { expect(Course.first.shifts).to eq(%w(morning)) }
-    it { expect(Course.first.days).to eq(%w(monday wednesday)) }
+      it { expect(response.status).to eq 200 }
+      it { expect(body.map { |it| it[:name] }).to eq ['public'] }
+      it { expect(body.first.keys).to include(*[:id, :name, :contact_email, :books, :locale, :login_methods, :private, :created_at, :updated_at]) }
+    end
   end
 
 end
