@@ -62,6 +62,7 @@ describe Api::OrganizationsController, type: :controller do
       {contact_email: 'an_email@gmail.com',
        name: 'a-name',
        books: %w(a-book),
+       login_methods: ['facebook', 'github'],
        locale: 'es-AR'}
     end
 
@@ -74,6 +75,7 @@ describe Api::OrganizationsController, type: :controller do
       it { expect(Organization.first.name).to eq "a-name" }
       it { expect(Organization.first.contact_email).to eq "an_email@gmail.com" }
       it { expect(Organization.first.books).to eq %w(a-book) }
+      it { expect(Organization.first.login_methods).to eq %w(facebook github) }
       it { expect(Organization.first.locale).to eq 'es-AR' }
     end
 

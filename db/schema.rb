@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170113072929) do
+ActiveRecord::Schema.define(version: 20170113202636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 20170113072929) do
     t.string   "name"
     t.text     "description"
     t.string   "logo_url"
-    t.string   "login_methods"
     t.boolean  "private",          default: false
     t.string   "contact_email"
     t.text     "theme_stylesheet"
@@ -50,6 +49,7 @@ ActiveRecord::Schema.define(version: 20170113072929) do
     t.string   "books",            default: [],                 array: true
     t.string   "locale"
     t.string   "terms_of_service"
+    t.string   "login_methods",    default: [],                 array: true
     t.index ["private"], name: "index_organizations_on_private", using: :btree
   end
 

@@ -40,8 +40,8 @@ module Api
 
     def organization_params
       params.permit(:contact_email, :name, :locale, :description, :logo_url,
-                    :login_methods, :private, :theme_stylesheet, :terms_of_service,
-                    books: [])
+                    :private, :theme_stylesheet, :terms_of_service,
+                    books: [], login_methods: [])
     end
 
     def set_user

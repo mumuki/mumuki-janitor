@@ -4,7 +4,7 @@ FactoryGirl.define do
     description "MyText"
     books ["MyString"]
     logo_url "MyString"
-    login_methods "MyString"
+    login_methods ["MyString"]
     locale "es-AR"
     private false
     contact_email "MyString"
