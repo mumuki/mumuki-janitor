@@ -57,7 +57,7 @@ module Api
     end
 
     def protect_for_god!
-      protect! :owner, '*'
+      protect! :owner, 'academy/*'
     end
 
     def protect!(role, slug)
