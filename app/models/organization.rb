@@ -4,6 +4,7 @@ class Organization < ApplicationRecord
   validates :books, :at_least_one => true
   validates :login_methods, :at_least_one => true
   validates :locale, :inclusion => { :in => %w(es-AR en-US) }
+  before_save :default_values
 
   def slug
     Mumukit::Auth::Slug.join self.name
@@ -11,5 +12,9 @@ class Organization < ApplicationRecord
 
   def notify!
     Mumukit::Nuntius.notify_event!({organization: as_json}, 'OrganizationCreated')
+  end
+
+  def default_values
+    self.logo_url ||= 'http://mumuki.io/logo-alt-large.png'
   end
 end

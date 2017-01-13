@@ -77,6 +77,8 @@ describe Api::OrganizationsController, type: :controller do
       it { expect(Organization.first.books).to eq %w(a-book) }
       it { expect(Organization.first.login_methods).to eq %w(facebook github) }
       it { expect(Organization.first.locale).to eq 'es-AR' }
+      it { expect(Organization.first.private).to eq false }
+      it { expect(Organization.first.logo_url).to eq 'http://mumuki.io/logo-alt-large.png' }
     end
 
     context 'with not-owner permissions' do
