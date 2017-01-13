@@ -7,7 +7,7 @@ describe Api::OrganizationsController, type: :controller do
 
   def check_fields_presence!(response)
     body = Array.wrap(response.body.parse_as_json)
-    expect(body.first.keys).to include *[:id, :name, :contact_email, :books, :locale, :login_methods, :private, :created_at, :updated_at]
+    expect(body.first.keys).to include *[:id, :name, :contact_email, :books, :locale, :login_methods, :private, :logo_url, :created_at, :updated_at]
   end
 
   context 'GET' do
@@ -77,8 +77,30 @@ describe Api::OrganizationsController, type: :controller do
       it { expect(Organization.first.books).to eq %w(a-book) }
       it { expect(Organization.first.login_methods).to eq %w(facebook github) }
       it { expect(Organization.first.locale).to eq 'es-AR' }
-      it { expect(Organization.first.private).to eq false }
-      it { expect(Organization.first.logo_url).to eq 'http://mumuki.io/logo-alt-large.png' }
+
+      context 'with only mandatory values' do
+        it { expect(Organization.first.private).to eq false }
+        it { expect(Organization.first.logo_url).to eq 'http://mumuki.io/logo-alt-large.png' }
+      end
+
+      context 'with optional values' do
+        let(:organization_json) do
+          {contact_email: 'an_email@gmail.com',
+           name: 'a-name',
+           books: %w(a-book),
+           login_methods: ['facebook', 'github'],
+           locale: 'es-AR',
+           private: true,
+           logo_url: 'http://a-logo-url.com',
+           theme_stylesheet: '.theme { color: red }',
+           terms_of_service: 'A TOS'}
+        end
+
+        it { expect(Organization.first.private).to eq true }
+        it { expect(Organization.first.logo_url).to eq 'http://a-logo-url.com' }
+        it { expect(Organization.first.theme_stylesheet).to eq '.theme { color: red }' }
+        it { expect(Organization.first.terms_of_service).to eq 'A TOS' }
+      end
     end
 
     context 'with not-owner permissions' do
