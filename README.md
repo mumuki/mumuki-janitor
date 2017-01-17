@@ -332,7 +332,7 @@ DELETE /courses/:id
   "login_methods": [
     "facebook", "twitter", "google"
   ],
-  "locale": "es-AR",
+  "locale": "es-AR"
 }
 ```
 
@@ -383,7 +383,7 @@ post /organizations
 ```
 ... with at least the required fields.
 
-**Minimal permission**: `owner` of `academy/*`
+**Minimal permission**: `owner` of that organization
 
 ### Update organization
 

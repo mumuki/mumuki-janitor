@@ -67,7 +67,7 @@ describe Api::OrganizationsController, type: :controller do
     end
 
     context 'with the god permissions' do
-      let(:api_client) { create :api_client, role: :owner, grant: 'academy/*' }
+      let(:api_client) { create :api_client, role: :owner, grant: '*' }
 
       it { check_status! 200 }
       it { check_fields_presence! response }
@@ -104,7 +104,7 @@ describe Api::OrganizationsController, type: :controller do
     end
 
     context 'with not-owner permissions' do
-      let(:api_client) { create :api_client, role: :janitor, grant: 'academy/*' }
+      let(:api_client) { create :api_client, role: :janitor, grant: '*' }
 
       it { check_status! 403 }
     end

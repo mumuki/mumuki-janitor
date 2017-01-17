@@ -2,7 +2,6 @@ module Api
 
   class OrganizationsController < BaseController
     before_action :set_user, except: [:index]
-    before_action :protect_for_god!, only: [:create]
     skip_before_action :verify_authorization_header, only: [:index]
     skip_before_action :set_api_client, only: [:index]
 
@@ -18,6 +17,7 @@ module Api
     end
 
     def create
+      protect_for_owner! Organization.new organization_params
       organization = Organization.create! organization_params
       organization.notify!
       render json: organization
@@ -54,14 +54,6 @@ module Api
 
     def protect_for_owner!(organization)
       protect! :owner, organization.slug
-    end
-
-    def protect_for_god!
-      protect! :owner, 'academy/*'
-    end
-
-    def protect!(role, slug)
-      @api_client.protect! role, slug
     end
   end
 

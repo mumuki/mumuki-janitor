@@ -3,7 +3,7 @@ module Api
     before_action :set_slug
     before_action :set_course
     before_action :set_user, except: :create
-    before_action :protect!
+    before_action :protect_for_janitor!
 
     def create
       user = User.create_if_necessary(user_params)
@@ -43,8 +43,8 @@ module Api
       @slug = Mumukit::Auth::Slug.join_s params.to_unsafe_h
     end
 
-    def protect!
-      @api_client.protect! :janitor, @slug
+    def protect_for_janitor!
+      protect! :janitor, @slug
     end
 
   end
