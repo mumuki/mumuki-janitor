@@ -321,10 +321,9 @@ DELETE /courses/:id
 
 ### Model
 
+## Mandatory fields
 ```json
 {
-  "---mandatory fields---": "--v",
-  
   "name": "academy",
   "contact_email": "issues@mumuki.io",
   "books": [
@@ -334,20 +333,17 @@ DELETE /courses/:id
     "facebook", "twitter", "google"
   ],
   "locale": "es-AR",
-  
-  "---optional fields---": "--v",
+}
+```
 
+## Optional fields
+```json
+{
   "private": false,
   "description": "...",
   "logo_url": "http://mumuki.io/logo-alt-large.png",
   "theme_stylesheet": ".theme { color: red }",
   "terms_of_service": "Al usar Mumuki aceptás que las soluciones de tus ejercicios sean registradas para ser corregidas por tu/s docente/s...",
-
-  "---generated fields---_": "--v",
-  
-  "id": 1,
-  "created_at": "2017-01-13T20:52:58.575Z",
-  "updated_at": "2017-01-13T20:53:20.453Z"
 }
 ```
 
