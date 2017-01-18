@@ -78,27 +78,6 @@ describe Api::OrganizationsController, type: :controller do
       it { expect(Organization.first.login_methods).to eq %w(facebook github) }
       it { expect(Organization.first.locale).to eq 'es-AR' }
 
-      context 'with missing fields' do
-        let(:organization_json) do
-          {contact_email: 'an_email@gmail.com',
-           books: %w(),
-           locale: 'blabla',
-           login_methods: ['facebook', 'github']}
-        end
-        let(:expected_errors) do
-          {
-              errors: {
-                name: [ "can't be blank" ],
-                locale: [ 'is not included in the list' ],
-                books: [ 'has no elements' ]
-              }
-          }
-        end
-
-        it { check_status! 400 }
-        it { expect(response.body.parse_as_json).to eq expected_errors}
-      end
-
       context 'with only mandatory values' do
         it { expect(Organization.first.private).to eq false }
         it { expect(Organization.first.logo_url).to eq 'http://mumuki.io/logo-alt-large.png' }
@@ -121,6 +100,27 @@ describe Api::OrganizationsController, type: :controller do
         it { expect(Organization.first.logo_url).to eq 'http://a-logo-url.com' }
         it { expect(Organization.first.theme_stylesheet).to eq '.theme { color: red }' }
         it { expect(Organization.first.terms_of_service).to eq 'A TOS' }
+      end
+
+      context 'with missing values' do
+        let(:organization_json) do
+          {contact_email: 'an_email@gmail.com',
+           books: %w(),
+           locale: 'blabla',
+           login_methods: ['facebook', 'github']}
+        end
+        let(:expected_errors) do
+          {
+              errors: {
+                  name: [ "can't be blank" ],
+                  locale: [ 'is not included in the list' ],
+                  books: [ 'has no elements' ]
+              }
+          }
+        end
+
+        it { check_status! 400 }
+        it { expect(response.body.parse_as_json).to eq expected_errors}
       end
     end
 
