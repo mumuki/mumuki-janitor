@@ -3,6 +3,8 @@ module Api
   class OrganizationsController < BaseController
     before_action :set_user
 
+    include WithRequestedOrganization
+
     def index
       render json: Organization.accessible_as(@api_client, :janitor)
     end
@@ -21,7 +23,7 @@ module Api
     end
 
     def update
-      organization = Organization.find_by_name id_param
+      organization = requested_organization
       protect_for_owner! organization
 
       organization.update_attributes organization_params
@@ -30,10 +32,6 @@ module Api
     end
 
     private
-
-    def id_param
-      params[:id]
-    end
 
     def organization_params
       params.permit(:contact_email, :name, :locale, :description, :logo_url,

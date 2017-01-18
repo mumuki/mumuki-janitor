@@ -55,6 +55,13 @@ describe Api::OrganizationsController, type: :controller do
           it { check_fields_presence! response }
         end
       end
+
+      context 'with a non-existing organization' do
+        before { get :show, params: { id: 'non-existing' } }
+        let(:api_client) { create :api_client, role: :editor, grant: 'bleh/*' }
+
+        it { check_status! 404 }
+      end
     end
   end
 

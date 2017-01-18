@@ -1,4 +1,6 @@
 class OrganizationsController < ApplicationController
+  include WithRequestedOrganization
+
   def index
     @organizations = Organization.all
   end
@@ -7,6 +9,6 @@ class OrganizationsController < ApplicationController
   end
 
   def edit
-    @organization = Organization.find(params[:id])
+    @organization = requested_organization
   end
 end
