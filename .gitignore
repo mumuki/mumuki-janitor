@@ -25,5 +25,5 @@ nuntius.log
 # Ignore Byebug command history file.
 .byebug_history
 
-# Application
+# Application things
 .sass-cache/
