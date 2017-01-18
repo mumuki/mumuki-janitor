@@ -2,6 +2,7 @@ module Api
   class BaseController < ApplicationController
     protect_from_forgery with: :null_session
 
+    include WithErrorsFilter
     include WithDynamicErrors
     include WithProtection
 
