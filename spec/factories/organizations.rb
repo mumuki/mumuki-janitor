@@ -8,6 +8,6 @@ FactoryGirl.define do
     locale "es-AR"
     public true
     contact_email "MyString"
-    theme_stylesheet "MyText"
+    theme_stylesheet ""
   end
 end

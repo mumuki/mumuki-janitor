@@ -1,9 +1,10 @@
 class Organization < ApplicationRecord
-  validates :name, uniqueness: true, format: { with: /\A[-a-z0-9_]*\z/ }
+  validates :name, uniqueness: true, format: {with: /\A[-a-z0-9_]*\z/}
   validates_presence_of :name, :contact_email, :locale
   validates :books, at_least_one: true
-  validates :locale, inclusion: { in: %w(es-AR en-US) }
+  validates :locale, inclusion: {in: %w(es-AR en-US)}
   before_save :set_default_values!
+  before_save :compile_sass
 
   def slug
     Mumukit::Auth::Slug.join name
@@ -25,6 +26,8 @@ class Organization < ApplicationRecord
     all.select { |it| it.public? || permissions.has_permission?(role, it.slug) }
   end
 
+  private
+
   def set_default_values!
     self.public ||= false
     self.login_methods ||= []
@@ -32,5 +35,10 @@ class Organization < ApplicationRecord
     self.theme_stylesheet ||= ''
 
     self.login_methods.push 'user_pass' if self.login_methods.empty?
+  end
+
+  def compile_sass
+    file = Tempfile.with(self.theme_stylesheet)
+    self.theme_stylesheet = Sass::Engine.for_file(file.path, syntax: :scss).render
   end
 end
