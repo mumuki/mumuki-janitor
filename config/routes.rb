@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: 'organizations#index'
   resources :organizations, only: [:index, :show, :edit, :create, :update]
+  resources :themes, only: [:show]
   resources :users, only: [:index, :show, :edit, :create, :update]
   namespace :api do
     resources :users, only: [:create, :update], constraints: {id: /[^\/]+/}
