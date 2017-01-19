@@ -78,7 +78,7 @@ describe Api::OrganizationsController, type: :controller do
 
       context 'with only mandatory values' do
         it { expect(Organization.first.public).to eq false }
-        it { expect(Organization.first.login_methods).to eq [] }
+        it { expect(Organization.first.login_methods).to eq %w(user_pass) }
         it { expect(Organization.first.logo_url).to eq 'http://mumuki.io/logo-alt-large.png' }
       end
 
