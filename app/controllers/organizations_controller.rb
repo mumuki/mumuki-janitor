@@ -9,6 +9,5 @@ class OrganizationsController < ApplicationController
   end
 
   def edit
-    @organization = requested_organization
   end
 end
