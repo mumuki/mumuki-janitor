@@ -2,7 +2,7 @@ module WithCustomUnhandledErrors
   extend ActiveSupport::Concern
 
   included do
-    rescue_from Exception do |e| unhandled_error!(e) end
+    rescue_from(Exception) { |e| unhandled_error!(e) }
   end
 
   private
@@ -10,7 +10,7 @@ module WithCustomUnhandledErrors
   def unhandled_error!(e)
     summary = {
         errors: {
-            :exception => "#{e.class.name} : #{e.message}"
+            exception: "#{e.class.name} : #{e.message}"
         }
     }
     summary[:trace] = e.backtrace[0, 10] if Rails.env.development?
