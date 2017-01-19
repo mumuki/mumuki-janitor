@@ -1,13 +1,12 @@
 module Api
 
   class OrganizationsController < BaseController
-    before_action :set_user, except: [:index]
-    skip_before_action :verify_authorization_header, only: [:index]
-    skip_before_action :set_api_client, only: [:index]
+    before_action :set_user
 
     def index
-      organizations = Organization.where public: true
-      # // TODO: Include the private organizations allowed for the current user
+      organizations = Organization.all.select do |it|
+        it.public || has_permission?(:janitor, it.slug)
+      end
       render json: organizations
     end
 

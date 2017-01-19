@@ -361,7 +361,7 @@ Sample response body:
   { "name": "alcal", "contact_email": "b@b.com", "locale": "en-US", "login_methods": ["facebook", "github"], "books": ["book"], "public": false }
 ]
 ```
-**Minimal permission**: None.
+**Minimal permission**: None for public organizations, `janitor` for user's private organizations.
 
 ### Get single organization by name
 

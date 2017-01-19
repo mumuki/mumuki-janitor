@@ -9,6 +9,10 @@ module WithProtection
     @api_client.protect! role, slug
   end
 
+  def has_permission?(role, slug)
+    @api_client.has_permission? role, slug
+  end
+
   private
 
   def set_api_client

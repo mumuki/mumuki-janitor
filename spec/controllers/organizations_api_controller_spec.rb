@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Api::OrganizationsController, type: :controller do
+  before { set_api_client }
+
   def check_status!(status)
     expect(response.status).to eq status
   end
@@ -13,19 +15,20 @@ describe Api::OrganizationsController, type: :controller do
   context 'GET' do
     let!(:public_organization) { create :organization, name: 'public' }
     let!(:private_organization) { create :organization, name: 'private', public: false }
+    let!(:another_private_organization) { create :organization, name: 'another_private', public: false }
 
     context 'GET /organizations' do
       before { get :index }
+      let(:api_client) { create :api_client, role: :janitor, grant: 'private/*' }
       let!(:body) { response.body.parse_as_json }
 
       it { check_status! 200 }
+      it { expect(body.length).to eq 2 }
       it { check_fields_presence! response }
-      it { expect(body.map { |it| it[:name] }).to eq %w(public) }
+      it { expect(body.map { |it| it[:name] }).to eq %w(public private) }
     end
 
     context 'GET /organizations/:id' do
-      before { set_api_client }
-
       context 'with a public organization' do
         before { get :show, params: { id: 'public' } }
 
@@ -56,7 +59,6 @@ describe Api::OrganizationsController, type: :controller do
   end
 
   context 'POST /organizations' do
-    before { set_api_client }
     before { post :create, params: organization_json }
     let(:organization_json) do
       {contact_email: 'an_email@gmail.com',
@@ -133,7 +135,6 @@ describe Api::OrganizationsController, type: :controller do
   end
 
   context 'PUT /organizations/:id' do
-    before { set_api_client }
     let!(:public_organization) { create :organization, name: 'existing-organization', contact_email: "first_email@gmail.com" }
     let(:update_json) { { id: 'existing-organization', contact_email: 'second_email@gmail.com' } }
 
