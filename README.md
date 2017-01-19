@@ -329,9 +329,6 @@ DELETE /courses/:id
   "books": [
     "MumukiProject/mumuki-libro-metaprogramacion"
   ],
-  "login_methods": [
-    "facebook", "twitter", "google"
-  ],
   "locale": "es-AR"
 }
 ```
@@ -341,6 +338,9 @@ DELETE /courses/:id
 {
   "public": false,
   "description": "...",
+  "login_methods": [
+    "facebook", "twitter", "google"
+  ],
   "logo_url": "http://mumuki.io/logo-alt-large.png",
   "theme_stylesheet": ".theme { color: red }",
   "terms_of_service": "Al usar Mumuki aceptás que las soluciones de tus ejercicios sean registradas para ser corregidas por tu/s docente/s...",

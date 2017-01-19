@@ -86,6 +86,7 @@ describe Api::OrganizationsController, type: :controller do
         let(:organization_json) do
           {contact_email: 'an_email@gmail.com',
            name: 'a-name',
+           description: 'A description',
            books: %w(a-book),
            locale: 'es-AR',
            public: true,
@@ -96,6 +97,7 @@ describe Api::OrganizationsController, type: :controller do
         end
 
         it { expect(Organization.first.public).to eq true }
+        it { expect(Organization.first.description).to eq 'A description' }
         it { expect(Organization.first.login_methods).to eq %w(facebook github) }
         it { expect(Organization.first.logo_url).to eq 'http://a-logo-url.com' }
         it { expect(Organization.first.theme_stylesheet).to eq '.theme { color: red }' }
