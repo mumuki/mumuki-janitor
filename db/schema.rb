@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170119175127) do
+ActiveRecord::Schema.define(version: 20170119215555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20170119175127) do
     t.string   "logo_url"
     t.boolean  "public",           default: false
     t.string   "contact_email"
-    t.string   "theme_stylesheet", default: ""
+    t.text     "theme_stylesheet", default: ""
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.text     "books",            default: [],                 array: true
