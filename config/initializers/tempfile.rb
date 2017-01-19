@@ -1,6 +1,6 @@
 class Tempfile
   def self.write!(content)
-    file = Tempfile.new('tmp')
+    file = Tempfile.new 'tmp'
     begin
       file.write content
     ensure

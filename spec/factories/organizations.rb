@@ -9,5 +9,6 @@ FactoryGirl.define do
     public true
     contact_email "MyString"
     theme_stylesheet ""
+    extension_javascript ""
   end
 end

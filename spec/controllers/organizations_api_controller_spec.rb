@@ -103,6 +103,7 @@ describe Api::OrganizationsController, type: :controller do
            login_methods: %w(facebook github),
            logo_url: 'http://a-logo-url.com',
            theme_stylesheet: '.theme { color: red }',
+           extension_javascript: 'window.a = function() { }',
            terms_of_service: 'A TOS'}
         end
 
@@ -111,7 +112,10 @@ describe Api::OrganizationsController, type: :controller do
         it { expect(Organization.first.login_methods).to eq %w(facebook github) }
         it { expect(Organization.first.logo_url).to eq 'http://a-logo-url.com' }
         it { expect(Organization.first.theme_stylesheet).to eq ".theme {\n  color: red; }\n" }
+        it { expect(Organization.first.extension_javascript).to eq "window.a = function() { }" }
         it { expect(Organization.first.terms_of_service).to eq 'A TOS' }
+
+
       end
 
       context 'with missing values' do

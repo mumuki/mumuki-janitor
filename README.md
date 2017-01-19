@@ -342,8 +342,9 @@ DELETE /courses/:id
     "facebook", "twitter", "google"
   ],
   "logo_url": "http://mumuki.io/logo-alt-large.png",
-  "theme_stylesheet": ".theme { color: red }",
   "terms_of_service": "Al usar Mumuki aceptás que las soluciones de tus ejercicios sean registradas para ser corregidas por tu/s docente/s...",
+  "theme_stylesheet": ".theme { color: red }",
+  "extension_javascript": "doSomething = function() { }"
 }
 ```
 

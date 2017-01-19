@@ -33,7 +33,7 @@ module Api
 
     def organization_params
       params.permit(:contact_email, :name, :locale, :description, :logo_url,
-                    :public, :theme_stylesheet, :terms_of_service,
+                    :public, :theme_stylesheet, :extension_javascript, :terms_of_service,
                     books: [], login_methods: [])
     end
 

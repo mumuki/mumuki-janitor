@@ -4,7 +4,9 @@ class Organization < ApplicationRecord
   validates :books, at_least_one: true
   validates :locale, inclusion: {in: %w(es-AR en-US)}
   before_save :set_default_values!
+
   include WithSass
+  include WithStaticAssets
 
   def slug
     Mumukit::Auth::Slug.join name
@@ -32,8 +34,8 @@ class Organization < ApplicationRecord
     self.public ||= false
     self.login_methods ||= []
     self.logo_url ||= 'http://mumuki.io/logo-alt-large.png'
-    self.extension_javascript ||= ''
     self.theme_stylesheet ||= ''
+    self.extension_javascript ||= ''
 
     self.login_methods.push 'user_pass' if self.login_methods.empty?
   end

@@ -27,3 +27,6 @@ nuntius.log
 
 # Application things
 .sass-cache/
+.db
+public/stylesheets
+public/javascripts
