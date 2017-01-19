@@ -12,7 +12,5 @@ module Janitor
     config.generators.javascripts = false
 
     config.generators.test_framework = :rspec
-
-    Dir[File.join(Rails.root, "lib", "core_ext", "*.rb")].each {|l| require l }
   end
 end
