@@ -405,17 +405,3 @@ put /organizations/:name
 ... with a partial update.
 
 **Minimal permission**: `owner` of `:name`
-
-
-### Organization CSS theme
-
-```
-get /themes/:name
-```
-Sample response body:
-
-```css
-a { color: red; }
-```
-
-
