@@ -114,8 +114,6 @@ describe Api::OrganizationsController, type: :controller do
         it { expect(Organization.first.theme_stylesheet).to eq ".theme {\n  color: red; }\n" }
         it { expect(Organization.first.extension_javascript).to eq "window.a = function() { }" }
         it { expect(Organization.first.terms_of_service).to eq 'A TOS' }
-
-
       end
 
       context 'with missing values' do
