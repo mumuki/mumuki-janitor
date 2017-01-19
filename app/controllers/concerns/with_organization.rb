@@ -1,4 +1,4 @@
-module WithRequestedOrganization
+module WithOrganization
   extend ActiveSupport::Concern
 
   def requested_organization

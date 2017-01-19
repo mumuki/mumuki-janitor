@@ -1,5 +1,5 @@
 class ThemesController < ApplicationController
-  include WithRequestedOrganization
+  include WithOrganization
 
   def show
     organization = requested_organization

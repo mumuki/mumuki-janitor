@@ -3,7 +3,7 @@ module Api
   class OrganizationsController < BaseController
     before_action :set_user
 
-    include WithRequestedOrganization
+    include WithOrganization
 
     def index
       render json: Organization.accessible_as(@api_client, :janitor)

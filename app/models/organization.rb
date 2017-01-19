@@ -4,7 +4,7 @@ class Organization < ApplicationRecord
   validates :books, at_least_one: true
   validates :locale, inclusion: {in: %w(es-AR en-US)}
   before_save :set_default_values!
-  before_save :compile_sass
+  include WithSass
 
   def slug
     Mumukit::Auth::Slug.join name

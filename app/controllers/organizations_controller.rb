@@ -1,5 +1,5 @@
 class OrganizationsController < ApplicationController
-  include WithRequestedOrganization
+  include WithOrganization
 
   def index
     @organizations = Organization.all

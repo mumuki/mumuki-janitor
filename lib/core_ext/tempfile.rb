@@ -1,8 +1,11 @@
 class Tempfile
-  def self.with(content)
+  def self.write!(content)
     file = Tempfile.new('tmp')
-    file.write content
-    file.close
+    begin
+      file.write content
+    ensure
+      file.close
+    end
     file
   end
 end
