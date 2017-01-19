@@ -6,7 +6,7 @@ FactoryGirl.define do
     logo_url "MyString"
     login_methods ["MyString"]
     locale "es-AR"
-    private false
+    public true
     contact_email "MyString"
     theme_stylesheet "MyText"
   end

@@ -339,7 +339,7 @@ DELETE /courses/:id
 ## Optional fields
 ```json
 {
-  "private": false,
+  "public": false,
   "description": "...",
   "logo_url": "http://mumuki.io/logo-alt-large.png",
   "theme_stylesheet": ".theme { color: red }",
@@ -357,8 +357,8 @@ Sample response body:
 
 ```json
 [
-  { "name": "academy", "contact_email": "a@a.com", "locale": "es-AR", "login_methods": ["facebook"], "books": ["libro"], "private": false, "logo_url":"http://..." },
-  { "name": "alcal", "contact_email": "b@b.com", "locale": "en-US", "login_methods": ["facebook", "github"], "books": ["book"], "private": true }
+  { "name": "academy", "contact_email": "a@a.com", "locale": "es-AR", "login_methods": ["facebook"], "books": ["libro"], "public": true, "logo_url":"http://..." },
+  { "name": "alcal", "contact_email": "b@b.com", "locale": "en-US", "login_methods": ["facebook", "github"], "books": ["book"], "public": false }
 ]
 ```
 **Minimal permission**: None.
@@ -372,7 +372,7 @@ get /organizations/:name
 Sample response body:
 
 ```json
-{ "name": "academy", "contact_email": "a@a.com", "locale": "es-AR", "login_methods": ["facebook"], "books": ["libro"], "private": false, "logo_url":"http://..." }
+{ "name": "academy", "contact_email": "a@a.com", "locale": "es-AR", "login_methods": ["facebook"], "books": ["libro"], "public": true, "logo_url":"http://..." }
 ```
 **Minimal permission**: `janitor` of the organization.
 

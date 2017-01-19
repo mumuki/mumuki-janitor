@@ -5,8 +5,7 @@ describe Organization do
       name: 'a-name',
       contact_email: 'a@a.com',
       locale: 'es-AR',
-      books: ['a-book'],
-      login_methods: ['facebook'],
+      books: ['a-book']
   } }
 
   context 'is valid when all is ok' do
@@ -16,11 +15,6 @@ describe Organization do
 
   context 'is invalid when there are no books' do
     let(:organization) { Organization.new(valid_data.merge(books: [])) }
-    it { expect(organization.valid?).to be false }
-  end
-
-  context 'is invalid when there are no login_methods' do
-    let(:organization) { Organization.new(valid_data.merge(login_methods: [])) }
     it { expect(organization.valid?).to be false }
   end
 

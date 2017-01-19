@@ -6,13 +6,14 @@ module Api
     skip_before_action :set_api_client, only: [:index]
 
     def index
-      organizations = Organization.where private: false
+      organizations = Organization.where public: true
+      # // TODO: Include the private organizations allowed for the current user
       render json: organizations
     end
 
     def show
       organization = Organization.find_by_name id_param
-      protect_for_janitor!(organization) if (organization.private)
+      protect_for_janitor!(organization) if (organization.is_private?)
       render json: organization
     end
 
@@ -40,7 +41,7 @@ module Api
 
     def organization_params
       params.permit(:contact_email, :name, :locale, :description, :logo_url,
-                    :private, :theme_stylesheet, :terms_of_service,
+                    :public, :theme_stylesheet, :terms_of_service,
                     books: [], login_methods: [])
     end
 
