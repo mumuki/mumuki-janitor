@@ -32,6 +32,7 @@ class Organization < ApplicationRecord
     self.public ||= false
     self.login_methods ||= []
     self.logo_url ||= 'http://mumuki.io/logo-alt-large.png'
+    self.extension_javascript ||= ''
     self.theme_stylesheet ||= ''
 
     self.login_methods.push 'user_pass' if self.login_methods.empty?

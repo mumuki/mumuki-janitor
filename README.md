@@ -347,6 +347,17 @@ DELETE /courses/:id
 }
 ```
 
+## Generated fields
+```json
+{
+  "id": 1,		
+  "created_at": "2017-01-13T20:52:58.575Z",		
+  "updated_at": "2017-01-13T20:53:20.453Z",
+  "theme_stylesheet_url": "https://office.mumuki.io/stylesheets/academy-asjdf92j1jd8.css",
+  "extension_javascript_url": "https://office.mumuki.io/javascripts/academy-jd912j8jdj19.js"
+}
+```
+
 ### List all organizations
 
 ```
