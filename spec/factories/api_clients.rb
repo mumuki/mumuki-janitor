@@ -6,6 +6,6 @@ FactoryGirl.define do
     end
 
     description "foo"
-    user { create :user, first_name: 'foo', last_name: 'bar', email: 'foo+1@bar.com', permissions: Hash[role, grant] }
+    user { create :user, first_name: 'foo', last_name: 'bar', email: 'foo+1@bar.com', permissions: { role => grant } }
   end
 end
