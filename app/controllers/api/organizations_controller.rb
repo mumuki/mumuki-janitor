@@ -17,7 +17,7 @@ module Api
     def create
       protect_for_owner! Organization.new organization_params
       organization = Organization.create! organization_params
-      organization.notify!
+      organization.notify! 'Created'
       render json: organization
     end
 
@@ -26,6 +26,7 @@ module Api
 
       @organization.update_attributes organization_params
       @organization.save!
+      @organization.notify! 'Updated'
       render json: @organization
     end
 

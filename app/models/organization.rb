@@ -12,8 +12,8 @@ class Organization < ApplicationRecord
     Mumukit::Auth::Slug.join name
   end
 
-  def notify!
-    Mumukit::Nuntius.notify_event!({organization: as_json}, 'OrganizationCreated')
+  def notify!(event)
+    Mumukit::Nuntius.notify_event!({organization: as_json}, "Organization#{event}")
   end
 
   def private?
