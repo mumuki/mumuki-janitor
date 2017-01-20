@@ -16,11 +16,15 @@ module WithApiProtection
   private
 
   def set_api_client!
-    @api_client = ApiClient.find_by! token: Mumukit::Auth::Token.extract_from_header(authorization_header)
+    @api_client = ApiClient.find_by! token: encoded_token
   end
 
   def verify_token!
-    Mumukit::Auth::Token.decode_header(authorization_header).verify_client!
+    Mumukit::Auth::Token.decode(encoded_token).verify_client!
+  end
+
+  def encoded_token
+    @encoded_token ||= Mumukit::Auth::Token.extract_from_header(authorization_header)
   end
 
   def authorization_header
