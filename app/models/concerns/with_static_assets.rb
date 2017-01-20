@@ -9,18 +9,31 @@ module WithStaticAssets
   private
 
   def generate_stylesheet!
-    generate_assets!'stylesheets', 'theme_stylesheet'
+    generate_asset!'stylesheets', 'theme_stylesheet'
   end
 
   def generate_javascript!
-    generate_assets! 'javascripts', 'extension_javascript'
+    generate_asset! 'javascripts', 'extension_javascript'
   end
 
-  def generate_assets!(directory, property)
+  def generate_asset!(directory, property)
+    url_property = "#{property}_url"
     content = send property
     path = "#{directory}/#{name}-#{SecureRandom.hex}"
 
-    File.open("#{Rails.public_path.to_s}/#{path}", 'w') { |f| f << content }
-    send "#{property}_url=", path
+    return unless valid?
+    delete_previous_asset! url_property
+    File.open(full_path_for(path), 'w') { |f| f << content }
+    send "#{url_property}=", path
+  end
+
+  def delete_previous_asset!(url_property)
+    relative_path = send url_property
+    return if relative_path.nil?
+    FileUtils.rm_f full_path_for(relative_path)
+  end
+
+  def full_path_for(path)
+    "#{Rails.public_path.to_s}/#{path}"
   end
 end
