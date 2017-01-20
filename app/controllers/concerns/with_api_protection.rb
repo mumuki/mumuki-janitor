@@ -18,4 +18,12 @@ module WithApiProtection
   def set_api_client
     @api_client = ApiClient.find_by! token: Mumukit::Auth::Token.extract_from_header(authorization_header)
   end
+
+  def verify_authorization_header
+    Mumukit::Auth::Token.decode_header(authorization_header).verify_client!
+  end
+
+  def authorization_header
+    request.env['HTTP_AUTHORIZATION']
+  end
 end
