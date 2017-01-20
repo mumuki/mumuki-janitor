@@ -25,7 +25,7 @@ RSpec.configure do |config|
 
 end
 
-def set_api_client
+def set_api_client!
   @request.env["HTTP_AUTHORIZATION"] = api_client.token
 end
 

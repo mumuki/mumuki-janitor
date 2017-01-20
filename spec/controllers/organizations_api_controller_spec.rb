@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Api::OrganizationsController, type: :controller do
-  before { set_api_client }
+  before { set_api_client! }
 
   def check_status!(status)
     expect(response.status).to eq status
