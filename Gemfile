@@ -6,11 +6,9 @@ gem 'pg'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.2'
 gem 'therubyracer', platforms: :ruby
 gem 'execjs'
 
-gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
@@ -30,13 +28,9 @@ gem 'mumukit-nuntius', '~> 2.0'
 gem 'mumukit-auth', '~> 3.3'
 
 gem 'nprogress-rails'
-gem 'bootstrap-sass', '~> 3.3.5'
-gem 'font-awesome-rails', '~> 4.7.0'
 
 source 'https://rails-assets.org' do
-  gem 'rails-assets-dev-awesome'
-  gem 'rails-assets-awesome-bootstrap-checkbox'
-  gem 'rails-assets-mumuki-styles'
+  gem 'rails-assets-mumuki-styles', '1.1.0'
 end
 
 group :development do
