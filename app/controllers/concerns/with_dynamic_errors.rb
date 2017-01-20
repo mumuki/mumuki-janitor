@@ -3,30 +3,34 @@ module WithDynamicErrors
 
   included do
     unless Rails.application.config.consider_all_requests_local
-      rescue_from ActionController::RoutingError, with: :not_found
+      rescue_from ActionController::RoutingError, with: :not_found!
     end
-    rescue_from ActiveRecord::RecordNotFound, with: :not_found
-    rescue_from Mumukit::Auth::UnauthorizedAccessError, with: :forbidden
-  end
 
-  def not_found(e)
-    render_with_status e, 404
-  end
-
-  private
-
-  def internal_server_error(e)
-    Rails.logger.error "Internal server error: #{e} \n#{e.backtrace.join("\n")}"
-    render_with_status e, 500
-  end
-
-  def forbidden(e)
-    render_with_status e, 403
+    rescue_from ActiveRecord::RecordNotFound, with: :not_found!
+    rescue_from Mumukit::Auth::UnauthorizedAccessError, with: :forbidden!
+    rescue_from ActiveRecord::RecordInvalid, with: :bad_record!
   end
 
   private
 
-  def render_with_status(e, status)
-    render  json: {error: e.message}, status: status
+  def bad_record!(e)
+    render_errors! e.record.errors, 400
+  end
+
+  def not_found!(e)
+    render_error! e, 404
+  end
+
+  def forbidden!(e)
+    render_error! e, 403
+  end
+
+  def render_error!(e, status)
+    render_errors! [e.message], status
+  end
+
+  def render_errors!(errors, status)
+    summary = { errors: errors }
+    render json: summary, status: status
   end
 end

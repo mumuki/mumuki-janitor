@@ -317,8 +317,35 @@ DELETE /courses/:id
 ```
 
 
-
 ## Organizations
+
+### Model
+
+## Mandatory fields
+```json
+{
+  "name": "academy",
+  "contact_email": "issues@mumuki.io",
+  "books": [
+    "MumukiProject/mumuki-libro-metaprogramacion"
+  ],
+  "locale": "es-AR"
+}
+```
+
+## Optional fields
+```json
+{
+  "public": false,
+  "description": "...",
+  "login_methods": [
+    "facebook", "twitter", "google"
+  ],
+  "logo_url": "http://mumuki.io/logo-alt-large.png",
+  "theme_stylesheet": ".theme { color: red }",
+  "terms_of_service": "Al usar Mumuki aceptás que las soluciones de tus ejercicios sean registradas para ser corregidas por tu/s docente/s...",
+}
+```
 
 ### List all organizations
 
@@ -329,32 +356,44 @@ get /organizations
 Sample response body:
 
 ```json
-{
-  "organizations": [
-    {"name": "academy", "logo_url":"http://...", "private": false},
-    {"name": "alcal", "private": true}
-  ]
-}
+[
+  { "name": "academy", "contact_email": "a@a.com", "locale": "es-AR", "login_methods": ["facebook"], "books": ["libro"], "public": true, "logo_url":"http://..." },
+  { "name": "alcal", "contact_email": "b@b.com", "locale": "en-US", "login_methods": ["facebook", "github"], "books": ["book"], "public": false }
+]
 ```
+**Minimal permission**: None for public organizations, `janitor` for user's private organizations.
 
 ### Get single organization by name
 
 ```
 get /organizations/:name
 ```
+
 Sample response body:
 
 ```json
-{
-  "name":"academy",
-  "logo_url":"http://...",
-  "private": false,
-  "description": "...",
-  "book_slug": "MumukiProject/mumuki-libro-metaprogramacion",
-  "contact_email": "issues@mumuki.org",
-  "login_methods": ["twitter", "facebook", "google"]
-}
+{ "name": "academy", "contact_email": "a@a.com", "locale": "es-AR", "login_methods": ["facebook"], "books": ["libro"], "public": true, "logo_url":"http://..." }
 ```
+**Minimal permission**: `janitor` of the organization.
+
+### Create organization
+
+```
+post /organizations
+```
+... with at least the required fields.
+
+**Minimal permission**: `owner` of that organization
+
+### Update organization
+
+```
+put /organizations/:name
+```
+... with a partial update.
+
+**Minimal permission**: `owner` of `:name`
+
 
 ### Organization CSS theme
 

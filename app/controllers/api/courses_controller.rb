@@ -1,7 +1,7 @@
 module Api
   class CoursesController < BaseController
     before_action :set_slug, only: :create
-    before_action :protect!, only: :create
+    before_action :protect_for_janitor!, only: :create
 
     def create
       course = Course.create! course_params
@@ -19,9 +19,8 @@ module Api
       @slug = Mumukit::Auth::Slug.parse course_params[:slug]
     end
 
-    def protect!
-      @api_client.protect! :janitor, @slug
+    def protect_for_janitor!
+      protect! :janitor, @slug
     end
-
   end
 end

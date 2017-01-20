@@ -3,7 +3,7 @@ require 'rails_helper'
 [:student, :teacher].each do |role|
 
   describe "Api::#{role.capitalize}sController".constantize, type: :controller do
-    before { set_api_client }
+    before { set_api_client! }
     let(:api_client) { create :api_client }
     let(:json) { {
         first_name: 'Agustin',

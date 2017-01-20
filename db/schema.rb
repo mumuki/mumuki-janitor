@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161230022312) do
+ActiveRecord::Schema.define(version: 20170119175127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,14 +40,18 @@ ActiveRecord::Schema.define(version: 20161230022312) do
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "book_slug"
     t.string   "logo_url"
-    t.string   "login_methods"
-    t.boolean  "private"
+    t.boolean  "public",           default: false
     t.string   "contact_email"
     t.text     "theme_stylesheet"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.text     "books",            default: [],                 array: true
+    t.string   "locale"
+    t.text     "terms_of_service"
+    t.text     "login_methods",    default: [],                 array: true
+    t.index ["name"], name: "index_organizations_on_name", using: :btree
+    t.index ["public"], name: "index_organizations_on_public", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
