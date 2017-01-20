@@ -13,8 +13,12 @@ class Organization < ApplicationRecord
     Mumukit::Nuntius.notify_event!({organization: as_json}, 'OrganizationCreated')
   end
 
-  def is_private?
-    !public
+  def private?
+    !public?
+  end
+
+  def public?
+    public
   end
 
   def set_default_values!

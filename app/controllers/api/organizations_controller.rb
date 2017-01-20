@@ -5,14 +5,14 @@ module Api
 
     def index
       organizations = Organization.all.select do |it|
-        it.public || has_permission?(:janitor, it.slug)
+        it.public? || has_permission?(:janitor, it.slug)
       end
       render json: organizations
     end
 
     def show
       organization = Organization.find_by_name id_param
-      protect_for_janitor!(organization) if (organization.is_private?)
+      protect_for_janitor!(organization) if (organization.private?)
       render json: organization
     end
 

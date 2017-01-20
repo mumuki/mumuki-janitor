@@ -79,7 +79,7 @@ describe Api::OrganizationsController, type: :controller do
       it { expect(Organization.first.locale).to eq 'es-AR' }
 
       context 'with only mandatory values' do
-        it { expect(Organization.first.public).to eq false }
+        it { expect(Organization.first.public?).to eq false }
         it { expect(Organization.first.login_methods).to eq %w(user_pass) }
         it { expect(Organization.first.logo_url).to eq 'http://mumuki.io/logo-alt-large.png' }
       end
@@ -98,7 +98,7 @@ describe Api::OrganizationsController, type: :controller do
            terms_of_service: 'A TOS'}
         end
 
-        it { expect(Organization.first.public).to eq true }
+        it { expect(Organization.first.public?).to eq true }
         it { expect(Organization.first.description).to eq 'A description' }
         it { expect(Organization.first.login_methods).to eq %w(facebook github) }
         it { expect(Organization.first.logo_url).to eq 'http://a-logo-url.com' }
