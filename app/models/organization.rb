@@ -21,6 +21,10 @@ class Organization < ApplicationRecord
     public
   end
 
+  def self.accessible_as(permissions, role)
+    all.select { |it| it.public? || permissions.has_permission?(role, it.slug) }
+  end
+
   def set_default_values!
     self.public ||= false
     self.login_methods ||= []

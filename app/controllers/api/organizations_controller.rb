@@ -4,15 +4,12 @@ module Api
     before_action :set_user
 
     def index
-      organizations = Organization.all.select do |it|
-        it.public? || has_permission?(:janitor, it.slug)
-      end
-      render json: organizations
+      render json: Organization.accessible_as(@api_client, :janitor)
     end
 
     def show
       organization = Organization.find_by_name id_param
-      protect_for_janitor!(organization) if (organization.private?)
+      protect_for_janitor!(organization) if organization.private?
       render json: organization
     end
 
