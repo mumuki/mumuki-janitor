@@ -21,7 +21,6 @@ module WithStaticAssets
     content = send property
     path = "#{directory}/#{name}-#{SecureRandom.hex}"
 
-    return unless valid?
     delete_previous_asset! url_property
     File.open(full_path_for(path), 'w') { |f| f << content }
     send "#{url_property}=", path
