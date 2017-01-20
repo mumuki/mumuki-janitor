@@ -1,4 +1,4 @@
-module WithProtection
+module WithApiProtection
   extend ActiveSupport::Concern
 
   included do

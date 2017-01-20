@@ -4,7 +4,7 @@ module Api
 
     include WithCustomUnhandledErrors
     include WithDynamicErrors
-    include WithProtection
+    include WithApiProtection
 
     private
 

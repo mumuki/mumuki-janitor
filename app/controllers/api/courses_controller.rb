@@ -1,6 +1,6 @@
 module Api
   class CoursesController < BaseController
-    include WithProtection
+    include WithApiProtection
     before_action :set_slug, only: :create
     before_action :protect_for_janitor!, only: :create
 
