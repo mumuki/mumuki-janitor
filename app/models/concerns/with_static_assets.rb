@@ -9,7 +9,7 @@ module WithStaticAssets
   private
 
   def generate_stylesheet!
-    generate_asset!'stylesheets', 'theme_stylesheet'
+    generate_asset! 'stylesheets', 'theme_stylesheet'
   end
 
   def generate_javascript!
