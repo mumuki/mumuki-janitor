@@ -39,9 +39,4 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-
-  config.queueless_mode = true
-  config.auth_client_id = 'foo id'
-  config.auth_client_secret = 'foo secret'
-  config.auth_domain = 'http://foo.com'
 end

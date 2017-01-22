@@ -26,7 +26,7 @@ class Organization < ApplicationRecord
   end
 
   def notify!(event)
-    Mumukit::Nuntius.notify_event!({organization: as_json}, "Organization#{event}")
+    Mumukit::Nuntius.notify_event! "Organization#{event}", organization: as_json
   end
 
   def to_param
