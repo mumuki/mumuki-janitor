@@ -1,0 +1,16 @@
+.mu-list-group {
+  @extend .list-group;
+
+  .mu-list-group-item {
+    @extend .list-group-item;
+    i, span {
+      color: $brand-primary;
+    }
+    .mu-divider-vertical {
+      border: none;
+      border-right: 1px solid $input-group-addon-border-color;
+      margin: 0 15px 0 10px;
+      padding: 15px 0;
+    }
+  }
+}
