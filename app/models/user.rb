@@ -5,10 +5,11 @@ class User < ApplicationRecord
 
   has_many :api_clients
 
+  after_initialize :init
   before_validation :set_uid
   after_commit :set_permissions!
 
-  validates_presence_of :first_name, :last_name, :uid
+  validates_presence_of :uid
 
   def attach!(role, course)
     add_permission! role, course.slug
@@ -37,7 +38,17 @@ class User < ApplicationRecord
     uid
   end
 
+  def self.for_profile(profile)
+    where(uid: profile.uid).first_or_initialize.tap do |user|
+      user.update! profile.to_h.except(:provider, :name)
+    end
+  end
+
   private
+
+  def init
+    self.image_url ||= 'user_shape.png'
+  end
 
   def save_and_notify!
     save!

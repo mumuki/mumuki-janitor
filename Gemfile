@@ -28,12 +28,13 @@ gem 'auth0' # for rake tasks only
 
 gem 'mumukit-nuntius', '~> 3.0'
 gem 'mumukit-auth', '~> 5.0'
-gem 'mumukit-core', '~> 0.5'
+gem 'mumukit-core', '~> 0.6'
+gem 'mumukit-login', github: 'mumuki/mumukit-login'
 
 gem 'nprogress-rails'
 
 source 'https://rails-assets.org' do
-  gem 'rails-assets-mumuki-styles', '1.1.0'
+  gem 'rails-assets-mumuki-styles', '1.2.1'
   gem 'rails-assets-bootstrap-tagsinput'
 end
 
