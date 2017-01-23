@@ -1,6 +1,39 @@
-<h1>Organizations#show</h1>
+<h1><%= t :organizations %> </h1>
 
+<%= form_for @organization do |f| %>
+    <fieldset class="form-group">
+      <label for="name"><%= t :name %></label>
+      <%= f.text_field :name, class: 'form-control', placeholder: (t :name_placeholder) %>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="name"><%= t :description %></label>
+      <%= f.text_area :description, class: 'form-control', placeholder: (t :description_placeholder) %>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="name"><%= t :books %></label>
+      <%= f.text_field :books, class: 'form-control', placeholder: (t :books_placeholder) %>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="name"><%= t :logo_url %></label>
+      <%= f.text_field :logo_url, class: 'form-control', placeholder: (t :logo_url_placeholder) %>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="name"><%= t :contact_email %></label>
+      <%= f.text_field :contact_email, class: 'form-control', placeholder: (t :contact_email_placeholder) %>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="name"><%= t :theme_stylesheet %></label>
+      <%= f.text_area :theme_stylesheet, class: 'form-control', placeholder: (t :theme_stylesheet_placeholder) %>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="name"><%= t :login_methods %></label>
+      <% login_methods.each do |login_method| %>
+          <span class="field checkbox complementary complementary-checkbox">
+            <%= check_box_tag 'login_methods[]', login_method, class: 'form-control' %>
+            <%= label_tag login_method %>
+          </span>
+      <% end %>
+    </fieldset>
 
-<% @organizations.each do |it| %>
-  <%= it.name %>
+    <button class="btn btn-success pull-right"><%= t :submit %></button>
 <% end %>

@@ -21,3 +21,16 @@
 
 en:
   organizations: "Organizaciones"
+  name: "Nombre"
+  name_placeholder: "Mi organización"
+  description: "Descripción"
+  description_placeholder: "Esta es una pequeña descripción"
+  books: "Libros"
+  books_placeholder: "mumuki/mumuki-libro-mi-libro-de-tema-x, mumuki/mumuki-libro-mi-libro-de-tema-y"
+  logo_url: "Logo URL"
+  logo_url_placeholder: "https://mumuki.io/logo-alt-large.png"
+  contact_email: "Email de contacto"
+  contact_email_placeholder: "juan.perez@gmail.com"
+  theme_stylesheet: "Hoja de estilos"
+  theme_stylesheet_placeholder: ".class {\n  display: none;\n}"
+  login_methods: "Métodos para iniciar sesión"

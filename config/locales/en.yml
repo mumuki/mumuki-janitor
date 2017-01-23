@@ -21,3 +21,17 @@
 
 en:
   organizations: "Organizations"
+  name: "Name"
+  name_placeholder: "My organization"
+  description: "Description"
+  description_placeholder: "this is a little description of the organization"
+  books: "Books"
+  books_placeholder: "mumuki/mumuki-book-my-book-x, mumuki/mumuki-book-my-book-y"
+  logo_url: "Logo URL"
+  logo_url_placeholder: "https://mumuki.io/logo-alt-large.png"
+  contact_email: "Contact email"
+  contact_email_placeholder: "jhon.doe@gmail.com"
+  theme_stylesheet: "Theme stylesheet"
+  theme_stylesheet_placeholder: ".class {\n  display: none;\n}"
+  login_methods: "Login methods"
+
