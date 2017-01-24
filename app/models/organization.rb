@@ -8,12 +8,12 @@ class Organization < ApplicationRecord
   include WithSass
   include WithStaticAssets
 
-  def slug
-    Mumukit::Auth::Slug.join name
+  def self.accessible_as(permissions, role)
+    all.select { |it| it.public? || permissions.has_permission?(role, it.slug) }
   end
 
-  def notify!(event)
-    Mumukit::Nuntius.notify_event!({organization: as_json}, "Organization#{event}")
+  def slug
+    Mumukit::Auth::Slug.join name
   end
 
   def private?
@@ -24,8 +24,8 @@ class Organization < ApplicationRecord
     public
   end
 
-  def self.accessible_as(permissions, role)
-    all.select { |it| it.public? || permissions.has_permission?(role, it.slug) }
+  def notify!(event)
+    Mumukit::Nuntius.notify_event!({organization: as_json}, "Organization#{event}")
   end
 
   private
@@ -38,10 +38,5 @@ class Organization < ApplicationRecord
     self.extension_javascript ||= ''
 
     self.login_methods.push 'user_pass' if self.login_methods.empty?
-  end
-
-  def compile_sass
-    file = Tempfile.with(self.theme_stylesheet)
-    self.theme_stylesheet = Sass::Engine.for_file(file.path, syntax: :scss).render
   end
 end

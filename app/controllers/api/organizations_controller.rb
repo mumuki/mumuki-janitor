@@ -10,7 +10,7 @@ module Api
     end
 
     def show
-      protect_for_janitor!(@organization) if (@organization.is_private?)
+      protect_for_janitor!(@organization) if @organization.private?
       render json: @organization
     end
 
@@ -39,7 +39,7 @@ module Api
     end
 
     def set_user!
-      @user = User.find_by(id: @api_client.user_id)
+      @user = User.find_by id: @api_client.user_id
     end
 
     def protect_for_janitor!(organization)
