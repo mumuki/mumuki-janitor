@@ -26,12 +26,16 @@ en:
   description: "Description"
   description_placeholder: "this is a little description of the organization"
   books: "Books"
-  books_placeholder: "mumuki/mumuki-book-my-book-x, mumuki/mumuki-book-my-book-y"
+  books_placeholder: "organization/content"
   logo_url: "Logo URL"
   logo_url_placeholder: "https://mumuki.io/logo-alt-large.png"
   contact_email: "Contact email"
   contact_email_placeholder: "jhon.doe@gmail.com"
   theme_stylesheet: "Theme stylesheet"
-  theme_stylesheet_placeholder: ".class {\n  display: none;\n}"
+  theme_stylesheet_placeholder: ".my-class { display: none }"
   login_methods: "Login methods"
+  organization_saved_successfully: "Organization saved successfully"
+  add_book: 'Add book'
+  extension_javascript: "Javascript extension"
+  extension_javascript_placeholder: "function foo() {}"
 

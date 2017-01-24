@@ -6,34 +6,48 @@
       <%= f.text_field :name, class: 'form-control', placeholder: (t :name_placeholder) %>
     </fieldset>
     <fieldset class="form-group">
-      <label for="name"><%= t :description %></label>
+      <label for="description"><%= t :description %></label>
       <%= f.text_area :description, class: 'form-control', placeholder: (t :description_placeholder) %>
     </fieldset>
     <fieldset class="form-group">
-      <label for="name"><%= t :books %></label>
-      <%= f.text_field :books, class: 'form-control', placeholder: (t :books_placeholder) %>
-    </fieldset>
-    <fieldset class="form-group">
-      <label for="name"><%= t :logo_url %></label>
+      <label for="logo_url"><%= t :logo_url %></label>
       <%= f.text_field :logo_url, class: 'form-control', placeholder: (t :logo_url_placeholder) %>
     </fieldset>
     <fieldset class="form-group">
-      <label for="name"><%= t :contact_email %></label>
+      <label for="contact_email"><%= t :contact_email %></label>
       <%= f.text_field :contact_email, class: 'form-control', placeholder: (t :contact_email_placeholder) %>
     </fieldset>
     <fieldset class="form-group">
-      <label for="name"><%= t :theme_stylesheet %></label>
+      <label for="theme_stylesheet"><%= t :theme_stylesheet %></label>
       <%= f.text_area :theme_stylesheet, class: 'form-control', placeholder: (t :theme_stylesheet_placeholder) %>
     </fieldset>
     <fieldset class="form-group">
-      <label for="name"><%= t :login_methods %></label>
+      <label for="extension_javascript"><%= t :extension_javascript %></label>
+      <%= f.text_area :extension_javascript, class: 'form-control', placeholder: (t :extension_javascript_placeholder) %>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="books"><%= t :books %></label>
+      <div class="books">
+        <% @organization.books.each do |book| %>
+            <div class="input-group">
+              <input name="organization[books][]" value="<%= book %>" class="form-control" placeholder="<%= t :books_placeholder %>" required>
+              <span class="input-group-addon" onclick="removeBook(this)">
+                <i class="fa fa-fw fa-times"></i>
+              </span>
+            </div>
+        <% end %>
+      </div>
+      <button type="button" class="btn btn-link" onclick="addBook()"><%= t :add_book %></button>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="login_methods"><%= t :login_methods %></label>
       <% login_methods.each do |login_method| %>
           <span class="field checkbox complementary complementary-checkbox">
-            <%= check_box_tag 'login_methods[]', login_method, class: 'form-control' %>
+            <%= check_box_tag 'organization[login_methods][]', login_method, @organization.has_login_method?(login_method), class: 'form-control' %>
             <%= label_tag login_method %>
           </span>
       <% end %>
     </fieldset>
 
-    <button class="btn btn-success pull-right"><%= t :submit %></button>
+    <button type="submit" class="btn btn-success pull-right"><%= t :submit %></button>
 <% end %>

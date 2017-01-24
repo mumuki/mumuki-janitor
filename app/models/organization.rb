@@ -12,6 +12,11 @@ class Organization < ApplicationRecord
     all.select { |it| it.public? || permissions.has_permission?(role, it.slug) }
   end
 
+  def update_and_notify!(attributes)
+    update! attributes
+    notify! 'Updated'
+  end
+
   def slug
     Mumukit::Auth::Slug.join name
   end
@@ -26,6 +31,18 @@ class Organization < ApplicationRecord
 
   def notify!(event)
     Mumukit::Nuntius.notify_event!({organization: as_json}, "Organization#{event}")
+  end
+
+  def to_param
+    name
+  end
+
+  def has_login_method?(login_method)
+    self.login_methods.include? login_method
+  end
+
+  def self.accessible_as(permissions, role)
+    all.select { |it| it.public? || permissions.has_permission?(role, it.slug) }
   end
 
   private
