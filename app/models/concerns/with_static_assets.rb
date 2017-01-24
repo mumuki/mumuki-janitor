@@ -18,7 +18,7 @@ module WithStaticAssets
 
   def generate_asset!(directory, property, url_property)
     content = send property
-    path = "#{directory}/#{name}-#{SecureRandom.hex}"
+    path = "#{directory}/#{name}-#{Digest::SHA1.hexdigest content}"
 
     delete_previous_asset! url_property
     File.open(full_path_for(path), 'w') { |f| f << content }
