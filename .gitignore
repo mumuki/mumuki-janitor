@@ -24,3 +24,9 @@ nuntius.log
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Application things
+.sass-cache/
+.db
+public/stylesheets
+public/javascripts

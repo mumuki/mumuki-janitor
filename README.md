@@ -342,8 +342,20 @@ DELETE /courses/:id
     "facebook", "twitter", "google"
   ],
   "logo_url": "http://mumuki.io/logo-alt-large.png",
-  "theme_stylesheet": ".theme { color: red }",
   "terms_of_service": "Al usar Mumuki aceptás que las soluciones de tus ejercicios sean registradas para ser corregidas por tu/s docente/s...",
+  "theme_stylesheet": ".theme { color: red }",
+  "extension_javascript": "doSomething = function() { }"
+}
+```
+
+## Generated fields
+```json
+{
+  "id": 1,		
+  "created_at": "2017-01-13T20:52:58.575Z",		
+  "updated_at": "2017-01-13T20:53:20.453Z",
+  "theme_stylesheet_url": "stylesheets/academy-asjdf92j1jd8.css",
+  "extension_javascript_url": "javascripts/academy-jd912j8jdj19.js"
 }
 ```
 
@@ -393,17 +405,3 @@ put /organizations/:name
 ... with a partial update.
 
 **Minimal permission**: `owner` of `:name`
-
-
-### Organization CSS theme
-
-```
-get /themes/:name
-```
-Sample response body:
-
-```css
-a { color: red; }
-```
-
-

@@ -55,6 +55,13 @@ describe Api::OrganizationsController, type: :controller do
           it { check_fields_presence! response }
         end
       end
+
+      context 'with a non-existing organization' do
+        before { get :show, params: { id: 'non-existing' } }
+        let(:api_client) { create :api_client, role: :editor, grant: 'bleh/*' }
+
+        it { check_status! 404 }
+      end
     end
   end
 
@@ -82,6 +89,7 @@ describe Api::OrganizationsController, type: :controller do
         it { expect(Organization.first.public?).to eq false }
         it { expect(Organization.first.login_methods).to eq %w(user_pass) }
         it { expect(Organization.first.logo_url).to eq 'http://mumuki.io/logo-alt-large.png' }
+        it { expect(Organization.first.theme_stylesheet).to eq '' }
       end
 
       context 'with optional values' do
@@ -95,6 +103,7 @@ describe Api::OrganizationsController, type: :controller do
            login_methods: %w(facebook github),
            logo_url: 'http://a-logo-url.com',
            theme_stylesheet: '.theme { color: red }',
+           extension_javascript: 'window.a = function() { }',
            terms_of_service: 'A TOS'}
         end
 
@@ -102,7 +111,8 @@ describe Api::OrganizationsController, type: :controller do
         it { expect(Organization.first.description).to eq 'A description' }
         it { expect(Organization.first.login_methods).to eq %w(facebook github) }
         it { expect(Organization.first.logo_url).to eq 'http://a-logo-url.com' }
-        it { expect(Organization.first.theme_stylesheet).to eq '.theme { color: red }' }
+        it { expect(Organization.first.theme_stylesheet).to eq ".theme { color: red }" }
+        it { expect(Organization.first.extension_javascript).to eq "window.a = function() { }" }
         it { expect(Organization.first.terms_of_service).to eq 'A TOS' }
       end
 
