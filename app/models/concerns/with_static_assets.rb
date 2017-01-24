@@ -9,15 +9,14 @@ module WithStaticAssets
   private
 
   def generate_stylesheet!
-    generate_asset! 'stylesheets', 'theme_stylesheet'
+    generate_asset! 'stylesheets', 'theme_stylesheet_css', 'theme_stylesheet_url'
   end
 
   def generate_javascript!
-    generate_asset! 'javascripts', 'extension_javascript'
+    generate_asset! 'javascripts', 'extension_javascript', 'extension_javascript_url'
   end
 
-  def generate_asset!(directory, property)
-    url_property = "#{property}_url"
+  def generate_asset!(directory, property, url_property)
     content = send property
     path = "#{directory}/#{name}-#{SecureRandom.hex}"
 

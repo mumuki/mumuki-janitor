@@ -3,13 +3,14 @@ module WithSass
 
   included do
     before_save :compile_sass!
+    attr_accessor :theme_stylesheet_css
   end
 
   private
 
   def compile_sass!
     file = Tempfile.write!(self.theme_stylesheet)
-    self.theme_stylesheet = Sass::Engine.for_file(file.path, syntax: :scss).render
+    @theme_stylesheet_css = Sass::Engine.for_file(file.path, syntax: :scss).render
   end
 end
 
