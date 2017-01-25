@@ -38,4 +38,9 @@ en:
   add_book: 'Add book'
   extension_javascript: "Javascript extension"
   extension_javascript_placeholder: "function foo() {}"
+  public: "Public"
+  submit: "Submit"
+  visibility: "Visibility"
+  locale: "Locale"
+
 

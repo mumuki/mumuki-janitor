@@ -38,4 +38,8 @@ en:
   add_book: 'Agregar libro'
   extension_javascript: "Estensión javascript"
   extension_javascript_placeholder: "function foo() {}"
+  public: "Pública"
+  submit: "Enviar"
+  visibility: "Visibilidad"
+  locale: "Idioma"
 

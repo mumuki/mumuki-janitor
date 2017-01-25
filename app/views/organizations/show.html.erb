@@ -3,27 +3,31 @@
 <%= form_for @organization do |f| %>
     <fieldset class="form-group">
       <label for="name"><%= t :name %></label>
-      <%= f.text_field :name, class: 'form-control', placeholder: (t :name_placeholder) %>
+      <%= f.text_field :name, class: 'form-control', placeholder: t(:name_placeholder) %>
     </fieldset>
     <fieldset class="form-group">
       <label for="description"><%= t :description %></label>
-      <%= f.text_area :description, class: 'form-control', placeholder: (t :description_placeholder) %>
+      <%= f.text_area :description, class: 'form-control', placeholder: t(:description_placeholder) %>
     </fieldset>
     <fieldset class="form-group">
       <label for="logo_url"><%= t :logo_url %></label>
-      <%= f.text_field :logo_url, class: 'form-control', placeholder: (t :logo_url_placeholder) %>
+      <%= f.text_field :logo_url, class: 'form-control', placeholder: t(:logo_url_placeholder) %>
     </fieldset>
     <fieldset class="form-group">
       <label for="contact_email"><%= t :contact_email %></label>
-      <%= f.text_field :contact_email, class: 'form-control', placeholder: (t :contact_email_placeholder) %>
+      <%= f.text_field :contact_email, class: 'form-control', placeholder: t(:contact_email_placeholder) %>
     </fieldset>
     <fieldset class="form-group">
       <label for="theme_stylesheet"><%= t :theme_stylesheet %></label>
-      <%= f.text_area :theme_stylesheet, class: 'form-control', placeholder: (t :theme_stylesheet_placeholder) %>
+      <%= f.text_area :theme_stylesheet, class: 'form-control', placeholder: t(:theme_stylesheet_placeholder) %>
     </fieldset>
     <fieldset class="form-group">
       <label for="extension_javascript"><%= t :extension_javascript %></label>
-      <%= f.text_area :extension_javascript, class: 'form-control', placeholder: (t :extension_javascript_placeholder) %>
+      <%= f.text_area :extension_javascript, class: 'form-control', placeholder: t(:extension_javascript_placeholder) %>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="locale"><%= t :locale %></label>
+      <%= f.select :locale, Locale.all, {}, class: 'form-control' %>
     </fieldset>
     <fieldset class="form-group">
       <label for="books"><%= t :books %></label>
@@ -48,6 +52,12 @@
           </span>
       <% end %>
     </fieldset>
-
+    <fieldset class="form-group">
+      <label for="public"><%= t :visibility %></label>
+      <span class="field checkbox complementary complementary-checkbox">
+        <%= check_box_tag 'organization[public]', t(:public), @organization.public?, class: 'form-control' %>
+        <%= label_tag t(:public) %>
+      </span>
+    </fieldset>
     <button type="submit" class="btn btn-success pull-right"><%= t :submit %></button>
 <% end %>
