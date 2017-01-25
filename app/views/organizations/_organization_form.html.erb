@@ -1,7 +1,7 @@
 <%= form_for @organization do |f| %>
     <fieldset class="form-group">
       <label for="name"><%= t :name %></label>
-      <%= f.text_field :name, class: 'form-control', placeholder: t(:name_placeholder), required: true, disabled: Organization.exists?(id: @organization.id) %>
+      <%= f.text_field :name, class: 'form-control', placeholder: t(:name_placeholder), required: true, disabled: @organization.persisted? %>
     </fieldset>
     <fieldset class="form-group">
       <label for="description"><%= t :description %></label>

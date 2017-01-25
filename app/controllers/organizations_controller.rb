@@ -14,7 +14,8 @@ class OrganizationsController < ApplicationController
 
   def create
     with_flash(I18n.t :organization_saved_successfully) do
-      @organization = Organization.create! organization_params
+      @organization = Organization.new organization_params
+      @organization.save!
       @organization.notify! 'Created'
     end
   end
@@ -48,7 +49,7 @@ class OrganizationsController < ApplicationController
     redirect_to organization_path(@organization)
   rescue => e
     flash.alert = e.message
-    redirect_to @organization.present? ? organization_path(@organization) : new_organization_path
+    render @organization.persisted? ? :show : :new
   end
 
   def protect_for_owner!
