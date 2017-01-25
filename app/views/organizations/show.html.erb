@@ -1,6 +1,3 @@
-<h1>Organizations#show</h1>
+<h1><%= t :organizations %> </h1>
 
-
-<% @organizations.each do |it| %>
-  <%= it.name %>
-<% end %>
+<%= render partial: 'organizations/organization_form' %>

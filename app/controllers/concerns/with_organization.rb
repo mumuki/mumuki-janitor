@@ -8,10 +8,11 @@ module WithOrganization
   private
 
   def set_organization!
-    @organization = Organization.find_by_name(id_param) || raise(ActiveRecord::RecordNotFound)
+    @organization = Organization.find_by! name: id_param
   end
 
   def id_param
     params[:id]
   end
+
 end

@@ -1,15 +1,16 @@
 class Organization < ApplicationRecord
-  validates :name, uniqueness: true, format: {with: /\A[-a-z0-9_]*\z/}
+  validates :name, uniqueness: true, format: {with: /\A[-A-Za-z0-9_]*\z/}
   validates_presence_of :name, :contact_email, :locale
   validates :books, at_least_one: true
-  validates :locale, inclusion: {in: %w(es-AR en-US)}
+  validates :locale, inclusion: {in: Locale.all}
   before_save :set_default_values!
 
   include WithSass
   include WithStaticAssets
 
-  def self.accessible_as(permissions, role)
-    all.select { |it| it.public? || permissions.has_permission?(role, it.slug) }
+  def update_and_notify!(attributes)
+    update! attributes
+    notify! 'Updated'
   end
 
   def slug
@@ -26,6 +27,18 @@ class Organization < ApplicationRecord
 
   def notify!(event)
     Mumukit::Nuntius.notify_event!({organization: as_json}, "Organization#{event}")
+  end
+
+  def to_param
+    name
+  end
+
+  def has_login_method?(login_method)
+    self.login_methods.include? login_method
+  end
+
+  def self.accessible_as(permissions, role)
+    all.select { |it| it.public? || permissions.has_permission?(role, it.slug) }
   end
 
   private

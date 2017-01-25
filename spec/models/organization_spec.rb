@@ -27,4 +27,11 @@ describe Organization do
     let(:organization) { Organization.new(valid_data.merge(locale: "uk-DA")) }
     it { expect(organization.valid?).to be false }
   end
+
+  context 'has login method' do
+    let(:organization) { Organization.new(valid_data.merge(login_methods: ['github'])) }
+    it { expect(organization.has_login_method? 'github').to be true }
+    it { expect(organization.has_login_method? 'google').to be false }
+  end
+
 end
