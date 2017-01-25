@@ -25,7 +25,7 @@
     </fieldset>
     <fieldset class="form-group">
       <label for="locale"><%= t :locale %></label>
-      <%= f.select :locale, Locale.all, {}, class: 'form-control', required: true %>
+      <%= f.select :locale, options_for_select(Locale.all, Locale.first), {}, class: 'form-control', required: true, selected: Locale.first %>
     </fieldset>
     <fieldset class="form-group">
       <label for="books"><%= t :books %></label>
