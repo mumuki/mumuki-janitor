@@ -53,7 +53,7 @@ class OrganizationsController < ApplicationController
   end
 
   def protect_for_owner!
-    # raise 'Not implemented'
+    raise 'Not implemented'
   end
 
 end
