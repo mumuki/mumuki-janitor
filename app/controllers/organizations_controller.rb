@@ -8,11 +8,24 @@ class OrganizationsController < ApplicationController
     @organizations = Organization.all
   end
 
+  def new
+    @organization = Organization.new
+  end
+
+  def create
+    with_flash(I18n.t :organization_saved_successfully) do
+      @organization = Organization.create! organization_params
+      @organization.notify! 'Created'
+    end
+  end
+
   def show
   end
 
   def update
-    with_flash(I18n.t :organization_saved_successfully) { @organization.update_and_notify! organization_params }
+    with_flash(I18n.t :organization_saved_successfully) do
+      @organization.update_and_notify! organization_params
+    end
   end
 
   helper_method :login_methods
@@ -32,10 +45,10 @@ class OrganizationsController < ApplicationController
   def with_flash(message, &block)
     block.call
     flash.notice = message
+    redirect_to organization_path(@organization)
   rescue => e
     flash.alert = e.message
-  ensure
-    redirect_to id: @organization.name
+    redirect_to @organization.present? ? organization_path(@organization) : new_organization_path
   end
 
   def protect_for_owner!

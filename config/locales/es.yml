@@ -22,7 +22,7 @@
 en:
   organizations: "Organizaciones"
   name: "Nombre"
-  name_placeholder: "Mi organización"
+  name_placeholder: "mi-organización"
   description: "Descripción"
   description_placeholder: "Esta es una pequeña descripción"
   books: "Libros"

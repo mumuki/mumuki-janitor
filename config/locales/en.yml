@@ -22,7 +22,7 @@
 en:
   organizations: "Organizations"
   name: "Name"
-  name_placeholder: "My organization"
+  name_placeholder: "mi-organization"
   description: "Description"
   description_placeholder: "this is a little description of the organization"
   books: "Books"
