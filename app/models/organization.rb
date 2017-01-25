@@ -8,10 +8,6 @@ class Organization < ApplicationRecord
   include WithSass
   include WithStaticAssets
 
-  def self.accessible_as(permissions, role)
-    all.select { |it| it.public? || permissions.has_permission?(role, it.slug) }
-  end
-
   def update_and_notify!(attributes)
     update! attributes
     notify! 'Updated'
