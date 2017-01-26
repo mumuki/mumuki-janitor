@@ -1,7 +1,7 @@
 box: ruby:2.3.1
 
 services:
- - postgres
+  - postgres
 
 build:
   steps:
@@ -18,9 +18,13 @@ build:
       code: bundle exec rspec
 
 deploy:
-  escualo:
+  steps:
   - add-ssh-key:
       keyname: ESCUALO_RSA
+  - bundle-install
+  - script:
+      name: precompile
+      code: wget https://raw.githubusercontent.com/mumuki/mumuki-escualo-deploy/master/wercker_precompile && chmod u+x wercker_precompile && ./wercker_precompile
   - script:
       name: deploy
       code: wget https://raw.githubusercontent.com/mumuki/mumuki-escualo-deploy/master/wercker_deploy && chmod u+x wercker_deploy && ./wercker_deploy office
