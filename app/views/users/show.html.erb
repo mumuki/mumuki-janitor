@@ -1,2 +1,21 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1><%= t :users %></h1>
+
+<%= form_for @user do |f| %>
+    <fieldset class="form-group">
+      <label for="first_name"><%= t :first_name %></label>
+      <%= f.text_field :first_name, class: 'form-control', placeholder: t(:first_name_placeholder), required: true %>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="last_name"><%= t :last_name %></label>
+      <%= f.text_field :last_name, class: 'form-control', placeholder: t(:last_name_placeholder), required: true %>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="email"><%= t :email %></label>
+      <%= f.text_field :email, class: 'form-control', placeholder: t(:email_placeholder), required: true, type: 'email' %>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="image_url"><%= t :image_url %></label>
+      <%= f.text_field :image_url, class: 'form-control', placeholder: t(:image_url_placeholder), required: true %>
+    </fieldset>
+    <button type="submit" class="btn btn-success pull-right"><%= t :submit %></button>
+<% end %>

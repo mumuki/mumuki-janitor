@@ -33,6 +33,10 @@ class User < ApplicationRecord
     "#{first_name} #{last_name} <#{email}>"
   end
 
+  def to_param
+    uid
+  end
+
   private
 
   def save_and_notify!

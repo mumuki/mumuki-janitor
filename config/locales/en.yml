@@ -30,7 +30,7 @@ en:
   logo_url: "Logo URL"
   logo_url_placeholder: "https://mumuki.io/logo-alt-large.png"
   contact_email: "Contact email"
-  contact_email_placeholder: "jhon.doe@gmail.com"
+  contact_email_placeholder: "jane.doe@gmail.com"
   theme_stylesheet: "Theme stylesheet"
   theme_stylesheet_placeholder: ".my-class { display: none }"
   login_methods: "Login methods"
@@ -44,5 +44,11 @@ en:
   locale: "Locale"
   new_organization: "New organization"
   users: "Users"
-
-
+  first_name: "First name"
+  first_name_placeholder: "Jane"
+  last_name: "Last name"
+  last_name_placeholder: "Doe"
+  email: "Email"
+  email_placeholder: "jane.doe@gmail.com"
+  image_url: "Avatar URL"
+  image_url_placeholder: "https://mumuki.io/logo-alt.png"
