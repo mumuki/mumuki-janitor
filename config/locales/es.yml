@@ -52,4 +52,12 @@ en:
   email_placeholder: "juana.perez@gmail.com"
   image_url: "Avatar URL"
   image_url_placeholder: "https://mumuki.io/logo-alt.png"
-
+  permissions: "Permisos"
+  add_permission: "Agregar permiso"
+  student: "Estudiante"
+  teacher: "Docente"
+  headmaster: "Director"
+  janitor: "Conserje"
+  writer: "Escritor"
+  editor: "Editor"
+  owner: "Administrador"

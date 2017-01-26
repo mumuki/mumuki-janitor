@@ -17,5 +17,30 @@
       <label for="image_url"><%= t :image_url %></label>
       <%= f.text_field :image_url, class: 'form-control', placeholder: t(:image_url_placeholder), required: true %>
     </fieldset>
+    <fieldset class="form-group">
+      <label for="permissions"><%= t :permissions %></label>
+      <div class="row">
+        <div class="col-md-4">
+          <%= select_tag '', options_for_select(Mumukit::Auth::Roles::ROLES.map { |it| [t(it), it] }, Mumukit::Auth::Roles::ROLES.first), class: 'form-control', required: true, id: 'permission_role' %>
+        </div>
+        <div class="col-md-4">
+          <%= select_tag '', options_for_select(Organization.all.map &:name), class: 'form-control', required: true, id: 'permission_organization' %>
+        </div>
+        <div class="col-md-4">
+          <%= select_tag '', options_for_select([1, 2, 3, 4]), class: 'form-control', required: true, id: 'permission_content' %>
+        </div>
+      </div>
+      <button type="button" class="btn btn-link" onclick="addPermission()"><%= t :add_permission %></button>
+    </fieldset>
+    <div id="permissions_list">
+      <% Mumukit::Auth::Roles::ROLES.each do |role| %>
+          <% if @user.permissions.has_role? role %>
+              <fieldset id="fieldset_<%= role %>">
+                <label for="<%= role %>"><%= t role %></label>
+                <input type="text" name="user[permissions][<%= role %>]" value="<%= @user.permissions.as_json[role.to_s] %>" class="form-control" readonly>
+              </fieldset>
+          <% end %>
+      <% end %>
+    </div>
     <button type="submit" class="btn btn-success pull-right"><%= t :submit %></button>
 <% end %>
