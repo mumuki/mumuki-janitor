@@ -11,6 +11,8 @@ gem 'execjs'
 
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'kaminari', '~> 0.16'
+gem 'bootstrap-kaminari-views', '~> 0.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    @users = User.order(:uid).page(params.permit![:page]).per(25)
   end
 
   def show
@@ -8,4 +8,6 @@ class UsersController < ApplicationController
 
   def edit
   end
+
+
 end
