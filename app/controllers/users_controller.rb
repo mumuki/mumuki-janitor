@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   end
 
   def protect_for_owner!
-    # raise 'Not Implemented'
+    raise 'Not Implemented'
   end
 
 end
