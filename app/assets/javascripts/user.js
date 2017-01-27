@@ -4,9 +4,9 @@
 
 function addPermission() {
     var $role = $('#permission_role');
-    var organization = $('#permission_organization').val();
-    var content = $('#permission_content').val();
-    var grant = $role.val() === 'owner' ? '*' : organization + '/' + content;
+    var organization = $('#permission_organization').val() || "*";
+    var content = $('#permission_content').val() || "*";
+    var grant = organization + '/' + content;
     addGrantToRole($role, grant);
     addFaTimes();
 }
@@ -39,11 +39,13 @@ function addGrant(grantsInput, grant) {
 }
 
 function addGrantTag(grantsInput, grant) {
+    var ENTER = 13;
+    console.log(grantsInput[0]);
     var bootstrapTagsInput = grantsInput.parent().find('.bootstrap-tagsinput > input');
     bootstrapTagsInput.val(grant);
-    var e = jQuery.Event("keypress");
-    e.which = 13;
-    e.keyCode = 13;
+    var e = jQuery.Event("keydown");
+    e.which = ENTER;
+    e.keyCode = ENTER;
     bootstrapTagsInput.trigger(e);
 }
 

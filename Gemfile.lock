@@ -46,8 +46,6 @@ GEM
     bootstrap-kaminari-views (0.0.5)
       kaminari (>= 0.13)
       rails (>= 3.1)
-    bootstrap-tagsinput-rails (0.4.2.1)
-      railties (>= 3.1)
     builder (3.2.2)
     bunny (2.6.3)
       amq-protocol (>= 2.0.1)
@@ -147,6 +145,7 @@ GEM
       rails-assets-jquery (>= 1.9.1, < 4)
     rails-assets-bootstrap-sass-official (3.2.0.2)
       rails-assets-jquery (>= 1.9.0)
+    rails-assets-bootstrap-tagsinput (0.3.14)
     rails-assets-bootswatch-scss (3.2.0)
       rails-assets-bootstrap-sass-official (~> 3.2.0)
     rails-assets-dev-awesome (0.0.3)
@@ -240,7 +239,6 @@ PLATFORMS
 DEPENDENCIES
   auth0
   bootstrap-kaminari-views (~> 0.0)
-  bootstrap-tagsinput-rails
   byebug
   execjs
   factory_girl_rails
@@ -258,6 +256,7 @@ DEPENDENCIES
   pry-remote
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
+  rails-assets-bootstrap-tagsinput!
   rails-assets-mumuki-styles (= 1.1.0)!
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
