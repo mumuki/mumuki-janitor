@@ -15,6 +15,6 @@ class ApiClient < ApplicationRecord
   private
 
   def set_token
-    self.token = Mumukit::Auth::Token.encode user.uid, user.permissions
+    self.token = Mumukit::Auth::Token.encode user.uid, {}
   end
 end

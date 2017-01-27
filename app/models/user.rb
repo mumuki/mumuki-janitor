@@ -21,7 +21,7 @@ class User < ApplicationRecord
   end
 
   def notify!
-    Mumukit::Nuntius.notify_event!({user: self.as_json}, 'UserChanged')
+    Mumukit::Nuntius.notify_event! 'UserChanged', user: self.as_json
   end
 
   def self.create_if_necessary(user)

@@ -1,6 +1,7 @@
 require 'auth0'
 
 namespace :users do
+
   task populate: :environment do
     puts "Migrating users from auth0...\n\n\n"
 

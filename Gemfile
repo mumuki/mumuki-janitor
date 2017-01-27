@@ -12,8 +12,6 @@ gem 'execjs'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
-gem 'auth0'
-
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'pry'
@@ -24,8 +22,11 @@ group :development, :test do
   gem 'faker'
 end
 
-gem 'mumukit-nuntius', '~> 2.0'
-gem 'mumukit-auth', '~> 3.3'
+gem 'auth0' # for rake tasks only
+
+gem 'mumukit-nuntius', '~> 3.0'
+gem 'mumukit-auth', '~> 5.0'
+gem 'mumukit-core', '~> 0.5'
 
 gem 'nprogress-rails'
 

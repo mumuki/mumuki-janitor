@@ -11,7 +11,7 @@ class Course < ApplicationRecord
   belongs_to :organization
 
   def notify!
-    Mumukit::Nuntius.notify_event!({course: event_json}, 'CourseChanged')
+    Mumukit::Nuntius.notify_event! 'CourseChanged', course: event_json
   end
 
   def event_json

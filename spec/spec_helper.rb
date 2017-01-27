@@ -2,7 +2,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 
 require 'rspec/rails'
-require 'rspec/autorun'
+require 'mumukit/core/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -27,6 +27,10 @@ end
 
 def set_api_client!
   @request.env["HTTP_AUTHORIZATION"] = api_client.token
+end
+
+Mumukit::Auth.configure do |c|
+  c.clients.default = {id: 'test-client', secret: 'thisIsATestSecret'}
 end
 
 class String
