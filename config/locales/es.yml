@@ -64,3 +64,5 @@ en:
   organization: "Organización"
   content: "Contenido"
   course: "Curso"
+  user_saved_successfully: "Usuario guardado satisfactoriamente"
+  new_user: "Nuevo usuario"
