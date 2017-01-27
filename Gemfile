@@ -31,6 +31,7 @@ gem 'mumukit-auth', '~> 5.0'
 gem 'mumukit-core', '~> 0.5'
 
 gem 'nprogress-rails'
+gem 'bootstrap-tagsinput-rails'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-mumuki-styles', '1.1.0'
