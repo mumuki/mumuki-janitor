@@ -43,6 +43,9 @@ GEM
     arel (7.1.4)
     auth0 (4.0.0)
       httmultiparty (~> 0.3.16)
+    bootstrap-kaminari-views (0.0.5)
+      kaminari (>= 0.13)
+      rails (>= 3.1)
     builder (3.2.2)
     bunny (2.6.3)
       amq-protocol (>= 2.0.1)
@@ -75,6 +78,9 @@ GEM
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
     jwt (1.5.6)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     libv8 (3.16.14.11)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -139,6 +145,7 @@ GEM
       rails-assets-jquery (>= 1.9.1, < 4)
     rails-assets-bootstrap-sass-official (3.2.0.2)
       rails-assets-jquery (>= 1.9.0)
+    rails-assets-bootstrap-tagsinput (0.3.14)
     rails-assets-bootswatch-scss (3.2.0)
       rails-assets-bootstrap-sass-official (~> 3.2.0)
     rails-assets-dev-awesome (0.0.3)
@@ -231,11 +238,13 @@ PLATFORMS
 
 DEPENDENCIES
   auth0
+  bootstrap-kaminari-views (~> 0.0)
   byebug
   execjs
   factory_girl_rails
   faker
   jbuilder (~> 2.5)
+  kaminari (~> 0.16)
   listen (~> 3.0.5)
   mumukit-auth (~> 5.0)
   mumukit-core (~> 0.5)
@@ -247,6 +256,7 @@ DEPENDENCIES
   pry-remote
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
+  rails-assets-bootstrap-tagsinput!
   rails-assets-mumuki-styles (= 1.1.0)!
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)

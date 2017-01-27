@@ -1,2 +1,18 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h1><%= t :users %></h1>
+
+<div class="mu-list-group">
+  <% @users.each do |it| %>
+      <a class="mu-list-group-item" href="<%= user_path it.uid %>">
+        <i class="fa fa-fw fa-pencil"></i>
+        <span class="mu-divider-vertical"></span>
+        <span><%= it.to_s %></span>
+      </a>
+  <% end %>
+</div>
+
+<div class="row">
+  <%= paginate @users %>
+  <br>
+</div>
+
+<a href="<%= new_user_path %>" class="btn btn-success pull-right"><%= t :new_user %></a>

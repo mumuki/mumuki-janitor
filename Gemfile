@@ -11,6 +11,8 @@ gem 'execjs'
 
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'kaminari', '~> 0.16'
+gem 'bootstrap-kaminari-views', '~> 0.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -32,6 +34,7 @@ gem 'nprogress-rails'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-mumuki-styles', '1.1.0'
+  gem 'rails-assets-bootstrap-tagsinput'
 end
 
 group :development do

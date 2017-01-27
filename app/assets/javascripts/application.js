@@ -12,5 +12,6 @@
 //
 //= require mumuki-styles
 //= require bootstrap-sass
+//= require bootstrap-tagsinput
 //= require turbolinks
 //= require_tree .

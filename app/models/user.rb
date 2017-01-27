@@ -29,6 +29,14 @@ class User < ApplicationRecord
     User.where(uid: user[:uid]).first_or_create(user)
   end
 
+  def to_s
+    "#{first_name} #{last_name} <#{email}>"
+  end
+
+  def to_param
+    uid
+  end
+
   private
 
   def save_and_notify!
