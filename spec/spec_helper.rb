@@ -33,6 +33,11 @@ Mumukit::Auth.configure do |c|
   c.clients.default = {id: 'test-client', secret: 'thisIsATestSecret'}
 end
 
+Mumukit::Login.configure do |config|
+  config.auth0 = struct
+  config.saml = struct
+end
+
 class String
   def parse_as_json
     JSON.parse(self, symbolize_names: true)

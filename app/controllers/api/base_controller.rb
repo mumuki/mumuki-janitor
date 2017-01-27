@@ -1,5 +1,5 @@
 module Api
-  class BaseController < ApplicationController
+  class BaseController < ActionController::Base
     protect_from_forgery with: :null_session
 
     include WithCustomUnhandledErrors

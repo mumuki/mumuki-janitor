@@ -6,11 +6,12 @@
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= login_form.header_html %>
 </head>
-
 <body>
 
-<div class="container" id="wrap">
+<div class="container">
+  <!-- Flash -->
   <div class="row">
     <% if flash.notice.present? %>
         <div class="alert alert-success" role="alert">
@@ -24,11 +25,82 @@
         </div>
     <% end %>
   </div>
+
+  <!-- Navbar -->
+  <nav class="mu-navbar">
+    <!-- Breadcrumb -->
+    <div class="mu-navbar-breadcrumb">
+      <ul class="mu-breadcrumb-list">
+        <li class="mu-breadcrumb-list-item brand">
+          <a href="/">
+            <i class="da da-mumuki"></i>
+          </a>
+        </li>
+        <li class="mu-breadcrumb-list-item">
+          <a href="#">Sample</a>
+        </li>
+        <li class="mu-breadcrumb-list-item">
+          <a href="#">Path</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Login -->
+    <% if current_user? %>
+        <div class="mu-navbar-avatar">
+          <div class="mu-profile">
+            <div class="dropdown">
+              <img class="mu-profile-avatar"
+                   src="<%= asset_path current_user.image_url %>"
+                   data-toggle="dropdown">
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li><a href="#">Profile</a></li>
+                <li>
+                  <div class="divider" role="separator"></div>
+                </li>
+                <li><%= link_to(t(:sign_out), logout_path) %></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+    <% else %>
+        <%= login_button %>
+    <% end %>
+  </nav>
 </div>
 
 <div class="container">
   <%= yield %>
 </div>
-<footer class="mu-footer"></footer>
+
+<footer class="mu-footer">
+  <div class="container">
+    <hr>
+    <div class="row">
+      <div class="col-md-12">
+        <%= yield :authoring %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 text-left">
+        <p>&copy; Copyright 2015-<%= DateTime.now.year %>
+          <a href="http://mumuki.org/" class="mu-org-link"><span class="da da-mumuki-circle"></span> Mumuki Project</a>
+        </p>
+      </div>
+
+      <div class="col-md-4 text-center">
+        <%= login_form.footer_html %>
+      </div>
+
+      <div class="col-md-4 text-right">
+        <a class="fa fa-facebook social-icon" href="https://www.facebook.com/MumukiProject" target="_blank"></a>
+        <a class="fa fa-twitter social-icon" href="https://twitter.com/MumukiProject" target="_blank"></a>
+        <a class="fa fa-github social-icon" href="https://github.com/mumuki" target="_blank"></a>
+        <a class="fa fa-linkedin social-icon" href="https://www.linkedin.com/company/mumuki-project" target="_blank"></a>
+      </div>
+    </div>
+  </div>
+</footer>
 </body>
 </html>

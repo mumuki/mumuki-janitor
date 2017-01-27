@@ -66,3 +66,5 @@ en:
   course: "Curso"
   user_saved_successfully: "Usuario guardado satisfactoriamente"
   new_user: "Nuevo usuario"
+  sign_in: "Iniciá sesión"
+  sign_out: "Cerrar sesión"
