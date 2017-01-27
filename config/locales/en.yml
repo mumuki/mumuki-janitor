@@ -61,3 +61,6 @@ en:
   writer: "Writer"
   editor: "Editor"
   owner: "Owner"
+  organization: "Organization"
+  content: "Content"
+  course: "Course"

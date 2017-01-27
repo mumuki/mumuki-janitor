@@ -3,18 +3,4 @@
 @import "components/footer";
 @import "components/list-group";
 @import "components/checkboxes";
-
-.label-info {
-  background-color: $brand-complementary;
-}
-
-.bootstrap-tagsinput {
-  input {
-    display: none;
-  }
-}
-
-.label {
-  font-size: 100%;
-  font-weight: normal;
-}
+@import "tagsinput";

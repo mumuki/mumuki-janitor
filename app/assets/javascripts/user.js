@@ -80,7 +80,39 @@ function addFaTimes() {
     spans.append('<i class="fa fa-fw fa-times" style="cursor: pointer"></i>');
 }
 
+function roleChanged() {
+    var $role = $('#permission_role');
+    var $organization = $('#permission_organization');
+    var $content = $('#permission_content');
+    if ($role.val() === 'owner') {
+        disableInput($organization);
+        disableInput($content);
+    } else if ($role.val() === 'janitor') {
+        enableInput($organization);
+        disableInput($content);
+    } else {
+        enableInput($organization);
+        enableInput($content);
+    }
+    if ($role.val() === 'student' || $role.val() === 'teacher' || $role.val() === 'headmaster') {
+        $content.attr('placeholder', $content.attr('placeholder-course'));
+    } else {
+        $content.attr('placeholder', $content.attr('placeholder-content'));
+    }
+}
+
+function enableInput($element) {
+    $element.val('');
+    $element.attr("readonly", false);
+}
+
+function disableInput($element) {
+    $element.val('*');
+    $element.attr("readonly", true);
+}
+
 $(document).ready(function () {
     addFaTimes();
     $('input').on('beforeItemRemove', removePermission);
+    $('#permission_role').change(roleChanged);
 });

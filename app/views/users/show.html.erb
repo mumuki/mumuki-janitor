@@ -35,10 +35,10 @@
         <%= select_tag '', options_for_select(Mumukit::Auth::Roles::ROLES.map { |it| [t(it), it] }, Mumukit::Auth::Roles::ROLES.first), class: 'form-control', required: true, id: 'permission_role' %>
       </div>
       <div class="col-md-4">
-        <input type="text" class="form-control" id="permission_organization">
+        <input type="text" class="form-control" id="permission_organization" placeholder="<%= t :organization %>">
       </div>
       <div class="col-md-4">
-        <input type="text" class="form-control" id="permission_content">
+        <input type="text" class="form-control" id="permission_content" placeholder-content="<%= t :content %>" placeholder-course="<%= t :course %>" placeholder="<%= t :course %>">
       </div>
       <div class="col-md-4">
         <button type="button" class="btn btn-link" onclick="addPermission()"><%= t :add_permission %></button>
