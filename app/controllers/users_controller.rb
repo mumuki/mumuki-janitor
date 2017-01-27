@@ -2,14 +2,15 @@ class UsersController < ApplicationController
 
   before_action :set_user, only: :show
 
+  def new
+    @user = User.new
+  end
+
   def index
     @users = User.order(:uid).page(params.permit![:page]).per(25)
   end
 
   def show
-  end
-
-  def edit
   end
 
   private

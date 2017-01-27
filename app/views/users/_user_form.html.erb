@@ -1,0 +1,46 @@
+<%= form_for @user do |f| %>
+    <fieldset class="form-group">
+      <label for="first_name"><%= t :first_name %></label>
+      <%= f.text_field :first_name, class: 'form-control', placeholder: t(:first_name_placeholder), required: true %>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="last_name"><%= t :last_name %></label>
+      <%= f.text_field :last_name, class: 'form-control', placeholder: t(:last_name_placeholder), required: true %>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="email"><%= t :email %></label>
+      <%= f.text_field :email, class: 'form-control', placeholder: t(:email_placeholder), required: true, type: 'email' %>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="image_url"><%= t :image_url %></label>
+      <%= f.text_field :image_url, class: 'form-control', placeholder: t(:image_url_placeholder), required: true %>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="permissions"><%= t :permissions %></label>
+      <div id="permissions_list" class="col-md-12">
+        <% Mumukit::Auth::Roles::ROLES.each do |role| %>
+            <% if @user.permissions.has_role? role %>
+                <fieldset id="fieldset_<%= role %>">
+                  <label for="<%= role %>"><%= t role %></label>
+                  <input type="text" name="user[permissions][<%= role %>]" value="<%= @user.permissions.as_json[role.to_s] %>" class="form-control" readonly data-role="tagsinput">
+                </fieldset>
+            <% end %>
+        <% end %>
+      </div>
+    </fieldset>
+    <fieldset class="form-group">
+      <div class="col-md-4">
+        <%= select_tag '', options_for_select(Mumukit::Auth::Roles::ROLES.map { |it| [t(it), it] }, Mumukit::Auth::Roles::ROLES.first), class: 'form-control', required: true, id: 'permission_role' %>
+      </div>
+      <div class="col-md-4">
+        <input type="text" class="form-control" id="permission_organization" placeholder="<%= t :organization %>">
+      </div>
+      <div class="col-md-4">
+        <input type="text" class="form-control" id="permission_content" placeholder-content="<%= t :content %>" placeholder-course="<%= t :course %>" placeholder="<%= t :course %>">
+      </div>
+      <div class="col-md-4">
+        <button type="button" class="btn btn-link" onclick="addPermission()"><%= t :add_permission %></button>
+      </div>
+    </fieldset>
+    <button type="submit" class="btn btn-success pull-right"><%= t :submit %></button>
+<% end %>
