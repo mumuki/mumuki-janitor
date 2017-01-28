@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+  before_action :authenticate!
   before_action :set_user, only: [:show, :update]
   before_action :protect_for_owner!, only: [:update, :create]
 

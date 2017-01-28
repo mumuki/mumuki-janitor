@@ -1,7 +1,8 @@
 class OrganizationsController < ApplicationController
 
   include WithOrganization
-
+  
+  before_action :authenticate!
   before_action :protect_for_owner!, only: [:update, :create]
 
   def index
