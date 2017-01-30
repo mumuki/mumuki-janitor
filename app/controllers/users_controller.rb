@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
-  before_action :authenticate!
   before_action :set_user, only: [:show, :update]
-  before_action :protect_for_owner!, only: [:update, :create]
+  before_action :protect_for_owner!, only: [:update, :create, :new]
+  before_action :protect_for_janitor!, only: [:show, :index]
 
   def new
     @user = User.new
