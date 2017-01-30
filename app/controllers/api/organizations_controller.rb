@@ -1,29 +1,26 @@
 module Api
-
   class OrganizationsController < BaseController
-    before_action :set_user!
-
-    include WithOrganization
+    include OrganizationsControllerTemplate
 
     def index
-      render json: Organization.accessible_as(@api_client.user, :janitor)
+      render json: Organization.accessible_as(current_user, :janitor)
     end
 
     def show
-      protect_for_janitor!(@organization) if @organization.private?
       render json: @organization
     end
 
     def create
-      protect_for_owner! Organization.new organization_params
-      organization = Organization.create! organization_params
-      organization.notify! 'Created'
-      render json: organization
+      @organization = Organization.new organization_params
+      protect_for_owner!
+
+      @organization.save!
+      @organization.notify! 'Created'
+
+      render json: @organization
     end
 
     def update
-      protect_for_owner! @organization
-
       @organization.update_attributes organization_params
       @organization.save!
       @organization.notify! 'Updated'
@@ -38,16 +35,8 @@ module Api
                     books: [], login_methods: [])
     end
 
-    def set_user!
-      @user = User.find_by id: @api_client.user_id
-    end
-
-    def protect_for_janitor!(organization)
-      protect! :janitor, organization.slug
-    end
-
-    def protect_for_owner!(organization)
-      protect! :owner, organization.slug
+    def protection_slug
+      @organization.slug
     end
   end
 

@@ -1,6 +1,8 @@
 module WithApiProtection
   extend ActiveSupport::Concern
 
+  private
+
   def protect!(role, slug)
     current_user.protect! role, slug
   end
@@ -9,21 +11,15 @@ module WithApiProtection
     current_user.has_permission? role, slug
   end
 
-  private
-
-  def set_api_client!
-    @api_client = ApiClient.find_by! token: encoded_token
+  def protect_for_janitor!
+    protect! :janitor, protection_slug
   end
 
-  def verify_token!
-    Mumukit::Auth::Token.decode(encoded_token).verify_client!
+  def protect_for_owner!
+    protect! :janitor, protection_slug
   end
 
-  def encoded_token
-    @encoded_token ||= Mumukit::Auth::Token.extract_from_header(authorization_header)
-  end
-
-  def authorization_header
-    request.env['HTTP_AUTHORIZATION']
+  def protection_slug
+    @slug
   end
 end

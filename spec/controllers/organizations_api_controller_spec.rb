@@ -29,8 +29,14 @@ describe Api::OrganizationsController, type: :controller do
       context 'with a public organization' do
         before { get :show, params: {id: 'public'} }
 
-        context 'with a user without permissions' do
+        context 'with a user without janitor permissions' do
           let(:api_client) { create :api_client, role: :editor, grant: 'another_organization/*' }
+
+          it { check_status! 403 }
+        end
+
+        context 'with a user with janitor' do
+          let(:api_client) { create :api_client, role: :janitor, grant: 'public/*' }
 
           it { check_status! 200 }
         end
@@ -160,8 +166,15 @@ describe Api::OrganizationsController, type: :controller do
       end
     end
 
-    context 'with not-owner permissions' do
+    context 'with janitor permissions' do
       let(:api_client) { create :api_client, role: :janitor, grant: '*' }
+
+      it { check_status! 200 }
+    end
+
+
+    context 'with not-janitor permissions' do
+      let(:api_client) { create :api_client, role: :editor, grant: '*' }
 
       it { check_status! 403 }
     end
@@ -194,8 +207,8 @@ describe Api::OrganizationsController, type: :controller do
       it { expect(Organization.first.contact_email).to eq "second_email@gmail.com" }
     end
 
-    context 'with not-owner permissions' do
-      let(:api_client) { create :api_client, role: :janitor, grant: 'existing-organization/*' }
+    context 'with not-janitor permissions' do
+      let(:api_client) { create :api_client, role: :teacher, grant: 'existing-organization/*' }
       before { put :update, params: update_json }
 
       it { check_status! 403 }
