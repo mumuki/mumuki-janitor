@@ -1,4 +1,7 @@
 class Organization < ApplicationRecord
+  INDEXED_ATTRIBUTES = {
+      against: [:name, :description]
+  }
   validates :name, uniqueness: true, format: {with: /\A[-A-Za-z0-9_]*\z/}
   validates_presence_of :name, :contact_email, :locale
   validates :books, at_least_one: true
@@ -7,6 +10,7 @@ class Organization < ApplicationRecord
 
   include WithSass
   include WithStaticAssets
+  include WithSearch
 
   def update_and_notify!(attributes)
     update! attributes

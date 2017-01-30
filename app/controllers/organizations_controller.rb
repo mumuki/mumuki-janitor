@@ -4,7 +4,7 @@ class OrganizationsController < ApplicationController
   include OrganizationsControllerTemplate
 
   def index
-    @organizations = Organization.accessible_as(current_user, :janitor)
+    @organizations = Organization.by_full_text(params[:q]).accessible_as(current_user, :janitor)
   end
 
   def show

@@ -1,5 +1,7 @@
 <h1><%= t :users %></h1>
 
+<%= render partial: 'layouts/search_form', locals: {path: users_path} %>
+
 <div class="mu-list-group">
   <% @users.each do |it| %>
       <a class="mu-list-group-item" href="<%= user_path it.uid %>">

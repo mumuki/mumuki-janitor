@@ -1,6 +1,9 @@
 class User < ApplicationRecord
+  INDEXED_ATTRIBUTES = {
+      against: [:first_name, :last_name, :email, :social_id]
+  }
 
-  include WithPermissions
+  include WithPermissions, WithSearch
   extend WithImport
 
   has_many :api_clients
