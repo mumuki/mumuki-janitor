@@ -6,6 +6,10 @@ module Api
     include WithDynamicErrors
     include WithApiProtection
 
+    before_action :verify_token!, :set_api_client!
+
+    private
+
     def protect_for_janitor!
       protect! :janitor, protection_slug
     end
@@ -16,6 +20,10 @@ module Api
 
     def protection_slug
       @slug
+    end
+
+    def current_user
+      @api_client.user
     end
   end
 end

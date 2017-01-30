@@ -1,16 +1,12 @@
 module WithApiProtection
   extend ActiveSupport::Concern
 
-  included do
-    before_action :verify_token!, :set_api_client!
-  end
-
   def protect!(role, slug)
-    @api_client.user.protect! role, slug
+    current_user.protect! role, slug
   end
 
   def has_permission?(role, slug)
-    @api_client.user.has_permission? role, slug
+    current_user.has_permission? role, slug
   end
 
   private

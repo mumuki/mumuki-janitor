@@ -25,7 +25,7 @@ module Api
     end
 
     def protect_delegation!
-      @api_client.user.protect_delegation! user_params[:permissions]
+      current_user.protect_delegation! user_params[:permissions]
     end
   end
 end
