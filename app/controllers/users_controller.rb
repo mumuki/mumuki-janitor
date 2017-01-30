@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    byebug
     @users = User.order(:uid).page(params.permit![:page]).per(25)
   end
 

@@ -1,5 +1,20 @@
 <h1><%= t :users %></h1>
 
+<div class="row">
+  <div class="col-md-12">
+    <%= form_tag users_path, method: :get do |f| %>
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="<%= t :search %>" name="q" value="<%= @q %>">
+            <div class="input-group-btn">
+              <button id="search" class="btn btn-success" type="submit"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
+
 <div class="mu-list-group">
   <% @users.each do |it| %>
       <a class="mu-list-group-item" href="<%= user_path it.uid %>">
