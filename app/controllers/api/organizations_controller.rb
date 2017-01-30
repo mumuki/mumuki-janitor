@@ -6,7 +6,7 @@ module Api
     include WithOrganization
 
     def index
-      render json: Organization.accessible_as(@api_client, :janitor)
+      render json: Organization.accessible_as(@api_client.user, :janitor)
     end
 
     def show

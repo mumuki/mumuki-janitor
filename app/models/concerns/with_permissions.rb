@@ -6,6 +6,11 @@ module WithPermissions
 
     validates_presence_of :permissions
 
+    delegate :has_permission?,
+             :has_permission_delegation?,
+             :protect!,
+             :protect_delegation!, to: :permissions
+
     def self.parse!(params)
       params.merge!(permissions: Mumukit::Auth::Permissions.load(params[:permissions]))
     end

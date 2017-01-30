@@ -37,8 +37,8 @@ class Organization < ApplicationRecord
     self.login_methods.include? login_method
   end
 
-  def self.accessible_as(permissions, role)
-    all.select { |it| it.public? || permissions.has_permission?(role, it.slug) }
+  def self.accessible_as(user, role)
+    all.select { |it| it.public? || user.has_permission?(role, it.slug) }
   end
 
   private

@@ -6,11 +6,11 @@ module WithApiProtection
   end
 
   def protect!(role, slug)
-    @api_client.protect! role, slug
+    @api_client.user.protect! role, slug
   end
 
   def has_permission?(role, slug)
-    @api_client.has_permission? role, slug
+    @api_client.user.has_permission? role, slug
   end
 
   private
