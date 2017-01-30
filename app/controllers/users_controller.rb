@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    with_flash @user, I18n.t(:organization_saved_successfully) do
+    with_flash @user, I18n.t(:user_saved_successfully) do
       @user.update! user_params
       @user.notify!
     end
