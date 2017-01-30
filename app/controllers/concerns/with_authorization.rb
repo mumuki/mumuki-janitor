@@ -3,8 +3,8 @@ module WithAuthorization
 
   private
 
-  def authorize!(role, slug)
-    current_user.protect! role, slug
+  def authorize!(role)
+    current_user.protect! role, (protection_slug || '_/_')
   end
 
   def has_permission?(role, slug)
@@ -12,11 +12,11 @@ module WithAuthorization
   end
 
   def authorize_janitor!
-    authorize! :janitor, protection_slug
+    authorize! :janitor
   end
 
   def authorize_owner!
-    authorize! :janitor, protection_slug
+    authorize! :owner
   end
 
   def protection_slug

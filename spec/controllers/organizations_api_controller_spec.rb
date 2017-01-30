@@ -166,8 +166,8 @@ describe Api::OrganizationsController, type: :controller do
       end
     end
 
-    context 'with janitor permissions' do
-      let(:api_client) { create :api_client, role: :janitor, grant: '*' }
+    context 'with owner permissions' do
+      let(:api_client) { create :api_client, role: :owner, grant: '*' }
 
       it { check_status! 200 }
     end

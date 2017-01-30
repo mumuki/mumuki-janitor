@@ -11,10 +11,6 @@ module UsersControllerTemplate
 
   private
 
-  def protection_slug
-    '_/_'
-  end
-
   def protect_delegation!
     current_user.protect_delegation! user_params[:permissions]
   end
