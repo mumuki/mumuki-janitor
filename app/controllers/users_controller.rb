@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
-
-  before_action :authenticate!
-  before_action :set_user, only: [:show, :update]
-  before_action :protect_for_owner!, only: [:update, :create]
+  include UsersControllerTemplate
 
   def new
     @user = User.new
@@ -16,7 +13,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new user_params
     with_flash @user, I18n.t(:user_saved_successfully) do
       @user.save!
       @user.notify!
@@ -29,19 +25,4 @@ class UsersController < ApplicationController
       @user.notify!
     end
   end
-
-  private
-
-  def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :image_url, permissions: Mumukit::Auth::Roles::ROLES)
-  end
-
-  def set_user
-    @user = User.find_by uid: params[:id]
-  end
-
-  def protect_for_owner!
-    raise 'Not Implemented'
-  end
-
 end

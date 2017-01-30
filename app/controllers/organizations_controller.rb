@@ -1,12 +1,13 @@
 class OrganizationsController < ApplicationController
+  helper_method :login_methods
 
-  include WithOrganization
-  
-  before_action :authenticate!
-  before_action :protect_for_owner!, only: [:update, :create]
+  include OrganizationsControllerTemplate
 
   def index
-    @organizations = Organization.all
+    @organizations = Organization.accessible_as(current_user, :janitor)
+  end
+
+  def show
   end
 
   def new
@@ -14,14 +15,10 @@ class OrganizationsController < ApplicationController
   end
 
   def create
-    @organization = Organization.new organization_params
     with_flash @organization, I18n.t(:organization_saved_successfully) do
       @organization.save!
       @organization.notify! 'Created'
     end
-  end
-
-  def show
   end
 
   def update
@@ -30,22 +27,9 @@ class OrganizationsController < ApplicationController
     end
   end
 
-  helper_method :login_methods
-
-  def login_methods
-    ['facebook', 'github', 'google', 'twitter', 'user_pass']
-  end
-
   private
 
-  def organization_params
-    params.require(:organization).permit(:contact_email, :name, :locale, :description, :logo_url,
-                                         :public, :theme_stylesheet, :extension_javascript, :terms_of_service,
-                                         books: [], login_methods: [])
+  def login_methods
+    Mumukit::Login::Settings.login_methods
   end
-
-  def protect_for_owner!
-    raise 'Not implemented'
-  end
-
 end

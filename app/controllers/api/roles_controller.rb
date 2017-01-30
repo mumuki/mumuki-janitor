@@ -1,14 +1,14 @@
 module Api
   class RolesController < BaseController
-    before_action :set_slug
-    before_action :set_course
-    before_action :set_user, except: :create
-    before_action :protect_for_janitor!
+    before_action :set_slug!
+    before_action :set_course!
+    before_action :set_user!, except: :create
+    before_action :authorize_janitor!
 
     def create
-      user = User.create_if_necessary(user_params)
-      user.attach! role, @course
-      render json: user.as_json
+      @user = User.create_if_necessary(user_params)
+      @user.attach! role, @course
+      render json: @user
     end
 
     def attach
@@ -31,22 +31,17 @@ module Api
       params.require(role).permit(:first_name, :last_name, :email, :uid, :image_url)
     end
 
-    def set_course
+    def set_course!
       @course = Course.find_by!(slug: @slug)
     end
 
-    def set_user
+    def set_user!
       @user = User.find_by!(uid: params[:uid])
     end
 
-    def set_slug
+    def set_slug!
       @slug = Mumukit::Auth::Slug.join_s params.to_unsafe_h
     end
-
-    def protect_for_janitor!
-      protect! :janitor, @slug
-    end
-
   end
 
 end

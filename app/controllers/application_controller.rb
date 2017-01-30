@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   Mumukit::Login.configure_controller! self
 
+  include WithAuthorization
+
   helper_method :login_button
 
   private

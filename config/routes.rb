@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   Mumukit::Login.configure_login_routes! self
 
-  root to: 'organizations#index'
+  root to: 'home#index'
+
   resources :organizations, only: [:index, :show, :create, :update, :new]
   resources :users, only: [:index, :show, :create, :update, :new], constraints: {id: /[^\/]+/}
   namespace :api do

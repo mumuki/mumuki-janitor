@@ -39,7 +39,29 @@ Mumukit::Login.configure do |config|
 end
 
 class String
-  def parse_as_json
+  def parse_json
     JSON.parse(self, symbolize_names: true)
+  end
+end
+
+
+RSpec::Matchers.define :json_like do |expected, options={}|
+  except = options[:except] || []
+  match do |actual|
+    actual.as_json.with_indifferent_access.except(*except) == expected.as_json.with_indifferent_access.except(*except)
+  end
+
+  failure_message_for_should do |actual|
+    <<-EOS
+    expected: #{expected.as_json.with_indifferent_access.except(*except)} (#{expected.class})
+         got: #{actual.as_json.with_indifferent_access.except(*except)} (#{actual.class})
+    EOS
+  end
+
+  failure_message_for_should_not do |actual|
+    <<-EOS
+    expected: value != #{expected.as_json.with_indifferent_access.except(*except)} (#{expected.class})
+         got:          #{actual.as_json.with_indifferent_access.except(*except)} (#{actual.class})
+    EOS
   end
 end
