@@ -6,8 +6,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    byebug
-    @users = User.order(:uid).page(params.permit![:page]).per(25)
+    @users = User.by_full_text(params[:q]).order(:uid).page(params.permit![:page]).per(25)
   end
 
   def show

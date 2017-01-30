@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   INDEXED_ATTRIBUTES = {
-      against: [:first_name, :last_name, :email]
+      against: [:first_name, :last_name, :email, :social_id]
   }
 
   include WithPermissions, WithSearch
