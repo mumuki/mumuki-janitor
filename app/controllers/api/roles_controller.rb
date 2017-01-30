@@ -3,7 +3,7 @@ module Api
     before_action :set_slug!
     before_action :set_course!
     before_action :set_user!, except: :create
-    before_action :protect_for_janitor!
+    before_action :authorize_janitor!
 
     def create
       @user = User.create_if_necessary(user_params)

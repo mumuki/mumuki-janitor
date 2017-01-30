@@ -1,6 +1,6 @@
 class ApiClientsController < ApplicationController
   before_action :parse_permissions, only: :create
-  before_action :protect_for_janitor!, only: [:new, :create]
+  before_action :authorize_janitor!, only: [:new, :create]
 
   def new
     @api_client = ApiClient.new

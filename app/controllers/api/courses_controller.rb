@@ -1,7 +1,7 @@
 module Api
   class CoursesController < BaseController
     before_action :set_new_course!, only: :create
-    before_action :protect_for_janitor!, only: :create
+    before_action :authorize_janitor!, only: :create
 
     def create
       @course.save!

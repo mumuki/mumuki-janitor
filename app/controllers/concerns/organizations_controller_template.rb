@@ -5,8 +5,8 @@ module OrganizationsControllerTemplate
     before_action :set_organization!, only: [:show, :update, :edit]
     before_action :set_new_organization!, only: :create
 
-    before_action :protect_for_janitor!, only: :show
-    before_action :protect_for_owner!, only: [:update, :create]
+    before_action :authorize_janitor!, only: :show
+    before_action :authorize_owner!, only: [:update, :create]
   end
 
   private
