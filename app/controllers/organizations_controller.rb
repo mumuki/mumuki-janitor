@@ -43,9 +43,4 @@ class OrganizationsController < ApplicationController
                                          :public, :theme_stylesheet, :extension_javascript, :terms_of_service,
                                          books: [], login_methods: [])
   end
-
-  def protect_for_owner!
-    raise 'Not implemented'
-  end
-
 end

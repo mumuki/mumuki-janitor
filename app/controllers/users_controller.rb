@@ -39,9 +39,4 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find_by uid: params[:id]
   end
-
-  def protect_for_owner!
-    raise 'Not Implemented'
-  end
-
 end

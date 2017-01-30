@@ -22,4 +22,12 @@ class ApplicationController < ActionController::Base
     render model.persisted? ? :show : :new
   end
 
+  def protect_for_owner!
+    raise 'Not Implemented'
+  end
+
+  def protect_for_janitor!
+    raise 'Not Implemented'
+  end
+
 end
