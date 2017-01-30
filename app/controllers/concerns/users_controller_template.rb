@@ -3,6 +3,7 @@ module UsersControllerTemplate
 
   included do
     before_action :set_user!, only: [:show, :update]
+    before_action :set_new_user!, only: :create
 
     before_action :protect_for_janitor!
     before_action :protect_delegation!, only: [:create, :update]
@@ -24,6 +25,10 @@ module UsersControllerTemplate
 
   def set_user!
     @user = User.find_by uid: params[:id]
+  end
+
+  def set_new_user!
+    @user = User.new user_params
   end
 
 end

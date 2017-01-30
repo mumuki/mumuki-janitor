@@ -15,9 +15,6 @@ class OrganizationsController < ApplicationController
   end
 
   def create
-    @organization = Organization.new organization_params
-    protect_for_owner!
-
     with_flash @organization, I18n.t(:organization_saved_successfully) do
       @organization.save!
       @organization.notify! 'Created'

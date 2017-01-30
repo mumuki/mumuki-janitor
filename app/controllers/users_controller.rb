@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new user_params
     with_flash @user, I18n.t(:user_saved_successfully) do
       @user.save!
       @user.notify!

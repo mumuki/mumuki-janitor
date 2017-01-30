@@ -3,7 +3,7 @@ module Api
     include UsersControllerTemplate
 
     def create
-      @user = User.create! user_params
+      @user.save!
       @user.notify!
       render json: @user
     end

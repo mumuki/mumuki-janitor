@@ -1,10 +1,10 @@
 module Api
   class CoursesController < BaseController
-    before_action :set_slug, only: :create
+    before_action :set_new_course!, only: :create
     before_action :protect_for_janitor!, only: :create
 
     def create
-      @course = Course.create! course_params
+      @course.save!
       @course.notify!
       render json: @course
     end
@@ -15,8 +15,12 @@ module Api
       params.require(:course).permit(:slug, :code, :period, :description, :subscription_mode, shifts: [], days: [])
     end
 
-    def set_slug
-      @slug = Mumukit::Auth::Slug.parse course_params[:slug]
+    def set_new_course!
+      @course = Course.new course_params
+    end
+
+    def protection_slug
+      @course.slug
     end
   end
 end

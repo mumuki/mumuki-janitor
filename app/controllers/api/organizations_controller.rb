@@ -11,9 +11,6 @@ module Api
     end
 
     def create
-      @organization = Organization.new organization_params
-      protect_for_owner!
-
       @organization.save!
       @organization.notify! 'Created'
 
