@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
-
-  before_action :set_user, only: [:show, :update]
-  before_action :protect_for_owner!, only: [:update, :create, :new]
-  before_action :protect_for_janitor!, only: [:show, :index]
+  include UsersControllerTemplate
 
   def new
     @user = User.new
@@ -28,15 +25,5 @@ class UsersController < ApplicationController
       @user.update! user_params
       @user.notify!
     end
-  end
-
-  private
-
-  def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :image_url, permissions: Mumukit::Auth::Roles::ROLES)
-  end
-
-  def set_user
-    @user = User.find_by uid: params[:id]
   end
 end

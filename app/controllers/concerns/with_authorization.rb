@@ -1,4 +1,4 @@
-module WithApiProtection
+module WithAuthorization
   extend ActiveSupport::Concern
 
   private

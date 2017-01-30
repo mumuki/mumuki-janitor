@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   Mumukit::Login.configure_controller! self
 
+  include WithAuthorization
+
   helper_method :login_button
 
   private
@@ -20,14 +22,6 @@ class ApplicationController < ActionController::Base
   rescue => e
     flash.alert = e.message
     render model.persisted? ? :show : :new
-  end
-
-  def protect_for_owner!
-    raise 'Not Implemented'
-  end
-
-  def protect_for_janitor!
-    raise 'Not Implemented'
   end
 
 end

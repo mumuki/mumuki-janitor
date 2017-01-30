@@ -82,7 +82,7 @@ describe Api::OrganizationsController, type: :controller do
   end
 
   context 'POST /organizations' do
-    before { post :create, params: organization_json }
+    before { post :create, params: {organization: organization_json} }
     let(:organization_json) do
       {contact_email: 'an_email@gmail.com',
        name: 'a-name',
@@ -90,7 +90,7 @@ describe Api::OrganizationsController, type: :controller do
        locale: 'es-AR'}
     end
 
-    context 'with the god permissions' do
+    context 'with the owner permissions' do
       let(:api_client) { create :api_client, role: :owner, grant: '*' }
 
       it { check_status! 200 }
@@ -182,11 +182,11 @@ describe Api::OrganizationsController, type: :controller do
 
   context 'PUT /organizations/:id' do
     let!(:public_organization) { create :organization, name: 'existing-organization', contact_email: "first_email@gmail.com" }
-    let(:update_json) { {id: 'existing-organization', contact_email: 'second_email@gmail.com'} }
+    let(:update_json) { {contact_email: 'second_email@gmail.com'} }
 
     context 'with the owner permissions' do
       let(:api_client) { create :api_client, role: :owner, grant: 'existing-organization/*' }
-      before { put :update, params: update_json }
+      before { put :update, params: {id: 'existing-organization', organization: update_json} }
 
       it { check_status! 200 }
       it { expect(response.body.parse_json).to json_like({name: 'existing-organization',
@@ -209,7 +209,7 @@ describe Api::OrganizationsController, type: :controller do
 
     context 'with not-janitor permissions' do
       let(:api_client) { create :api_client, role: :teacher, grant: 'existing-organization/*' }
-      before { put :update, params: update_json }
+      before { put :update, params: {id: 'existing-organization', organization: update_json} }
 
       it { check_status! 403 }
     end

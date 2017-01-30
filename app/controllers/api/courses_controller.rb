@@ -4,9 +4,9 @@ module Api
     before_action :protect_for_janitor!, only: :create
 
     def create
-      course = Course.create! course_params
-      course.notify!
-      render json: { course: course }
+      @course = Course.create! course_params
+      @course.notify!
+      render json: @course
     end
 
     private

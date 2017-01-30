@@ -6,9 +6,9 @@ module Api
     before_action :protect_for_janitor!
 
     def create
-      user = User.create_if_necessary(user_params)
-      user.attach! role, @course
-      render json: user.as_json
+      @user = User.create_if_necessary(user_params)
+      @user.attach! role, @course
+      render json: @user
     end
 
     def attach

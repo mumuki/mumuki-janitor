@@ -4,7 +4,7 @@ module Api
 
     include WithCustomUnhandledErrors
     include WithDynamicErrors
-    include WithApiProtection
+    include WithAuthorization
 
     before_action :verify_token!, :set_api_client!
 
