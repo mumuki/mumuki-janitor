@@ -8,9 +8,9 @@ class Organization < ApplicationRecord
   validates :locale, inclusion: {in: Locale.all}
   before_save :set_default_values!
 
-  include WithSass,
-          WithStaticAssets,
-          WithSearch
+  include WithSass
+  include WithStaticAssets
+  include WithSearch
 
   def update_and_notify!(attributes)
     update! attributes
