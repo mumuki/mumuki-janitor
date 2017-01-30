@@ -42,11 +42,6 @@ module Api
     def set_slug
       @slug = Mumukit::Auth::Slug.join_s params.to_unsafe_h
     end
-
-    def protect_for_janitor!
-      protect! :janitor, @slug
-    end
-
   end
 
 end

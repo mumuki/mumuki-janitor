@@ -18,9 +18,5 @@ module Api
     def set_slug
       @slug = Mumukit::Auth::Slug.parse course_params[:slug]
     end
-
-    def protect_for_janitor!
-      protect! :janitor, @slug
-    end
   end
 end
