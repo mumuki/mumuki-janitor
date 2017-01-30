@@ -30,6 +30,6 @@ class OrganizationsController < ApplicationController
   private
 
   def login_methods
-    Mumukit::Login::Setting.login_settings
+    Mumukit::Login::Settings.login_methods
   end
 end
