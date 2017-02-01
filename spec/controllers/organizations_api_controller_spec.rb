@@ -181,7 +181,7 @@ describe Api::OrganizationsController, type: :controller do
 
   context 'PUT /organizations/:id' do
     let!(:public_organization) { create :organization, name: 'existing-organization', contact_email: "first_email@gmail.com" }
-    let(:update_json) { {contact_email: 'second_email@gmail.com' } }
+    let(:update_json) { {contact_email: 'second_email@gmail.com'} }
 
     context 'with the owner permissions' do
       let(:api_client) { create :api_client, role: :owner, grant: 'existing-organization/*' }
