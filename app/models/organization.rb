@@ -56,7 +56,7 @@ class Organization < ApplicationRecord
     self.extension_javascript ||= defaults&.extension_javascript
     self.terms_of_service ||= defaults&.terms_of_service
 
-    self
+    self.as_json(except: [:id, :created_at, :updated_at])
   end
 
   def self.accessible_as(user, role)

@@ -18,10 +18,8 @@ describe Api::OrganizationsController, type: :controller do
       let!(:body) { response.body.parse_json }
 
       it { check_status! 200 }
-      it { expect(body.length).to eq 3 }
-      # FIXME Organization api should return a json
-      skip { expect(response.body.parse_json).to json_like({}) }
-      it { expect(body.map { |it| it[:name] }).to eq %w(base public private) }
+      it { expect(body[:organizations].length).to eq 3 }
+      it { expect(body[:organizations].map { |it| it[:name] }).to eq %w(base public private) }
     end
 
     context 'GET /organizations/:id' do

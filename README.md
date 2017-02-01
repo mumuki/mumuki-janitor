@@ -370,10 +370,12 @@ get /organizations
 Sample response body:
 
 ```json
-[
-  { "name": "academy", "contact_email": "a@a.com", "locale": "es-AR", "login_methods": ["facebook"], "books": ["libro"], "public": true, "logo_url":"http://..." },
-  { "name": "alcal", "contact_email": "b@b.com", "locale": "en-US", "login_methods": ["facebook", "github"], "books": ["book"], "public": false }
-]
+{
+  "organizations": [
+    { "name": "academy", "contact_email": "a@a.com", "locale": "es-AR", "login_methods": ["facebook"], "books": ["libro"], "public": true, "logo_url":"http://..." },
+    { "name": "alcal", "contact_email": "b@b.com", "locale": "en-US", "login_methods": ["facebook", "github"], "books": ["book"], "public": false }
+  ]
+}
 ```
 **Minimal permission**: None for public organizations, `janitor` for user's private organizations.
 
