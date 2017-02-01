@@ -77,6 +77,6 @@ class Organization < ApplicationRecord
 
   def set_nil_params!(attributes)
     attributes.select { |k, v| v.nil? }
-              .each { |k, v| send "#{k}=", nil }
+              .each { |k, v| update_attribute k, nil }
   end
 end
