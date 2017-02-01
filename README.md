@@ -409,16 +409,3 @@ put /organizations/:name
 ... with a partial update.
 
 **Minimal permission**: `owner` of `:name`
-
-# Development
-
-```bash
-bundle exec rake db:create db:migrate db:seed
-RAILS_ENV=test bundle exec rake db:create db:migrate db:seed
-``````
-
-## Run tests
-
-```bash
-bundle exec rake
-```
