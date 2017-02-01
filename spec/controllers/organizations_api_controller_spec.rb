@@ -20,7 +20,6 @@ describe Api::OrganizationsController, type: :controller do
       it { check_status! 200 }
       it { expect(body.length).to eq 2 }
       # FIXME Organization api should return a json
-      # FIXME Organizations api should not return ids nor dates
       skip { expect(response.body.parse_json).to json_like({}) }
       it { expect(body.map { |it| it[:name] }).to eq %w(public private) }
     end
@@ -67,8 +66,8 @@ describe Api::OrganizationsController, type: :controller do
                                                               login_methods: ['MyString'],
                                                               theme_stylesheet_url: 'stylesheets/private-da39a3ee5e6b4b0d3255bfef95601890afd80709',
                                                               extension_javascript: '',
-                                                              extension_javascript_url: 'javascripts/private-da39a3ee5e6b4b0d3255bfef95601890afd80709'},
-                                                             {except: [:created_at, :updated_at, :id]}) }
+                                                              extension_javascript_url: 'javascripts/private-da39a3ee5e6b4b0d3255bfef95601890afd80709'
+                                                             }) }
         end
       end
 
@@ -109,17 +108,17 @@ describe Api::OrganizationsController, type: :controller do
                                                           extension_javascript_url: 'javascripts/a-name-da39a3ee5e6b4b0d3255bfef95601890afd80709'},
                                                          {except: [:created_at, :updated_at, :id]}) }
       it { expect(Organization.count).to eq 1 }
-      it { expect(Organization.first.name).to eq "a-name" }
-      it { expect(Organization.first.contact_email).to eq "an_email@gmail.com" }
-      it { expect(Organization.first.books).to eq %w(a-book) }
-      it { expect(Organization.first.locale).to eq 'es-AR' }
+      it { expect(Organization.last.name).to eq "a-name" }
+      it { expect(Organization.last.contact_email).to eq "an_email@gmail.com" }
+      it { expect(Organization.last.books).to eq %w(a-book) }
+      it { expect(Organization.last.locale).to eq 'es-AR' }
 
       context 'with only mandatory values' do
-        it { expect(Organization.first.public?).to eq false }
-        it { expect(Organization.first.login_methods).to eq %w(user_pass) }
-        it { expect(Organization.first.logo_url).to eq 'http://mumuki.io/logo-alt-large.png' }
-        it { expect(Organization.first.theme_stylesheet).to eq '' }
-        it { expect(Organization.first.terms_of_service).to eq '' }
+        it { expect(Organization.last.public?).to eq false }
+        it { expect(Organization.last.login_methods).to eq %w(user_pass) }
+        it { expect(Organization.last.logo_url).to eq 'http://mumuki.io/logo-alt-large.png' }
+        it { expect(Organization.last.theme_stylesheet).to eq '' }
+        it { expect(Organization.last.terms_of_service).to eq '' }
       end
 
       context 'with optional values' do
@@ -137,13 +136,13 @@ describe Api::OrganizationsController, type: :controller do
            terms_of_service: 'A TOS'}
         end
 
-        it { expect(Organization.first.public?).to eq true }
-        it { expect(Organization.first.description).to eq 'A description' }
-        it { expect(Organization.first.login_methods).to eq %w(facebook github) }
-        it { expect(Organization.first.logo_url).to eq 'http://a-logo-url.com' }
-        it { expect(Organization.first.theme_stylesheet).to eq ".theme { color: red }" }
-        it { expect(Organization.first.extension_javascript).to eq "window.a = function() { }" }
-        it { expect(Organization.first.terms_of_service).to eq 'A TOS' }
+        it { expect(Organization.last.public?).to eq true }
+        it { expect(Organization.last.description).to eq 'A description' }
+        it { expect(Organization.last.login_methods).to eq %w(facebook github) }
+        it { expect(Organization.last.logo_url).to eq 'http://a-logo-url.com' }
+        it { expect(Organization.last.theme_stylesheet).to eq ".theme { color: red }" }
+        it { expect(Organization.last.extension_javascript).to eq "window.a = function() { }" }
+        it { expect(Organization.last.terms_of_service).to eq 'A TOS' }
       end
 
       context 'with missing values' do
@@ -204,8 +203,8 @@ describe Api::OrganizationsController, type: :controller do
                                                           description: 'MyText',
                                                           terms_of_service: nil},
                                                          except: [:created_at, :updated_at, :id]) }
-      it { expect(Organization.first.name).to eq "existing-organization" }
-      it { expect(Organization.first.contact_email).to eq "second_email@gmail.com" }
+      it { expect(Organization.last.name).to eq "existing-organization" }
+      it { expect(Organization.last.contact_email).to eq "second_email@gmail.com" }
     end
 
     context 'with not-janitor permissions' do

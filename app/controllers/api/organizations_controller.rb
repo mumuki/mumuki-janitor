@@ -3,7 +3,7 @@ module Api
     include OrganizationsControllerTemplate
 
     def index
-      render json: Organization.accessible_as(current_user, :janitor).map(&:to_dto!)
+      render json: Organization.accessible_as(current_user, :janitor).map(&:to_dto!), :except => protected_attributes
     end
 
     def show
@@ -26,7 +26,11 @@ module Api
     private
 
     def render_dto(obj)
-      render json: obj.to_dto!
+      render json: obj.to_dto!, :except => protected_attributes
+    end
+
+    def protected_attributes
+      [:id, :created_at, :updated_at]
     end
   end
 
