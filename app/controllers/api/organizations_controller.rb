@@ -3,24 +3,30 @@ module Api
     include OrganizationsControllerTemplate
 
     def index
-      render json: Organization.accessible_as(current_user, :janitor)
+      render json: Organization.accessible_as(current_user, :janitor).map(&:to_dto!)
     end
 
     def show
-      render json: @organization
+      render_dto @organization
     end
 
     def create
       @organization.save!
       @organization.notify! 'Created'
 
-      render json: @organization
+      render_dto @organization
     end
 
     def update
-      @organization.update! organization_params
-      @organization.notify! 'Updated'
-      render json: @organization
+      @organization.update_and_notify! organization_params
+
+      render_dto @organization
+    end
+
+    private
+
+    def render_dto(obj)
+      render json: obj.to_dto!
     end
   end
 

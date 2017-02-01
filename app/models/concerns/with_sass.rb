@@ -9,6 +9,8 @@ module WithSass
   private
 
   def compile_sass!
+    return if self.theme_stylesheet.nil?
+
     file = Tempfile.write!(self.theme_stylesheet)
     @theme_stylesheet_css = Sass::Engine.for_file(file.path, syntax: :scss).render
   end

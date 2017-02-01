@@ -119,6 +119,7 @@ describe Api::OrganizationsController, type: :controller do
         it { expect(Organization.first.login_methods).to eq %w(user_pass) }
         it { expect(Organization.first.logo_url).to eq 'http://mumuki.io/logo-alt-large.png' }
         it { expect(Organization.first.theme_stylesheet).to eq '' }
+        it { expect(Organization.first.terms_of_service).to eq '' }
       end
 
       context 'with optional values' do
