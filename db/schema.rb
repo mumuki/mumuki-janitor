@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20170201194255) do
     t.string   "logo_url"
     t.boolean  "public",                   default: false
     t.string   "contact_email"
-    t.text     "theme_stylesheet",         default: ""
+    t.text     "theme_stylesheet"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
     t.text     "books",                    default: [],                 array: true

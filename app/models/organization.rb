@@ -50,6 +50,7 @@ class Organization < ApplicationRecord
     return self if base?
 
     defaults = self.class.base
+
     self.logo_url ||= defaults&.logo_url
     self.theme_stylesheet ||= defaults&.theme_stylesheet
     self.extension_javascript ||= defaults&.extension_javascript

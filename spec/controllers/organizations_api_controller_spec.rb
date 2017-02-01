@@ -18,10 +18,10 @@ describe Api::OrganizationsController, type: :controller do
       let!(:body) { response.body.parse_json }
 
       it { check_status! 200 }
-      it { expect(body.length).to eq 2 }
+      it { expect(body.length).to eq 3 }
       # FIXME Organization api should return a json
       skip { expect(response.body.parse_json).to json_like({}) }
-      it { expect(body.map { |it| it[:name] }).to eq %w(public private) }
+      it { expect(body.map { |it| it[:name] }).to eq %w(base public private) }
     end
 
     context 'GET /organizations/:id' do
@@ -62,11 +62,11 @@ describe Api::OrganizationsController, type: :controller do
                                                               theme_stylesheet: '',
                                                               books: ['MyString'],
                                                               locale: 'es-AR',
-                                                              terms_of_service: nil,
+                                                              terms_of_service: 'Default terms of service',
                                                               login_methods: ['MyString'],
-                                                              theme_stylesheet_url: 'stylesheets/private-da39a3ee5e6b4b0d3255bfef95601890afd80709',
+                                                              theme_stylesheet_url: 'stylesheets/private-da39a3ee5e6b4b0d3255bfef95601890afd80709.css',
                                                               extension_javascript: '',
-                                                              extension_javascript_url: 'javascripts/private-da39a3ee5e6b4b0d3255bfef95601890afd80709'
+                                                              extension_javascript_url: 'javascripts/private-da39a3ee5e6b4b0d3255bfef95601890afd80709.js'
                                                              }) }
         end
       end
@@ -98,16 +98,16 @@ describe Api::OrganizationsController, type: :controller do
                                                           logo_url: 'http://mumuki.io/logo-alt-large.png',
                                                           public: false,
                                                           contact_email: 'an_email@gmail.com',
-                                                          theme_stylesheet: '',
+                                                          theme_stylesheet: '.default { css: red }',
                                                           books: ['a-book'],
                                                           locale: 'es-AR',
-                                                          terms_of_service: nil,
+                                                          terms_of_service: 'Default terms of service',
                                                           login_methods: ['user_pass'],
-                                                          theme_stylesheet_url: 'stylesheets/a-name-da39a3ee5e6b4b0d3255bfef95601890afd80709',
-                                                          extension_javascript: '',
-                                                          extension_javascript_url: 'javascripts/a-name-da39a3ee5e6b4b0d3255bfef95601890afd80709'},
-                                                         {except: [:created_at, :updated_at, :id]}) }
-      it { expect(Organization.count).to eq 1 }
+                                                          theme_stylesheet_url: 'stylesheets/base-30167c3687a77be83c728fc4f596503ced3f32c4.css',
+                                                          extension_javascript: 'function defaultJs() {}',
+                                                          extension_javascript_url: 'javascripts/base-7cf7ff791f337c0ae1a0fa84631ac9176c36aecb.js'
+                                                         }) }
+      it { expect(Organization.count).to eq 2 }
       it { expect(Organization.last.name).to eq "a-name" }
       it { expect(Organization.last.contact_email).to eq "an_email@gmail.com" }
       it { expect(Organization.last.books).to eq %w(a-book) }
@@ -116,9 +116,10 @@ describe Api::OrganizationsController, type: :controller do
       context 'with only mandatory values' do
         it { expect(Organization.last.public?).to eq false }
         it { expect(Organization.last.login_methods).to eq %w(user_pass) }
-        it { expect(Organization.last.logo_url).to eq 'http://mumuki.io/logo-alt-large.png' }
-        it { expect(Organization.last.theme_stylesheet).to eq '' }
-        it { expect(Organization.last.terms_of_service).to eq '' }
+        it { expect(Organization.last.logo_url).to eq nil }
+        it { expect(Organization.last.theme_stylesheet).to eq nil }
+        it { expect(Organization.last.extension_javascript).to eq nil }
+        it { expect(Organization.last.terms_of_service).to eq nil }
       end
 
       context 'with optional values' do
@@ -182,7 +183,7 @@ describe Api::OrganizationsController, type: :controller do
 
   context 'PUT /organizations/:id' do
     let!(:public_organization) { create :organization, name: 'existing-organization', contact_email: "first_email@gmail.com" }
-    let(:update_json) { {contact_email: 'second_email@gmail.com'} }
+    let(:update_json) { {contact_email: 'second_email@gmail.com' } }
 
     context 'with the owner permissions' do
       let(:api_client) { create :api_client, role: :owner, grant: 'existing-organization/*' }
@@ -198,11 +199,11 @@ describe Api::OrganizationsController, type: :controller do
                                                           logo_url: 'MyString',
                                                           theme_stylesheet: '',
                                                           extension_javascript: '',
-                                                          theme_stylesheet_url: 'stylesheets/existing-organization-da39a3ee5e6b4b0d3255bfef95601890afd80709',
-                                                          extension_javascript_url: 'javascripts/existing-organization-da39a3ee5e6b4b0d3255bfef95601890afd80709',
+                                                          theme_stylesheet_url: 'stylesheets/existing-organization-da39a3ee5e6b4b0d3255bfef95601890afd80709.css',
+                                                          extension_javascript_url: 'javascripts/existing-organization-da39a3ee5e6b4b0d3255bfef95601890afd80709.js',
                                                           description: 'MyText',
-                                                          terms_of_service: nil},
-                                                         except: [:created_at, :updated_at, :id]) }
+                                                          terms_of_service: 'Default terms of service'
+                                                         }) }
       it { expect(Organization.last.name).to eq "existing-organization" }
       it { expect(Organization.last.contact_email).to eq "second_email@gmail.com" }
     end

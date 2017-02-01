@@ -6,6 +6,8 @@ Organization.create! name: 'base',
                      login_methods: ['facebook', 'twitter', 'google', 'github'],
                      locale: 'es-AR',
                      logo_url: 'http://mumuki.io/logo-alt-large.png',
-                     terms_of_service: '',
-                     theme_stylesheet: '',
-                     extension_javascript: ''
+                     terms_of_service: 'Default terms of service',
+                     theme_stylesheet: '.default { css: red }',
+                     extension_javascript: 'function defaultJs() {}'
+
+# Don't touch this file - the tests depend on it
