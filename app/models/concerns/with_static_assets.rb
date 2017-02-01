@@ -41,8 +41,8 @@ module WithStaticAssets
   end
 
   def update_inheritors_urls!(url_property, path)
-    self.class.where({ url_property.to_sym => nil })
-              .update_all({ url_property.to_sym => path })
+    self.class.where({ url_property => nil })
+              .update_all({ url_property => path })
   end
 
   def full_path_for(path)
