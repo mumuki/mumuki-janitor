@@ -35,7 +35,7 @@ class Organization < ApplicationRecord
   end
 
   def notify!(event)
-    Mumukit::Nuntius.notify_event! "Organization#{event}", organization: as_json
+    Mumukit::Nuntius.notify_event! "Organization#{event}", organization: as_dto
   end
 
   def to_param
@@ -46,17 +46,16 @@ class Organization < ApplicationRecord
     self.login_methods.include? login_method
   end
 
-  def to_dto!
-    return self if base?
+  def as_dto
+    return without_protected_fields as_json if base?
 
     defaults = self.class.base
-
-    self.logo_url ||= defaults&.logo_url
-    self.theme_stylesheet ||= defaults&.theme_stylesheet
-    self.extension_javascript ||= defaults&.extension_javascript
-    self.terms_of_service ||= defaults&.terms_of_service
-
-    self.as_json(except: [:id, :created_at, :updated_at])
+    without_protected_fields as_json.defaults({
+        logo_url: defaults&.logo_url,
+        theme_stylesheet: defaults&.theme_stylesheet,
+        extension_javascript: defaults&.extension_javascript,
+        terms_of_service: defaults&.terms_of_service
+    }.stringify_keys)
   end
 
   def self.accessible_as(user, role)
@@ -78,5 +77,9 @@ class Organization < ApplicationRecord
   def set_nil_params!(attributes)
     attributes.select { |k, v| v.nil? }
               .each { |k, v| update_attribute k, nil }
+  end
+
+  def without_protected_fields(hash)
+    hash.except 'id', 'created_at', 'updated_at'
   end
 end
