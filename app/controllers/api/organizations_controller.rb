@@ -12,7 +12,7 @@ module Api
 
     def create
       @organization.save!
-      @organization.notify! 'Created'
+      @organization.notify_created!
 
       render_dto @organization
     end

@@ -15,7 +15,16 @@ class Organization < ApplicationRecord
   def update_and_notify!(attributes)
     set_nil_params! attributes
     update! attributes
+    notify_updated!
+  end
+
+  def notify_created!
+    notify! 'Created'
+  end
+
+  def notify_updated!
     notify! 'Updated'
+    notify_all_updated! if base?
   end
 
   def slug
@@ -32,10 +41,6 @@ class Organization < ApplicationRecord
 
   def public?
     public
-  end
-
-  def notify!(event)
-    Mumukit::Nuntius.notify_event! "Organization#{event}", organization: as_dto
   end
 
   def to_param
@@ -67,6 +72,14 @@ class Organization < ApplicationRecord
   end
 
   private
+
+  def notify!(event)
+    Mumukit::Nuntius.notify_event! "Organization#{event}", organization: as_dto
+  end
+
+  def notify_all_updated!
+    Organizations.all.select { |it| !it.base? }.each { |it| it.notify_updated! }
+  end
 
   def set_default_values!
     self.public ||= false
