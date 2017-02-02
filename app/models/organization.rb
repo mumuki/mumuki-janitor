@@ -59,6 +59,8 @@ class Organization < ApplicationRecord
         logo_url: defaults&.logo_url,
         theme_stylesheet: defaults&.theme_stylesheet,
         extension_javascript: defaults&.extension_javascript,
+        theme_stylesheet_url: defaults&.theme_stylesheet_url,
+        extension_javascript_url: defaults&.extension_javascript_url,
         terms_of_service: defaults&.terms_of_service
     }.stringify_keys)
   end

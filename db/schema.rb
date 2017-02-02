@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20170201194255) do
     t.text     "login_methods",            default: [],                 array: true
     t.string   "theme_stylesheet_url"
     t.text     "extension_javascript"
-    t.string   "extension_javascript_url", default: ""
+    t.string   "extension_javascript_url"
     t.index ["name"], name: "index_organizations_on_name", using: :btree
     t.index ["public"], name: "index_organizations_on_public", using: :btree
   end
