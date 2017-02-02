@@ -36,7 +36,7 @@ en:
   login_methods: "Métodos para iniciar sesión"
   organization_saved_successfully: "Organización guardada satisfactoriamente"
   add_book: 'Agregar libro'
-  extension_javascript: "Estensión javascript"
+  extension_javascript: "Extensión javascript"
   extension_javascript_placeholder: "function foo() {}"
   public: "Pública"
   submit: "Enviar"
