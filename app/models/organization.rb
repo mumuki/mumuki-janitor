@@ -32,7 +32,7 @@ class Organization < ApplicationRecord
   end
 
   def base?
-    name == 'base'
+    name == Rails.configuration.base_organization_name
   end
 
   def private?
