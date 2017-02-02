@@ -64,7 +64,7 @@ class Organization < ApplicationRecord
   end
 
   def self.base
-    find_by name: 'base'
+    find_by name: Rails.configuration.base_organization_name
   end
 
   private

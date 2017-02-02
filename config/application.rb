@@ -12,5 +12,7 @@ module Janitor
     config.generators.javascripts = false
 
     config.generators.test_framework = :rspec
+
+    config.base_organization_name = ENV['MUMUKI_BASE_ORGANIZATION_NAME'] || 'base'
   end
 end
