@@ -51,11 +51,12 @@ class Organization < ApplicationRecord
     self.login_methods.include? login_method
   end
 
-  def as_dto
-    return without_protected_fields as_json if base?
+  def as_json(options = nil)
+    json = super
+    return without_protected_fields json if base?
 
     defaults = self.class.base
-    without_protected_fields as_json.defaults({
+    without_protected_fields json.defaults({
         logo_url: defaults&.logo_url,
         theme_stylesheet: defaults&.theme_stylesheet,
         extension_javascript: defaults&.extension_javascript,
@@ -76,7 +77,7 @@ class Organization < ApplicationRecord
   private
 
   def notify!(event)
-    Mumukit::Nuntius.notify_event! "Organization#{event}", organization: as_dto
+    Mumukit::Nuntius.notify_event! "Organization#{event}", organization: as_json
   end
 
   def notify_all_updated!
