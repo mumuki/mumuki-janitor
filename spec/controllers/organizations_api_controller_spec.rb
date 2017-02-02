@@ -2,6 +2,13 @@ require 'rails_helper'
 
 describe Api::OrganizationsController, type: :controller do
   before { set_api_client! }
+  let!(:base_organization) { create :organization,
+                                    name: 'base',
+                                    logo_url: 'http://mumuki.io/logo-alt-large.png',
+                                    terms_of_service: 'Default terms of service',
+                                    theme_stylesheet: '.default { css: red }',
+                                    extension_javascript: 'function defaultJs() {}'
+                            }
 
   def check_status!(status)
     expect(response.status).to eq status
