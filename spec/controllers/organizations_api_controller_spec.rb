@@ -96,6 +96,7 @@ describe Api::OrganizationsController, type: :controller do
 
     context 'with the owner permissions' do
       let(:api_client) { create :api_client, role: :owner, grant: '*' }
+      let(:organization) { Organization.find_by name: 'a-name' }
 
       it { check_status! 200 }
       it { expect(response.body.parse_json).to json_like({name: 'a-name',
@@ -113,18 +114,18 @@ describe Api::OrganizationsController, type: :controller do
                                                           extension_javascript_url: 'javascripts/base-7cf7ff791f337c0ae1a0fa84631ac9176c36aecb.js'
                                                          }) }
       it { expect(Organization.count).to eq 2 }
-      it { expect(Organization.last.name).to eq "a-name" }
-      it { expect(Organization.last.contact_email).to eq "an_email@gmail.com" }
-      it { expect(Organization.last.books).to eq %w(a-book) }
-      it { expect(Organization.last.locale).to eq 'es-AR' }
+      it { expect(organization.name).to eq "a-name" }
+      it { expect(organization.contact_email).to eq "an_email@gmail.com" }
+      it { expect(organization.books).to eq %w(a-book) }
+      it { expect(organization.locale).to eq 'es-AR' }
 
       context 'with only mandatory values' do
-        it { expect(Organization.last.public?).to eq false }
-        it { expect(Organization.last.login_methods).to eq %w(user_pass) }
-        it { expect(Organization.last.logo_url).to eq nil }
-        it { expect(Organization.last.theme_stylesheet).to eq nil }
-        it { expect(Organization.last.extension_javascript).to eq nil }
-        it { expect(Organization.last.terms_of_service).to eq nil }
+        it { expect(organization.public?).to eq false }
+        it { expect(organization.login_methods).to eq %w(user_pass) }
+        it { expect(organization.logo_url).to eq nil }
+        it { expect(organization.theme_stylesheet).to eq nil }
+        it { expect(organization.extension_javascript).to eq nil }
+        it { expect(organization.terms_of_service).to eq nil }
       end
 
       context 'with optional values' do
@@ -142,13 +143,13 @@ describe Api::OrganizationsController, type: :controller do
            terms_of_service: 'A TOS'}
         end
 
-        it { expect(Organization.last.public?).to eq true }
-        it { expect(Organization.last.description).to eq 'A description' }
-        it { expect(Organization.last.login_methods).to eq %w(facebook github) }
-        it { expect(Organization.last.logo_url).to eq 'http://a-logo-url.com' }
-        it { expect(Organization.last.theme_stylesheet).to eq ".theme { color: red }" }
-        it { expect(Organization.last.extension_javascript).to eq "window.a = function() { }" }
-        it { expect(Organization.last.terms_of_service).to eq 'A TOS' }
+        it { expect(organization.public?).to eq true }
+        it { expect(organization.description).to eq 'A description' }
+        it { expect(organization.login_methods).to eq %w(facebook github) }
+        it { expect(organization.logo_url).to eq 'http://a-logo-url.com' }
+        it { expect(organization.theme_stylesheet).to eq ".theme { color: red }" }
+        it { expect(organization.extension_javascript).to eq "window.a = function() { }" }
+        it { expect(organization.terms_of_service).to eq 'A TOS' }
       end
 
       context 'with missing values' do
@@ -189,6 +190,7 @@ describe Api::OrganizationsController, type: :controller do
   context 'PUT /organizations/:id' do
     let!(:public_organization) { create :organization, name: 'existing-organization', contact_email: "first_email@gmail.com" }
     let(:update_json) { {contact_email: 'second_email@gmail.com'} }
+    let(:organization) { Organization.find_by name: 'existing-organization' }
 
     context 'with the owner permissions' do
       let(:api_client) { create :api_client, role: :owner, grant: 'existing-organization/*' }
@@ -209,8 +211,8 @@ describe Api::OrganizationsController, type: :controller do
                                                           description: 'MyText',
                                                           terms_of_service: 'Default terms of service'
                                                          }) }
-      it { expect(Organization.last.name).to eq "existing-organization" }
-      it { expect(Organization.last.contact_email).to eq "second_email@gmail.com" }
+      it { expect(organization.name).to eq "existing-organization" }
+      it { expect(organization.contact_email).to eq "second_email@gmail.com" }
     end
 
     context 'with not-janitor permissions' do
