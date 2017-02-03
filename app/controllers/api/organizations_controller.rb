@@ -3,7 +3,7 @@ module Api
     include OrganizationsControllerTemplate
 
     def index
-      render json: Organization.accessible_as(current_user, :janitor)
+      render json: { organizations: Organization.accessible_as(current_user, :janitor) }
     end
 
     def show
@@ -12,14 +12,14 @@ module Api
 
     def create
       @organization.save!
-      @organization.notify! 'Created'
+      @organization.notify_created!
 
       render json: @organization
     end
 
     def update
-      @organization.update! organization_params
-      @organization.notify! 'Updated'
+      @organization.update_and_notify! organization_params
+
       render json: @organization
     end
   end

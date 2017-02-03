@@ -10,5 +10,6 @@ FactoryGirl.define do
     contact_email "MyString"
     theme_stylesheet ""
     extension_javascript ""
+    terms_of_service nil
   end
 end

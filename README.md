@@ -348,12 +348,14 @@ DELETE /courses/:id
 }
 ```
 
+- If you set `null` to `public`, `login_methods`, the values will be `false` and `["user_pass"].
+- If you set `null` to `description`, the value will be `null`.
+- If you set `null` to the others, it will be inherited from an organization called `"base"` every time you query the API.
+
+
 ## Generated fields
 ```json
 {
-  "id": 1,		
-  "created_at": "2017-01-13T20:52:58.575Z",		
-  "updated_at": "2017-01-13T20:53:20.453Z",
   "theme_stylesheet_url": "stylesheets/academy-asjdf92j1jd8.css",
   "extension_javascript_url": "javascripts/academy-jd912j8jdj19.js"
 }
@@ -368,10 +370,12 @@ get /organizations
 Sample response body:
 
 ```json
-[
-  { "name": "academy", "contact_email": "a@a.com", "locale": "es-AR", "login_methods": ["facebook"], "books": ["libro"], "public": true, "logo_url":"http://..." },
-  { "name": "alcal", "contact_email": "b@b.com", "locale": "en-US", "login_methods": ["facebook", "github"], "books": ["book"], "public": false }
-]
+{
+  "organizations": [
+    { "name": "academy", "contact_email": "a@a.com", "locale": "es-AR", "login_methods": ["facebook"], "books": ["libro"], "public": true, "logo_url":"http://..." },
+    { "name": "alcal", "contact_email": "b@b.com", "locale": "en-US", "login_methods": ["facebook", "github"], "books": ["book"], "public": false }
+  ]
+}
 ```
 **Minimal permission**: None for public organizations, `janitor` for user's private organizations.
 

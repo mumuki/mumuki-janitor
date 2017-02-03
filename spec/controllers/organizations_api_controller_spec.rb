@@ -2,6 +2,13 @@ require 'rails_helper'
 
 describe Api::OrganizationsController, type: :controller do
   before { set_api_client! }
+  let!(:base_organization) { create :organization,
+                                    name: 'base',
+                                    logo_url: 'http://mumuki.io/logo-alt-large.png',
+                                    terms_of_service: 'Default terms of service',
+                                    theme_stylesheet: '.default { css: red }',
+                                    extension_javascript: 'function defaultJs() {}'
+                            }
 
   def check_status!(status)
     expect(response.status).to eq status
@@ -18,11 +25,8 @@ describe Api::OrganizationsController, type: :controller do
       let!(:body) { response.body.parse_json }
 
       it { check_status! 200 }
-      it { expect(body.length).to eq 2 }
-      # FIXME Organization api should return a json
-      # FIXME Organizations api should not return ids nor dates
-      skip { expect(response.body.parse_json).to json_like({}) }
-      it { expect(body.map { |it| it[:name] }).to eq %w(public private) }
+      it { expect(body[:organizations].length).to eq 3 }
+      it { expect(body[:organizations].map { |it| it[:name] }).to eq %w(base public private) }
     end
 
     context 'GET /organizations/:id' do
@@ -63,12 +67,12 @@ describe Api::OrganizationsController, type: :controller do
                                                               theme_stylesheet: '',
                                                               books: ['MyString'],
                                                               locale: 'es-AR',
-                                                              terms_of_service: nil,
+                                                              terms_of_service: 'Default terms of service',
                                                               login_methods: ['MyString'],
-                                                              theme_stylesheet_url: 'stylesheets/private-da39a3ee5e6b4b0d3255bfef95601890afd80709',
+                                                              theme_stylesheet_url: 'stylesheets/private-da39a3ee5e6b4b0d3255bfef95601890afd80709.css',
                                                               extension_javascript: '',
-                                                              extension_javascript_url: 'javascripts/private-da39a3ee5e6b4b0d3255bfef95601890afd80709'},
-                                                             {except: [:created_at, :updated_at, :id]}) }
+                                                              extension_javascript_url: 'javascripts/private-da39a3ee5e6b4b0d3255bfef95601890afd80709.js'
+                                                             }) }
         end
       end
 
@@ -92,6 +96,7 @@ describe Api::OrganizationsController, type: :controller do
 
     context 'with the owner permissions' do
       let(:api_client) { create :api_client, role: :owner, grant: '*' }
+      let(:organization) { Organization.find_by name: 'a-name' }
 
       it { check_status! 200 }
       it { expect(response.body.parse_json).to json_like({name: 'a-name',
@@ -99,26 +104,28 @@ describe Api::OrganizationsController, type: :controller do
                                                           logo_url: 'http://mumuki.io/logo-alt-large.png',
                                                           public: false,
                                                           contact_email: 'an_email@gmail.com',
-                                                          theme_stylesheet: '',
+                                                          theme_stylesheet: '.default { css: red }',
                                                           books: ['a-book'],
                                                           locale: 'es-AR',
-                                                          terms_of_service: nil,
+                                                          terms_of_service: 'Default terms of service',
                                                           login_methods: ['user_pass'],
-                                                          theme_stylesheet_url: 'stylesheets/a-name-da39a3ee5e6b4b0d3255bfef95601890afd80709',
-                                                          extension_javascript: '',
-                                                          extension_javascript_url: 'javascripts/a-name-da39a3ee5e6b4b0d3255bfef95601890afd80709'},
-                                                         {except: [:created_at, :updated_at, :id]}) }
-      it { expect(Organization.count).to eq 1 }
-      it { expect(Organization.first.name).to eq "a-name" }
-      it { expect(Organization.first.contact_email).to eq "an_email@gmail.com" }
-      it { expect(Organization.first.books).to eq %w(a-book) }
-      it { expect(Organization.first.locale).to eq 'es-AR' }
+                                                          theme_stylesheet_url: 'stylesheets/base-30167c3687a77be83c728fc4f596503ced3f32c4.css',
+                                                          extension_javascript: 'function defaultJs() {}',
+                                                          extension_javascript_url: 'javascripts/base-7cf7ff791f337c0ae1a0fa84631ac9176c36aecb.js'
+                                                         }) }
+      it { expect(Organization.count).to eq 2 }
+      it { expect(organization.name).to eq "a-name" }
+      it { expect(organization.contact_email).to eq "an_email@gmail.com" }
+      it { expect(organization.books).to eq %w(a-book) }
+      it { expect(organization.locale).to eq 'es-AR' }
 
       context 'with only mandatory values' do
-        it { expect(Organization.first.public?).to eq false }
-        it { expect(Organization.first.login_methods).to eq %w(user_pass) }
-        it { expect(Organization.first.logo_url).to eq 'http://mumuki.io/logo-alt-large.png' }
-        it { expect(Organization.first.theme_stylesheet).to eq '' }
+        it { expect(organization.public?).to eq false }
+        it { expect(organization.login_methods).to eq %w(user_pass) }
+        it { expect(organization.logo_url).to eq nil }
+        it { expect(organization.theme_stylesheet).to eq nil }
+        it { expect(organization.extension_javascript).to eq nil }
+        it { expect(organization.terms_of_service).to eq nil }
       end
 
       context 'with optional values' do
@@ -136,13 +143,13 @@ describe Api::OrganizationsController, type: :controller do
            terms_of_service: 'A TOS'}
         end
 
-        it { expect(Organization.first.public?).to eq true }
-        it { expect(Organization.first.description).to eq 'A description' }
-        it { expect(Organization.first.login_methods).to eq %w(facebook github) }
-        it { expect(Organization.first.logo_url).to eq 'http://a-logo-url.com' }
-        it { expect(Organization.first.theme_stylesheet).to eq ".theme { color: red }" }
-        it { expect(Organization.first.extension_javascript).to eq "window.a = function() { }" }
-        it { expect(Organization.first.terms_of_service).to eq 'A TOS' }
+        it { expect(organization.public?).to eq true }
+        it { expect(organization.description).to eq 'A description' }
+        it { expect(organization.login_methods).to eq %w(facebook github) }
+        it { expect(organization.logo_url).to eq 'http://a-logo-url.com' }
+        it { expect(organization.theme_stylesheet).to eq ".theme { color: red }" }
+        it { expect(organization.extension_javascript).to eq "window.a = function() { }" }
+        it { expect(organization.terms_of_service).to eq 'A TOS' }
       end
 
       context 'with missing values' do
@@ -183,6 +190,7 @@ describe Api::OrganizationsController, type: :controller do
   context 'PUT /organizations/:id' do
     let!(:public_organization) { create :organization, name: 'existing-organization', contact_email: "first_email@gmail.com" }
     let(:update_json) { {contact_email: 'second_email@gmail.com'} }
+    let(:organization) { Organization.find_by name: 'existing-organization' }
 
     context 'with the owner permissions' do
       let(:api_client) { create :api_client, role: :owner, grant: 'existing-organization/*' }
@@ -198,13 +206,13 @@ describe Api::OrganizationsController, type: :controller do
                                                           logo_url: 'MyString',
                                                           theme_stylesheet: '',
                                                           extension_javascript: '',
-                                                          theme_stylesheet_url: 'stylesheets/existing-organization-da39a3ee5e6b4b0d3255bfef95601890afd80709',
-                                                          extension_javascript_url: 'javascripts/existing-organization-da39a3ee5e6b4b0d3255bfef95601890afd80709',
+                                                          theme_stylesheet_url: 'stylesheets/existing-organization-da39a3ee5e6b4b0d3255bfef95601890afd80709.css',
+                                                          extension_javascript_url: 'javascripts/existing-organization-da39a3ee5e6b4b0d3255bfef95601890afd80709.js',
                                                           description: 'MyText',
-                                                          terms_of_service: nil},
-                                                         except: [:created_at, :updated_at, :id]) }
-      it { expect(Organization.first.name).to eq "existing-organization" }
-      it { expect(Organization.first.contact_email).to eq "second_email@gmail.com" }
+                                                          terms_of_service: 'Default terms of service'
+                                                         }) }
+      it { expect(organization.name).to eq "existing-organization" }
+      it { expect(organization.contact_email).to eq "second_email@gmail.com" }
     end
 
     context 'with not-janitor permissions' do
