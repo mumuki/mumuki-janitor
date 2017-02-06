@@ -1,5 +1,6 @@
 module WithPermissions
   extend ActiveSupport::Concern
+  include Mumukit::Login::UserPermissionsHelpers
 
   included do
     serialize :permissions, Mumukit::Auth::Permissions
@@ -21,10 +22,5 @@ module WithPermissions
       update! permissions: permissions.merge(Mumukit::Auth::Permissions.parse(new_permissions))
     end
 
-    private
-
-    def set_permissions!
-      Mumukit::Auth::Store.set! uid, permissions
-    end
   end
 end
