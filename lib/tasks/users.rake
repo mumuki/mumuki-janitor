@@ -62,7 +62,8 @@ def create_user(u)
   puts "         Permissions: #{user.permissions.as_json}"
   puts "         New Permissions:#{user_params[:permissions]}\n\n\n"
 #  user = User.where(uid: user_params[:uid]).assign_first user_params.except(:permissions)
-  user.update_permissions! user_params[:permissions]
+  user.merge_permissions! user_params[:permissions]
+  user.save!
   user.notify!
 rescue => e
   puts "Couldn't create #{u['email']} because of: #{e}"

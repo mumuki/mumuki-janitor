@@ -1,6 +1,8 @@
 class LoginController < ApplicationController
   Mumukit::Login.configure_login_controller! self
 
-  def failure
+  private
+
+  def login_failure!
   end
 end

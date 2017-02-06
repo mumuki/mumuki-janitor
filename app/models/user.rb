@@ -10,7 +10,6 @@ class User < ApplicationRecord
 
   after_initialize :init
   before_validation :set_uid
-  after_commit :set_permissions!
 
   validates_presence_of :uid
 
