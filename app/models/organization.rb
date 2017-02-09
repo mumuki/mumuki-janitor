@@ -48,7 +48,7 @@ class Organization < ApplicationRecord
   end
 
   def has_login_method?(login_method)
-    self.login_methods.include? login_method
+    self.login_methods.include? login_method.to_s
   end
 
   def as_json(options = nil)
@@ -57,13 +57,13 @@ class Organization < ApplicationRecord
 
     defaults = self.class.base
     without_protected_fields json.defaults({
-        logo_url: defaults&.logo_url,
-        theme_stylesheet: defaults&.theme_stylesheet,
-        extension_javascript: defaults&.extension_javascript,
-        theme_stylesheet_url: defaults&.theme_stylesheet_url,
-        extension_javascript_url: defaults&.extension_javascript_url,
-        terms_of_service: defaults&.terms_of_service
-    }.stringify_keys)
+                                               logo_url: defaults&.logo_url,
+                                               theme_stylesheet: defaults&.theme_stylesheet,
+                                               extension_javascript: defaults&.extension_javascript,
+                                               theme_stylesheet_url: defaults&.theme_stylesheet_url,
+                                               extension_javascript_url: defaults&.extension_javascript_url,
+                                               terms_of_service: defaults&.terms_of_service
+                                           }.stringify_keys)
   end
 
   def self.accessible_as(user, role)
@@ -81,7 +81,7 @@ class Organization < ApplicationRecord
   end
 
   def notify_all_updated!
-    Organizations.all.select { |it| !it.base? }.each { |it| it.notify_updated! }
+    Organization.all.select { |it| !it.base? }.each { |it| it.notify_updated! }
   end
 
   def set_default_values!
@@ -92,7 +92,7 @@ class Organization < ApplicationRecord
 
   def set_nil_params!(attributes)
     attributes.select { |k, v| v.nil? }
-              .each { |k, v| update_attribute k, nil }
+        .each { |k, v| update_attribute k, nil }
   end
 
   def without_protected_fields(hash)
