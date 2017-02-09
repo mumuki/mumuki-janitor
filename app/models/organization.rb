@@ -77,7 +77,7 @@ class Organization < ApplicationRecord
   private
 
   def notify!(event)
-    Mumukit::Nuntius.notify_event! "Organization#{event}", organization: as_json
+    Mumukit::Nuntius.notify_event! "Organization#{event}", organization: as_json.except('theme_stylesheet', 'extension_javascript')
   end
 
   def notify_all_updated!
