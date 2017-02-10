@@ -10,7 +10,6 @@ class User < ApplicationRecord
 
   after_initialize :init
   before_validation :set_uid
-  after_commit :set_permissions!
 
   validates_presence_of :uid
 
@@ -34,11 +33,15 @@ class User < ApplicationRecord
   end
 
   def to_s
-    "#{first_name} #{last_name} <#{email}>"
+    "#{name} <#{email}>"
   end
 
   def to_param
     uid
+  end
+
+  def name
+    "#{first_name} #{last_name}"
   end
 
   def self.for_profile(profile)
