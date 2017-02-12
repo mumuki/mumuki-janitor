@@ -1,10 +1,9 @@
-GIT
-  remote: git://github.com/mumuki/mumukit-login.git
-  revision: b63e8201c66bfa42c8f8cccc6cac1692aa822c9a
-  tag: v1.0.0
+PATH
+  remote: ../mumukit-login
   specs:
     mumukit-login (1.0.0)
       addressable
+      mumukit-auth (~> 6.1)
       mumukit-core (~> 0.5)
       omniauth (~> 1.2)
       omniauth-auth0 (~> 1.1)
@@ -116,7 +115,7 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
-    mumukit-auth (6.0.1)
+    mumukit-auth (6.1.0)
       jwt
       mumukit-core (~> 0.5)
     mumukit-core (0.6.0)
@@ -286,7 +285,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   kaminari (~> 0.16)
   listen (~> 3.0.5)
-  mumukit-auth (~> 6.0)
+  mumukit-auth (~> 6.1)
   mumukit-core (~> 0.6)
   mumukit-login!
   mumukit-nuntius (~> 3.0)
