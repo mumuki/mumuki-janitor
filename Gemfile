@@ -28,9 +28,9 @@ end
 gem 'auth0' # for rake tasks only
 
 gem 'mumukit-nuntius', '~> 3.0'
-gem 'mumukit-auth', '~> 5.0'
+gem 'mumukit-auth', '~> 6.1'
 gem 'mumukit-core', '~> 0.6'
-gem 'mumukit-login', github: 'mumuki/mumukit-login'
+gem 'mumukit-login', '~> 1.2'
 
 gem 'nprogress-rails'
 
