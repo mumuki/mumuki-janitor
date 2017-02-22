@@ -8,8 +8,7 @@ describe Office::Event::CourseChanged do
      code: 'k2003',
      days: %w(monday wednesday),
      period: '2016',
-     description: 'test course',
-     subscription_mode: 'closed'}
+     description: 'test course'}
   end
   let(:course_data) {
     { course: course_json}

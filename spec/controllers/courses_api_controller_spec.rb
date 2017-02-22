@@ -9,8 +9,7 @@ describe Api::CoursesController, type: :controller do
      code: 'k2003',
      days: %w(monday wednesday),
      period: '2016',
-     description: 'test course',
-     subscription_mode: 'closed'}
+     description: 'test course'}
   end
 
   let!(:organization) { create :organization, name: 'test' }
@@ -21,7 +20,6 @@ describe Api::CoursesController, type: :controller do
     it { expect(response.status).to eq 200 }
     it { expect(Course.count).to eq 1 }
     it { expect(Course.first.uid).to eq 'test/bar' }
-    it { expect(Course.first.subscription_mode).to eq SubscriptionMode::Closed }
     it { expect(Course.first.organization).to eq(organization) }
     it { expect(Course.first.shifts).to eq(%w(morning)) }
     it { expect(Course.first.days).to eq(%w(monday wednesday)) }

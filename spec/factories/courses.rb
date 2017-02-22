@@ -6,7 +6,6 @@ FactoryGirl.define do
     shifts %w(morning)
     days %w(monday wednesday)
     description 'test'
-    subscription_mode SubscriptionMode::Open
     organization_id 1
   end
 end
