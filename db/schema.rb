@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20170222203806) do
     t.integer "course_id"
     t.string  "slug"
     t.date    "expiration_date"
+    t.index ["course_id"], name: "index_invitations_on_course_id", using: :btree
     t.index ["slug"], name: "index_invitations_on_slug", unique: true, using: :btree
   end
 
