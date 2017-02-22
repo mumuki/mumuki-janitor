@@ -23,7 +23,8 @@ Mumuki Office is a RESTful service and GUI that allows to
 
 1. As a janitor-admin user, log in into janitor
 2. Create an organization
-4. Create some users and teachers
+3. Create some courses
+4. Create some users, and teachers
    1. Specify their full name and email - which will be it's primary `uid` -, and zero or more alternative `uid`s
    2. Specify their organizations and courses
 
@@ -129,6 +130,47 @@ Sample request body:
   "last_name": "Casas",
   "email": "maryK345@foobar.edu.ar",
   "uid": "maryK345@foobar.edu.ar"
+}
+```
+
+### Create an invitation to join course
+
+Creates invitations with an expiration date of **7** days in the future.
+
+**Minimal permission**: `janitor`
+
+```
+POST /courses/:organization/:course/invitations
+```
+
+No input.
+
+**Response**
+```json
+{
+    "slug": "341f-curso",
+    "expiration_date": "2017-03-01",
+    "course": "orga/curso",
+    "url": "http://mumuki.io/join/341f-curso"
+}
+```
+
+### Get non-expired invitation links
+
+Retrieves all the active invitation links of one course.
+
+**Minimal permission**: `janitor`
+
+```
+GET /courses/:organization/:course/invitations
+```
+
+No input.
+
+**Response**
+```json
+{
+    "invitations": [ "..." ]
 }
 ```
 
