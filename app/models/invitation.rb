@@ -1,7 +1,7 @@
 class Invitation < ApplicationRecord
 
-  before_validation :set_slug
-  validates_presence_of :slug, :course, :expiration_date
+  validates_presence_of :course, :expiration_date
+  before_save :set_slug!
 
   belongs_to :course
 
@@ -9,7 +9,7 @@ class Invitation < ApplicationRecord
     Invitation.where course: course
   end
 
-  def notify! # // TODO: Llamar
+  def notify!
     Mumukit::Nuntius.notify_event! 'InvitationCreated', invitation: as_json
   end
 
@@ -23,11 +23,11 @@ class Invitation < ApplicationRecord
   private
 
   def url
-    "http://mumuki.io/join/#{slug}" # // TODO: Cambiar
+    "http://mumuki.io/join/#{slug}" # // TODO: Deshardcodear ruta a labo
   end
 
-  def set_slug
-    self.slug = "prueba" # // TODO: Cambiar
+  def set_slug!
+    self.slug = "#{SecureRandom.hex.slice(0, 4)}-#{course.name}"
   end
 
 end

@@ -8,6 +8,7 @@ class Course < ApplicationRecord
   before_create :set_organization
 
   belongs_to :organization
+  has_many :invitations
 
   def notify!
     Mumukit::Nuntius.notify_event! 'CourseChanged', course: event_json
@@ -15,6 +16,10 @@ class Course < ApplicationRecord
 
   def event_json
     as_json except: :id
+  end
+
+  def name
+    Mumukit::Auth::Slug.parse(slug).course
   end
 
   private

@@ -14,22 +14,21 @@ module Api
       Invitation.create(
           course: @course,
           expiration_date: (DateTime.now + EXPIRATION_DAYS).to_s
-      )
+      ).notify!
     end
 
     def delete
-      # @user.detach! role, @course
-      # head :ok
+      Invitation.delete_all slug: params[:invitation]
     end
 
     private
 
-    def set_course!
-      @course = Course.find_by!(slug: @slug)
-    end
-
     def set_slug!
       @slug = Mumukit::Auth::Slug.join_s params.to_unsafe_h
+    end
+
+    def set_course!
+      @course = Course.find_by!(slug: @slug)
     end
   end
 

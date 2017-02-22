@@ -23,7 +23,7 @@ Rails.application.routes.draw do
         # // TODO: Seguro hay una manera de no hacer esto a manopla, usando `resources`
         post "#{it}/invitations" => 'invitations#create'
         get "#{it}/invitations" => 'invitations#index'
-        delete "#{it}/invitations" => 'invitations#delete'
+        delete "#{it}/invitations/:invitation" => 'invitations#delete'
       end
     end
   end
