@@ -82,6 +82,8 @@ Scopes are simply two-level contexts, without any explicit semantic. They exact 
 
 # API
 
+All the routes detailed here must be prefixed with `/api`.
+
 ## Users
 
 ### Create single user
@@ -287,12 +289,17 @@ DELETE /users/:uid
 **Minimal permission**: `janitor`
 
 ```
-POST /organization/:id/courses/
+POST /courses
 ```
 
 ```json
 {
    "name":"....",
+   "shifts": ["morning"],
+   "code": "k2003",
+   "days": ["monday", "wednesday"],
+   "period": "2016",
+   "description": "test course"
 }
 ```
 
@@ -301,7 +308,7 @@ POST /organization/:id/courses/
 **Minimal permission**: `janitor`
 
 ```
-DELETE /organization/:id/courses/:id
+DELETE /courses/:id
 ```
 
 ### Destroy single course
