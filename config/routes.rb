@@ -20,10 +20,8 @@ Rails.application.routes.draw do
         post "#{it}/teachers/:uid/attach" => 'teachers#attach'
         post "#{it}/teachers/:uid/detach" => 'teachers#detach'
 
-        # // TODO: Seguro hay una manera de no hacer esto a manopla, usando `resources`
         post "#{it}/invitations" => 'invitations#create'
         get "#{it}/invitations" => 'invitations#index'
-        delete "#{it}/invitations/:invitation" => 'invitations#delete'
       end
     end
   end

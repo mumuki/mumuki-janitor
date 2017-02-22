@@ -6,7 +6,9 @@ class Invitation < ApplicationRecord
   belongs_to :course
 
   def self.all_of(course)
-    Invitation.where course: course
+    Invitation
+        .where(course: course)
+        .where Invitation.arel_table[:expiration_date].gt(Date.today)
   end
 
   def notify!

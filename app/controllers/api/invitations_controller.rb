@@ -11,14 +11,10 @@ module Api
     end
 
     def create
-      Invitation.create(
-          course: @course,
-          expiration_date: (DateTime.now + EXPIRATION_DAYS).to_s
-      ).notify!
-    end
-
-    def delete
-      Invitation.delete_all slug: params[:invitation]
+      invitation = Invitation.create course: @course,
+                                     expiration_date: (Date.today + EXPIRATION_DAYS).to_s
+      invitation.notify!
+      render json: invitation
     end
 
     private
