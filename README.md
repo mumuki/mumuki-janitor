@@ -23,7 +23,6 @@ Mumuki Office is a RESTful service and GUI that allows to
 
 1. As a janitor-admin user, log in into janitor
 2. Create an organization
-3. Create some courses
 4. Create some users and teachers
    1. Specify their full name and email - which will be it's primary `uid` -, and zero or more alternative `uid`s
    2. Specify their organizations and courses
