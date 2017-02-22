@@ -25,7 +25,7 @@ class Invitation < ApplicationRecord
   private
 
   def url
-    "http://mumuki.io/join/#{slug}" # // TODO: Deshardcodear ruta a labo
+    "#{Rails.application.config.invitation_prefix}/#{slug}"
   end
 
   def set_slug!
