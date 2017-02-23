@@ -16,10 +16,8 @@ class Invitation < ApplicationRecord
   end
 
   def as_json(options = nil)
-    super.except('id', 'course_id').merge({
-        course: course.slug,
-        url: url
-    })
+    super.except('id', 'course_id').merge course: course.slug,
+                                          url: url
   end
 
   private
