@@ -41,7 +41,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
-    amq-protocol (2.0.1)
+    amq-protocol (2.1.0)
     arel (7.1.4)
     auth0 (4.0.0)
       httmultiparty (~> 0.3.16)
@@ -118,7 +118,7 @@ GEM
       omniauth-auth0 (~> 1.1)
       omniauth-saml (~> 1.6)
       rack (>= 1.5)
-    mumukit-nuntius (3.0.0)
+    mumukit-nuntius (4.1.0)
       bunny (~> 2.3)
       mumukit-core (~> 0.5)
     nio4r (1.2.1)
@@ -284,7 +284,7 @@ DEPENDENCIES
   mumukit-auth (~> 6.1)
   mumukit-core (~> 0.6)
   mumukit-login (~> 1.2)
-  mumukit-nuntius (~> 3.0)
+  mumukit-nuntius (~> 4.1)
   nprogress-rails
   pg
   pg_search (~> 1.0)
