@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Office::Event::CourseChanged do
+describe 'CourseChanged' do
   let(:course_json) do
     {slug: 'test/bar',
      uid: 'test/bar',
@@ -8,14 +8,10 @@ describe Office::Event::CourseChanged do
      code: 'k2003',
      days: %w(monday wednesday),
      period: '2016',
-     description: 'test course',
-     subscription_mode: 'closed'}
+     description: 'test course'}
   end
-  let(:course_data) {
-    { course: course_json}
-  }
   let!(:organization) { create :organization, name: 'test' }
-  before { Office::Event::CourseChanged.execute! course_data }
+  before { Course.import_from_json! course_json }
   it {expect(Course.first.uid).to eq 'test/bar'}
   it {expect(Course.first.slug).to eq 'test/bar'}
   it {expect(Course.first.code).to eq 'k2003'}

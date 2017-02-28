@@ -23,9 +23,7 @@ Mumuki Office is a RESTful service and GUI that allows to
 
 1. As a janitor-admin user, log in into janitor
 2. Create an organization
-3. Create some courses and set subscription mode
-   * Use closed subscription mode if you will manually add each student to the course - either by CSV, API or in a one by one basis.
-   * Use open subscription mode if you will just share an subscription link among your students.
+3. Create some courses
 4. Create some users and teachers
    1. Specify their full name and email - which will be it's primary `uid` -, and zero or more alternative `uid`s
    2. Specify their organizations and courses
@@ -296,7 +294,6 @@ POST /organization/:id/courses/
 ```json
 {
    "name":"....",
-   "subscription_mode": "open"
 }
 ```
 

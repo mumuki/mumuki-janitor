@@ -12,7 +12,7 @@ module Api
     private
 
     def course_params
-      params.require(:course).permit(:slug, :code, :period, :description, :subscription_mode, shifts: [], days: [])
+      params.require(:course).permit(:slug, :code, :period, :description, shifts: [], days: [])
     end
 
     def set_new_course!
