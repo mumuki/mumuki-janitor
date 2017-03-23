@@ -9,16 +9,16 @@ module WithStaticAssets
   private
 
   def generate_stylesheet!
-    generate_asset! 'stylesheets', 'theme_stylesheet_css', 'theme_stylesheet_url'
+    generate_asset! 'stylesheets', 'theme_stylesheet_css', 'css', 'theme_stylesheet_url'
   end
 
   def generate_javascript!
-    generate_asset! 'javascripts', 'extension_javascript', 'extension_javascript_url'
+    generate_asset! 'javascripts', 'extension_javascript', 'js', 'extension_javascript_url'
   end
 
-  def generate_asset!(directory, property, url_property)
+  def generate_asset!(directory, property, extension, url_property)
     content = send property
-    path = File.join(directory, "#{name}-#{Digest::SHA1.hexdigest content}")
+    path = File.join(directory, "#{name}-#{Digest::SHA1.hexdigest content}.#{extension}")
 
     delete_previous_asset! url_property
     File.open(full_path_for(path), 'w') { |f| f << content }
