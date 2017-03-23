@@ -28,7 +28,7 @@ class Organization < ApplicationRecord
   end
 
   def notify_updated!
-    notify! 'Updated'
+    notify! 'Changed'
     notify_all_updated! if base?
   end
 
