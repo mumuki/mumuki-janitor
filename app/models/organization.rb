@@ -30,7 +30,13 @@ class Organization < ApplicationRecord
   end
 
   def notify!(event)
-    Mumukit::Nuntius.notify_event! "Organization#{event}", organization: as_json.except('theme_stylesheet', 'extension_javascript')
+    Mumukit::Nuntius.notify_event! "Organization#{event}",
+                                   organization: as_json.except(
+                                       'id',
+                                       'theme_stylesheet',
+                                       'extension_javascript',
+                                       'created_at',
+                                       'updated_at')
   end
 
   def to_param
