@@ -56,6 +56,10 @@ class Organization < ApplicationRecord
     self.login_methods.include? login_method.to_s
   end
 
+  def simple_locale
+    locale.split('-').first
+  end
+
   def as_json(options = nil)
     json = super
     return without_protected_fields json if base?
@@ -82,7 +86,7 @@ class Organization < ApplicationRecord
   private
 
   def notify!(event)
-    Mumukit::Nuntius.notify_event! "Organization#{event}", organization: as_json.except('theme_stylesheet', 'extension_javascript')
+    Mumukit::Nuntius.notify_event! "Organization#{event}", organization: as_json.except('local', 'theme_stylesheet', 'extension_javascript').merge('locale' => simple_locale)
   end
 
   def notify_all_updated!

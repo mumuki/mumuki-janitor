@@ -13,23 +13,23 @@ describe Organization do
       let!(:organization) { create(:organization, name: 'pdep') }
       before {
         expect_any_instance_of(Mumukit::Nuntius::NotificationMode::Deaf).to(
-          receive(:notify_event!).with(
-            'OrganizationCreated', {
-              organization: {
-                logo_url: 'MyString',
-                theme_stylesheet_url: 'stylesheets/pdep-da39a3ee5e6b4b0d3255bfef95601890afd80709.css',
-                extension_javascript_url: 'javascripts/pdep-da39a3ee5e6b4b0d3255bfef95601890afd80709.js',
-                terms_of_service: nil,
-                name: 'pdep',
-                description: 'MyText',
-                public: true,
-                contact_email: 'MyString',
-                books: ['MyString'],
-                locale: 'es-AR',
-                login_methods: ['MyString']
-              }.deep_stringify_keys
+            receive(:notify_event!).with(
+                'OrganizationCreated', {
+                organization: {
+                    logo_url: 'MyString',
+                    theme_stylesheet_url: 'stylesheets/pdep-da39a3ee5e6b4b0d3255bfef95601890afd80709.css',
+                    extension_javascript_url: 'javascripts/pdep-da39a3ee5e6b4b0d3255bfef95601890afd80709.js',
+                    terms_of_service: nil,
+                    name: 'pdep',
+                    description: 'MyText',
+                    public: true,
+                    contact_email: 'MyString',
+                    books: ['MyString'],
+                    locale: 'es',
+                    login_methods: ['MyString']
+                }.deep_stringify_keys
             }
-          )
+            )
         )
       }
 
