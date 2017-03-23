@@ -14,7 +14,7 @@ class Organization < ApplicationRecord
 
   def update_and_notify!(attributes)
     update! attributes
-    notify! 'Updated'
+    notify! 'Changed'
   end
 
   def slug
