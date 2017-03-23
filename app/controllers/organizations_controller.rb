@@ -16,8 +16,7 @@ class OrganizationsController < ApplicationController
 
   def create
     with_flash @organization, I18n.t(:organization_saved_successfully) do
-      @organization.save!
-      @organization.notify_created!
+      @organization.save_and_notify!
     end
   end
 

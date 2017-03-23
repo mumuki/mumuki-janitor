@@ -18,6 +18,11 @@ class Organization < ApplicationRecord
     notify_updated!
   end
 
+  def save_and_notify!
+    save!
+    notify_created!
+  end
+
   def notify_created!
     notify! 'Created'
   end

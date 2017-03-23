@@ -11,9 +11,7 @@ module Api
     end
 
     def create
-      @organization.save!
-      @organization.notify_created!
-
+      @organization.save_and_notify!
       render json: @organization
     end
 
