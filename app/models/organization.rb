@@ -36,7 +36,8 @@ class Organization < ApplicationRecord
                                        'theme_stylesheet',
                                        'extension_javascript',
                                        'created_at',
-                                       'updated_at')
+                                       'updated_at').
+                                       merge('locale' => simple_locale)
   end
 
   def to_param
@@ -44,7 +45,11 @@ class Organization < ApplicationRecord
   end
 
   def has_login_method?(login_method)
-    self.login_methods.include? login_method
+    self.login_methods.include? login_method.to_s
+  end
+
+  def simple_locale
+    locale.split('-').first
   end
 
   def self.accessible_as(user, role)
