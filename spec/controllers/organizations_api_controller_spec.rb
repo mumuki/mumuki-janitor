@@ -65,9 +65,9 @@ describe Api::OrganizationsController, type: :controller do
                                                               locale: 'es-AR',
                                                               terms_of_service: nil,
                                                               login_methods: ['MyString'],
-                                                              theme_stylesheet_url: 'stylesheets/private-da39a3ee5e6b4b0d3255bfef95601890afd80709',
+                                                              theme_stylesheet_url: 'stylesheets/private-da39a3ee5e6b4b0d3255bfef95601890afd80709.css',
                                                               extension_javascript: '',
-                                                              extension_javascript_url: 'javascripts/private-da39a3ee5e6b4b0d3255bfef95601890afd80709'},
+                                                              extension_javascript_url: 'javascripts/private-da39a3ee5e6b4b0d3255bfef95601890afd80709.js'},
                                                              {except: [:created_at, :updated_at, :id]}) }
         end
       end
@@ -104,9 +104,9 @@ describe Api::OrganizationsController, type: :controller do
                                                           locale: 'es-AR',
                                                           terms_of_service: nil,
                                                           login_methods: ['user_pass'],
-                                                          theme_stylesheet_url: 'stylesheets/a-name-da39a3ee5e6b4b0d3255bfef95601890afd80709',
+                                                          theme_stylesheet_url: 'stylesheets/a-name-da39a3ee5e6b4b0d3255bfef95601890afd80709.css',
                                                           extension_javascript: '',
-                                                          extension_javascript_url: 'javascripts/a-name-da39a3ee5e6b4b0d3255bfef95601890afd80709'},
+                                                          extension_javascript_url: 'javascripts/a-name-da39a3ee5e6b4b0d3255bfef95601890afd80709.js'},
                                                          {except: [:created_at, :updated_at, :id]}) }
       it { expect(Organization.count).to eq 1 }
       it { expect(Organization.first.name).to eq "a-name" }
@@ -198,8 +198,8 @@ describe Api::OrganizationsController, type: :controller do
                                                           logo_url: 'MyString',
                                                           theme_stylesheet: '',
                                                           extension_javascript: '',
-                                                          theme_stylesheet_url: 'stylesheets/existing-organization-da39a3ee5e6b4b0d3255bfef95601890afd80709',
-                                                          extension_javascript_url: 'javascripts/existing-organization-da39a3ee5e6b4b0d3255bfef95601890afd80709',
+                                                          theme_stylesheet_url: 'stylesheets/existing-organization-da39a3ee5e6b4b0d3255bfef95601890afd80709.css',
+                                                          extension_javascript_url: 'javascripts/existing-organization-da39a3ee5e6b4b0d3255bfef95601890afd80709.js',
                                                           description: 'MyText',
                                                           terms_of_service: nil},
                                                          except: [:created_at, :updated_at, :id]) }
