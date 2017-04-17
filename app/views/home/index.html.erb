@@ -1,4 +1,19 @@
-<h2><%= t :office %></h2>
-
-<h3><%= link_to t(:organizations), organizations_path %></h3>
-<h3><%= link_to t(:users), users_path %></h3>
+<div class="row">
+  <div class="col-md-6">
+    <div class="jumbotron text-center">
+      <h3>
+        <a href="<%= organizations_path %>">
+          <i class="fa fa-lg fa-university"></i> <%= t :organizations %>
+        </a>
+      </h3>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="jumbotron text-center">
+      <h3>
+      <a href="<%= users_path %>">
+        <i class="fa fa-lg fa-users"></i> <%= t :users %>
+      </a>
+    </div>
+  </div>
+</div>
