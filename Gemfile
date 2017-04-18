@@ -30,7 +30,7 @@ gem 'auth0' # for rake tasks only
 gem 'mumukit-nuntius', '~> 4.1'
 gem 'mumukit-auth', '~> 6.1'
 gem 'mumukit-core', '~> 0.6'
-gem 'mumukit-login', '~> 1.2'
+gem 'mumukit-login', '~> 2.0'
 
 gem 'nprogress-rails'
 
