@@ -105,7 +105,7 @@ GEM
       activesupport (>= 4.1)
       i18n (~> 0.7)
       rack (>= 1.5)
-    mumukit-login (2.0.2)
+    mumukit-login (2.0.3)
       addressable
       mumukit-auth (~> 6.1)
       mumukit-core (~> 0.5)
