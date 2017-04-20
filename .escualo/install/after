@@ -5,6 +5,3 @@ echo $REV > public/version
 
 echo "[Escualo::Office] Running Migrations..."
 rake db:migrate
-
-echo "[Escualo::Office] Compiling assets..."
-rake assets:precompile
