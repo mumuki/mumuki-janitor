@@ -24,7 +24,7 @@ Mumuki Office is a RESTful service and GUI that allows to
 1. As a janitor-admin user, log in into janitor
 2. Create an organization
 3. Create some courses
-4. Create some users and teachers
+4. Create some users, and teachers
    1. Specify their full name and email - which will be it's primary `uid` -, and zero or more alternative `uid`s
    2. Specify their organizations and courses
 
@@ -83,6 +83,8 @@ Scopes are simply two-level contexts, without any explicit semantic. They exact 
 
 # API
 
+All the routes detailed here must be prefixed with `/api`.
+
 ## Users
 
 ### Create single user
@@ -128,6 +130,47 @@ Sample request body:
   "last_name": "Casas",
   "email": "maryK345@foobar.edu.ar",
   "uid": "maryK345@foobar.edu.ar"
+}
+```
+
+### Create an invitation to join course
+
+Creates invitations with an expiration date of **7** days in the future.
+
+**Minimal permission**: `janitor`
+
+```
+POST /courses/:organization/:course/invitations
+```
+
+No input.
+
+**Response**
+```json
+{
+    "slug": "341f-curso",
+    "expiration_date": "2017-03-01",
+    "course": "orga/curso",
+    "url": "http://mumuki.io/join/341f-curso"
+}
+```
+
+### Get non-expired invitation links
+
+Retrieves all the active invitation links of one course.
+
+**Minimal permission**: `janitor`
+
+```
+GET /courses/:organization/:course/invitations
+```
+
+No input.
+
+**Response**
+```json
+{
+    "invitations": [ "..." ]
 }
 ```
 
@@ -288,12 +331,17 @@ DELETE /users/:uid
 **Minimal permission**: `janitor`
 
 ```
-POST /organization/:id/courses/
+POST /courses
 ```
 
 ```json
 {
    "name":"....",
+   "shifts": ["morning"],
+   "code": "k2003",
+   "days": ["monday", "wednesday"],
+   "period": "2016",
+   "description": "test course"
 }
 ```
 
@@ -302,7 +350,7 @@ POST /organization/:id/courses/
 **Minimal permission**: `janitor`
 
 ```
-DELETE /organization/:id/courses/:id
+DELETE /courses/:id
 ```
 
 ### Destroy single course
