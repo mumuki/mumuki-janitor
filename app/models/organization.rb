@@ -60,19 +60,9 @@ class Organization < ApplicationRecord
     locale.split('-').first
   end
 
-  def as_json(options = nil)
-    json = super
-    return without_protected_fields json if base?
-
-    defaults = self.class.base
-    without_protected_fields json.defaults({
-                                               logo_url: defaults&.logo_url,
-                                               theme_stylesheet: defaults&.theme_stylesheet,
-                                               extension_javascript: defaults&.extension_javascript,
-                                               theme_stylesheet_url: defaults&.theme_stylesheet_url,
-                                               extension_javascript_url: defaults&.extension_javascript_url,
-                                               terms_of_service: defaults&.terms_of_service
-                                           }.stringify_keys)
+  def as_json(_options={})
+    json = base? ? super : super.defaults(self.class.base_defaults)
+    sanitize_json json
   end
 
   def self.accessible_as(user, role)
@@ -81,6 +71,18 @@ class Organization < ApplicationRecord
 
   def self.base
     find_by name: Rails.configuration.base_organization_name
+  end
+
+  def self.base_defaults
+    defaults = base
+    {
+        logo_url: defaults&.logo_url,
+        theme_stylesheet: defaults&.theme_stylesheet,
+        extension_javascript: defaults&.extension_javascript,
+        theme_stylesheet_url: defaults&.theme_stylesheet_url,
+        extension_javascript_url: defaults&.extension_javascript_url,
+        terms_of_service: defaults&.terms_of_service
+    }.stringify_keys
   end
 
   private
@@ -111,8 +113,9 @@ class Organization < ApplicationRecord
         .each { |k, v| update_attribute k, nil }
   end
 
-  def without_protected_fields(hash)
-    hash.except( 'id', 'created_at', 'updated_at').merge!('theme_stylesheet_url' => Mumukit::Platform.office_application.url_for(hash['theme_stylesheet_url']),
+  def sanitize_json(hash)
+    hash.except('id', 'created_at', 'updated_at')
+        .merge!('theme_stylesheet_url' => Mumukit::Platform.office_application.url_for(hash['theme_stylesheet_url']),
                 'extension_javascript_url' => Mumukit::Platform.office_application.url_for(hash['extension_javascript_url']))
   end
 end
