@@ -86,7 +86,14 @@ class Organization < ApplicationRecord
   private
 
   def notify!(event)
-    Mumukit::Nuntius.notify_event! "Organization#{event}", organization: as_json.except('local', 'theme_stylesheet', 'extension_javascript').merge('locale' => simple_locale)
+    Mumukit::Nuntius.notify_event! "Organization#{event}",
+                                   organization: as_json
+                                                     .except('local', 'theme_stylesheet', 'extension_javascript')
+                                                     .merge('locale' => simple_locale)
+  end
+
+  def absolute_url
+     path
   end
 
   def notify_all_updated!
@@ -105,6 +112,7 @@ class Organization < ApplicationRecord
   end
 
   def without_protected_fields(hash)
-    hash.except 'id', 'created_at', 'updated_at'
+    hash.except( 'id', 'created_at', 'updated_at').merge!('theme_stylesheet_url' => Mumukit::Platform.office_application.url_for(hash['theme_stylesheet_url']),
+                'extension_javascript_url' => Mumukit::Platform.office_application.url_for(hash['extension_javascript_url']))
   end
 end

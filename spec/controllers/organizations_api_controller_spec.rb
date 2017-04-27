@@ -69,9 +69,9 @@ describe Api::OrganizationsController, type: :controller do
                                                               locale: 'es-AR',
                                                               terms_of_service: 'Default terms of service',
                                                               login_methods: ['MyString'],
-                                                              theme_stylesheet_url: 'stylesheets/private-da39a3ee5e6b4b0d3255bfef95601890afd80709.css',
+                                                              theme_stylesheet_url: 'http://office.localmumuki.io/stylesheets/private-da39a3ee5e6b4b0d3255bfef95601890afd80709.css',
                                                               extension_javascript: '',
-                                                              extension_javascript_url: 'javascripts/private-da39a3ee5e6b4b0d3255bfef95601890afd80709.js'
+                                                              extension_javascript_url: 'http://office.localmumuki.io/javascripts/private-da39a3ee5e6b4b0d3255bfef95601890afd80709.js'
                                                              }) }
         end
       end
@@ -109,9 +109,9 @@ describe Api::OrganizationsController, type: :controller do
                                                           locale: 'es-AR',
                                                           terms_of_service: 'Default terms of service',
                                                           login_methods: ['user_pass'],
-                                                          theme_stylesheet_url: 'stylesheets/base-30167c3687a77be83c728fc4f596503ced3f32c4.css',
+                                                          theme_stylesheet_url: 'http://office.localmumuki.io/stylesheets/base-30167c3687a77be83c728fc4f596503ced3f32c4.css',
                                                           extension_javascript: 'function defaultJs() {}',
-                                                          extension_javascript_url: 'javascripts/base-7cf7ff791f337c0ae1a0fa84631ac9176c36aecb.js'
+                                                          extension_javascript_url: 'http://office.localmumuki.io/javascripts/base-7cf7ff791f337c0ae1a0fa84631ac9176c36aecb.js'
                                                          }) }
       it { expect(Organization.count).to eq 2 }
       it { expect(organization.name).to eq "a-name" }
@@ -206,8 +206,8 @@ describe Api::OrganizationsController, type: :controller do
                                                           logo_url: 'MyString',
                                                           theme_stylesheet: '',
                                                           extension_javascript: '',
-                                                          theme_stylesheet_url: 'stylesheets/existing-organization-da39a3ee5e6b4b0d3255bfef95601890afd80709.css',
-                                                          extension_javascript_url: 'javascripts/existing-organization-da39a3ee5e6b4b0d3255bfef95601890afd80709.js',
+                                                          theme_stylesheet_url: 'http://office.localmumuki.io/stylesheets/existing-organization-da39a3ee5e6b4b0d3255bfef95601890afd80709.css',
+                                                          extension_javascript_url: 'http://office.localmumuki.io/javascripts/existing-organization-da39a3ee5e6b4b0d3255bfef95601890afd80709.js',
                                                           description: 'MyText',
                                                           terms_of_service: 'Default terms of service'
                                                          }) }
