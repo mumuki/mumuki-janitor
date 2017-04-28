@@ -17,8 +17,8 @@ describe Organization do
                 'OrganizationCreated', {
                 organization: {
                     logo_url: 'MyString',
-                    theme_stylesheet_url: 'stylesheets/pdep-da39a3ee5e6b4b0d3255bfef95601890afd80709.css',
-                    extension_javascript_url: 'javascripts/pdep-da39a3ee5e6b4b0d3255bfef95601890afd80709.js',
+                    theme_stylesheet_url: 'http://office.localmumuki.io/stylesheets/pdep-da39a3ee5e6b4b0d3255bfef95601890afd80709.css',
+                    extension_javascript_url: 'http://office.localmumuki.io/javascripts/pdep-da39a3ee5e6b4b0d3255bfef95601890afd80709.js',
                     terms_of_service: nil,
                     name: 'pdep',
                     description: 'MyText',
