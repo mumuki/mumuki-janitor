@@ -115,7 +115,7 @@ class Organization < ApplicationRecord
 
   def sanitize_json(hash)
     hash.except('id', 'created_at', 'updated_at')
-        .merge!('theme_stylesheet_url' => Mumukit::Platform.office_application.url_for(hash['theme_stylesheet_url']),
-                'extension_javascript_url' => Mumukit::Platform.office_application.url_for(hash['extension_javascript_url']))
+        .merge!('theme_stylesheet_url' => Mumukit::Platform.url_for(hash['theme_stylesheet_url']),
+                'extension_javascript_url' => Mumukit::Platform.url_for(hash['extension_javascript_url']))
   end
 end

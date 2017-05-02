@@ -98,24 +98,26 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
-    mumukit-auth (6.1.1)
+    mumukit-auth (7.0.0)
       jwt
-      mumukit-core (~> 0.5)
-    mumukit-core (0.6.0)
+      mumukit-core (~> 1.0)
+    mumukit-core (1.0.0)
       activesupport (>= 4.1)
       i18n (~> 0.7)
       rack (>= 1.5)
-    mumukit-login (2.0.3)
+    mumukit-login (3.0.0)
       addressable
-      mumukit-auth (~> 6.1)
-      mumukit-core (~> 0.5)
+      mumukit-auth (~> 7.0)
+      mumukit-core (~> 1.0)
       omniauth (~> 1.2)
       omniauth-auth0 (~> 1.1)
       omniauth-saml (~> 1.6)
       rack (>= 1.5)
-    mumukit-nuntius (4.1.1)
+    mumukit-nuntius (5.0.0)
       bunny (~> 2.3)
-      mumukit-core (~> 0.5)
+      mumukit-core (~> 1.0)
+    mumukit-platform (0.1.0)
+      mumukit-core (~> 1.0)
     netrc (0.11.0)
     nio4r (2.0.0)
     nokogiri (1.7.1)
@@ -284,10 +286,11 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   kaminari (~> 0.16)
   listen (~> 3.0.5)
-  mumukit-auth (~> 6.1)
-  mumukit-core (~> 0.6)
-  mumukit-login (~> 2.0)
-  mumukit-nuntius (~> 4.1)
+  mumukit-auth (~> 7.0)
+  mumukit-core (~> 1.0)
+  mumukit-login (~> 3.0)
+  mumukit-nuntius (~> 5.0)
+  mumukit-platform (~> 0.1)
   nprogress-rails
   pg
   pg_search (~> 1.0)
@@ -309,4 +312,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.14.4
+   1.14.6
