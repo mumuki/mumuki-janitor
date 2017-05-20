@@ -3,7 +3,7 @@
 [![Test Coverage](https://codeclimate.com/github/mumuki/mumuki-office/badges/coverage.svg)](https://codeclimate.com/github/mumuki/mumuki-office)
 [![Issue Count](https://codeclimate.com/github/mumuki/mumuki-office/badges/issue_count.svg)](https://codeclimate.com/github/mumuki/mumuki-office)
 
-## Mumuki Office
+## Mumuki Office [![btn_donate_lg](https://cloud.githubusercontent.com/assets/1039278/16535119/386d7be2-3fbb-11e6-9ee5-ecde4cef142a.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KCZ5AQR53CH26)
 > Authorization and API Authentication solution for the Mumuki Platform
 
 ## About
