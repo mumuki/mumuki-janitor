@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+
+echo ''
+echo '________   _____  _____.__              '
+echo '\_____  \_/ ____\/ ____\__| ____  ____  '
+echo ' /   |   \   __\\   __\|  |/ ___\/ __ \ '
+echo '/    |    \  |   |  |  |  \  \__\  ___/ '
+echo '\_______  /__|   |__|  |__|\___  >___  >'
+echo '        \/                     \/    \/ '
+echo ''
+
+echo "[MumukiDevstart::Office] Installing dependencies...."
+bundle install --quiet
+
+echo "[MumukiDevstart::Office] Starting server...."
+rails s -p 3005
