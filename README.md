@@ -36,7 +36,6 @@ sudo apt-get install autoconf curl git build-essential libssl-dev autoconf bison
 ```
 
 ### 2. Install rbenv
-
 > [rbenv](https://github.com/rbenv/rbenv) is a ruby versions manager, similar to rvm, nvm, and so on.
 
 ```bash
@@ -65,6 +64,22 @@ gem install escualo
 git clone https://github.com/mumuki/mumuki-office office
 cd office
 ```
+
+### 5. Install and setup database
+
+> We need to create a PostgreSQL role - AKA a user - who will be used by Office to create and access the database
+
+```bash
+# create db user
+sudo -u postgres psql <<EOF
+  create role mumuki with createdb login password 'mumuki';
+EOF
+
+# create schema and initial data
+bundle install
+bundle exec rake db:create db:schema:load db:seed
+```
+
 
 ## Installing and Running
 
