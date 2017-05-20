@@ -3,10 +3,10 @@
 [![Test Coverage](https://codeclimate.com/github/mumuki/mumuki-office/badges/coverage.svg)](https://codeclimate.com/github/mumuki/mumuki-office)
 [![Issue Count](https://codeclimate.com/github/mumuki/mumuki-office/badges/issue_count.svg)](https://codeclimate.com/github/mumuki/mumuki-office)
 
-Mumuki Office
-==============
-
+## Mumuki Office
 > Authorization and API Authentication solution for the Mumuki Platform
+
+## About
 
 Mumuki Office is a RESTful service and GUI that allows to
 
@@ -17,9 +17,123 @@ Mumuki Office is a RESTful service and GUI that allows to
 * authorize user operations across mumuki applications
 * authenticate API clients using JWT tokens
 
-# Sample Flows
 
-## Basic Platform Permissions Setup
+## Preparing environment
+
+### TL;DR install
+
+1. Install [Vagrant](https://www.vagrantup.com/downloads.html) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+2. Run `curl https://raw.githubusercontent.com/mumuki/mumuki-devinstaller/master/install.sh | bash`
+3. `cd mumuki && vagrant ssh` and then - **inside Vagrant VM** - `cd /vagrant/office`
+4. Go to step Install Section
+
+### 1. Install essentials and base libraries
+
+> First, we need to install some software: [PostgreSQL](https://www.postgresql.org) database, [RabbitMQ](https://www.rabbitmq.com/) queue, and some common Ruby on Rails native dependencies
+
+```bash
+sudo apt-get install autoconf curl git build-essential libssl-dev autoconf bison libreadline6 libreadline6-dev zlib1g zlib1g-dev postgresql libpq-dev rabbitmq-server
+```
+
+### 2. Install rbenv
+
+> [rbenv](https://github.com/rbenv/rbenv) is a ruby versions manager, similar to rvm, nvm, and so on.
+
+```bash
+curl https://raw.githubusercontent.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc # or .bash_profile
+echo 'eval "$(rbenv init -)"' >> ~/.bashrc # or .bash_profile
+```
+
+### 3. Install ruby
+
+> Now we have rbenv installed, we can install ruby and [bundler](http://bundler.io/)
+
+```bash
+rbenv install 2.3.1
+rbenv global 2.3.1
+rbenv rehash
+gem install bundler
+gem install escualo
+```
+
+### 4. Clone this repository
+
+> Because, err... we need to clone this repostory before developing it :stuck_out_tongue:
+
+```bash
+git clone https://github.com/mumuki/mumuki-office office
+cd office
+```
+
+## Installing and Running
+
+### Quick start
+
+If you want to start the server quickly in developer environment,
+you can just do the following:
+
+```bash
+./devstart
+```
+
+This will install your dependencies and boot the server.
+
+### Installing the server
+
+If you just want to install dependencies, just do:
+
+```
+bundle install
+```
+
+### Running the server
+
+You can boot the server by using the standard rackup command:
+
+```
+# using defaults from config/puma.rb and rackup default port 9292
+bundle exec rackup
+
+# changing port
+bundle exec rackup -p 8080
+
+# changing threads count
+MUMUKI_OFFICE_THREADS=30 bundle exec rackup
+
+# changing workers count
+MUMUKI_OFFICE_WORKERS=4 bundle exec rackup
+```
+
+Or you can also start it with `puma` command, which gives you more control:
+
+```
+# using defaults from config/puma.rb
+bundle exec puma
+
+# changing ports, workers and threads count, using puma-specific options:
+bundle exec puma -w 4 -t 2:30 -p 8080
+
+# changing ports, workers and threads count, using environment variables:
+MUMUKI_OFFICE_WORKERS=4 MUMUKI_OFFICE_PORT=8080 MUMUKI_OFFICE_THREADS=30 bundle exec puma
+```
+
+Finally, you can also start your server using `rails`:
+
+```bash
+rails s
+```
+
+## Running tests
+
+```bash
+bundle exec rspec
+```
+
+
+## Sample Flows
+
+### Basic Platform Permissions Setup
 
 1. As a janitor-admin user, log in into janitor
 2. Create an organization
@@ -29,7 +143,7 @@ Mumuki Office is a RESTful service and GUI that allows to
    2. Specify their organizations and courses
 
 
-## API Client Setup
+### API Client Setup
 
 1. As a janitor-admin user, log into janitor
 2. Create a API Secret Token
@@ -38,14 +152,14 @@ Mumuki Office is a RESTful service and GUI that allows to
   2. Set client logical name
   3. This will generate a private JWT. Use it to authenticate API calls in any Platform application within a `Authorizaion: Bearer <TOKEN>`
 
-# Permissions
+## Permissions
 
 Office Permissions are composed of two elements:
 
 * a role, that states which operations a user or API client can perform. Roles are:
-  * `student`: 
+  * `student`:
     * they can solve exercises in Atheneum
-  * `teacher`: 
+  * `teacher`:
     * same permissions as `student` and
     * enter the classroom
     * see student progress
@@ -66,12 +180,12 @@ Office Permissions are composed of two elements:
     * can create users and courses and assign permissions equal or lower to herself
   * `owner`
     * same permissions as `janitor` and `editor`, and
-    * can create organizations   
+    * can create organizations
   * Take a look to [the permissions hierarchy](https://yuml.me/diagram/plain/class/[Owner]%5E-[Janitor],%20[Janitor]%5E-[Headmaster],%20[Headmaster]%5E-[Teacher],%20[Teacher]%5E-[Student],%20,%20[Owner]%5E-[Editor],%20[Editor]%5E-[Writer])
-  
+
 * a scope, that states in which context the operation can be performed. Scopes are always expressed with a slug, that allows `primary-scope/secondary-scope` you specify are most two-level scopes.
 
-## Scopes details
+### Scopes details
 
 Scopes are simply two-level contexts, without any explicit semantic. They exact meaning is set by each role:
 
@@ -81,11 +195,11 @@ Scopes are simply two-level contexts, without any explicit semantic. They exact 
 * janitor: `organization/_`
 * owner: `_/_`
 
-# API
+## API
 
-## Users
+### Users
 
-### Create single user
+#### Create single user
 
 This is a generic user creation request.
 
@@ -110,7 +224,7 @@ Sample request body:
 }
 ```
 
-### Update single user
+#### Update single user
 
 This is a way of updating user basic data. Permissions are ignored.
 
@@ -131,7 +245,7 @@ Sample request body:
 }
 ```
 
-### Add student to course
+#### Add student to course
 
 Creates the student if necessary, and updates her permissions.
 
@@ -151,7 +265,7 @@ POST /courses/:organization/:course/students
 ```
 **Response**
 ```json
-{ 
+{
   "uid": "maryK345@foobar.edu.ar",
   "first_name": "María",
   "last_name": "Casas",
@@ -166,7 +280,7 @@ POST /courses/:organization/:course/students
 }
 ```
 
-### Detach student from course
+#### Detach student from course
 
 Remove student permissions from a course.
 
@@ -187,7 +301,7 @@ POST /courses/:organization/:course/students/:uid/detach
 }
 ```
 
-### Attach student to course
+#### Attach student to course
 
 Add student permissions to a course.
 
@@ -207,7 +321,7 @@ POST /courses/:organization/:course/students/:uid/attach
 ```
 
 
-### Add teacher to course
+#### Add teacher to course
 
 Creates the teacher if necessary, and updates her permissions.
 
@@ -226,7 +340,7 @@ POST /course/:id/teachers
 }
 ```
 
-### Add a batch of users to a course
+#### Add a batch of users to a course
 
 Creates every user if necesssary, an updates permissions.
 
@@ -257,7 +371,7 @@ POST /course/:id/batches
 }
 ```
 
-### Detach student from course
+#### Detach student from course
 
 **Minimal permission**: `janitor`
 
@@ -265,7 +379,7 @@ POST /course/:id/batches
 DELETE /course/:id/students/:uid
 ```
 
-### Detach teacher from course
+#### Detach teacher from course
 
 **Minimal permission**: `janitor`
 
@@ -273,7 +387,7 @@ DELETE /course/:id/students/:uid
 DELETE /course/:id/teachers/:uid
 ```
 
-### Destroy single user
+#### Destroy single user
 
 **Minimal permission**: `owner`
 
@@ -281,9 +395,9 @@ DELETE /course/:id/teachers/:uid
 DELETE /users/:uid
 ```
 
-## Courses
+### Courses
 
-### Create single course
+#### Create single course
 
 **Minimal permission**: `janitor`
 
@@ -297,7 +411,7 @@ POST /organization/:id/courses/
 }
 ```
 
-### Archive single course
+#### Archive single course
 
 **Minimal permission**: `janitor`
 
@@ -305,7 +419,7 @@ POST /organization/:id/courses/
 DELETE /organization/:id/courses/:id
 ```
 
-### Destroy single course
+#### Destroy single course
 
 **Minimal permission**: `owner`
 
@@ -314,11 +428,11 @@ DELETE /courses/:id
 ```
 
 
-## Organizations
+### Organizations
 
-### Model
+#### Model
 
-## Mandatory fields
+### Mandatory fields
 ```json
 {
   "name": "academy",
@@ -330,7 +444,7 @@ DELETE /courses/:id
 }
 ```
 
-## Optional fields
+### Optional fields
 ```json
 {
   "public": false,
@@ -350,7 +464,7 @@ DELETE /courses/:id
 - If you set `null` to the others, it will be inherited from an organization called `"base"` every time you query the API.
 
 
-## Generated fields
+### Generated fields
 ```json
 {
   "theme_stylesheet_url": "stylesheets/academy-asjdf92j1jd8.css",
@@ -358,7 +472,7 @@ DELETE /courses/:id
 }
 ```
 
-### List all organizations
+#### List all organizations
 
 ```
 get /organizations
@@ -376,7 +490,7 @@ Sample response body:
 ```
 **Minimal permission**: None for public organizations, `janitor` for user's private organizations.
 
-### Get single organization by name
+#### Get single organization by name
 
 ```
 get /organizations/:name
@@ -389,7 +503,7 @@ Sample response body:
 ```
 **Minimal permission**: `janitor` of the organization.
 
-### Create organization
+#### Create organization
 
 ```
 post /organizations
@@ -398,7 +512,7 @@ post /organizations
 
 **Minimal permission**: `owner` of that organization
 
-### Update organization
+#### Update organization
 
 ```
 put /organizations/:name
