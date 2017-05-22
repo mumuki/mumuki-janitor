@@ -5,8 +5,8 @@ threads threads_count, threads_count
 preload_app!
 
 rackup      DefaultRackup
-port        ENV['MUMUKI_OFFICE_PORT'] || 3005
-environment ENV['RACK_ENV']           || 'development'
+port        ENV['MUMUKI_OFFICE_PORT']           || 3005
+environment ENV['RAILS_ENV'] || ENV['RACK_ENV'] || 'development'
 
 on_worker_boot do
   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
