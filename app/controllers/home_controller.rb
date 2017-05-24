@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
-  before_action :authenticate!
-
+  before_action :authorize_owner!
+ 
   def index
   end
 end
