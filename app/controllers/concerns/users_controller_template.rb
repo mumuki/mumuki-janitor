@@ -4,8 +4,6 @@ module UsersControllerTemplate
   included do
     before_action :set_user!, only: [:show, :update]
     before_action :set_new_user!, only: :create
-
-    before_action :authorize_janitor!
     before_action :protect_delegation!, only: [:create, :update]
   end
 

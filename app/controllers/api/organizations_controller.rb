@@ -2,6 +2,9 @@ module Api
   class OrganizationsController < BaseController
     include OrganizationsControllerTemplate
 
+    before_action :authorize_janitor!, only: [:show, :index]
+    before_action :authorize_owner!, only: [:update, :create]
+
     def index
       render json: { organizations: Organization.accessible_as(current_user, :janitor) }
     end
