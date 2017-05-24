@@ -1,6 +1,7 @@
 module Api
   class UsersController < BaseController
     include UsersControllerTemplate
+    before_action :authorize_janitor!
 
     def create
       @user.save!

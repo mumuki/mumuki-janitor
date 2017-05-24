@@ -2,6 +2,7 @@ class OrganizationsController < ApplicationController
   helper_method :login_methods
 
   include OrganizationsControllerTemplate
+  before_action :authorize_owner!
 
   def index
     @organizations = Organization.by_full_text(params[:q]).accessible_as(current_user, :janitor)

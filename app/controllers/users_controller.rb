@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   include UsersControllerTemplate
+  before_action :authorize_owner!
 
   def new
     @user = User.new
