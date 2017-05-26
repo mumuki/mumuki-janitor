@@ -52,6 +52,7 @@ en:
   email_placeholder: "jane.doe@gmail.com"
   image_url: "Avatar URL"
   image_url_placeholder: "https://mumuki.io/logo-alt.png"
+  raise_hand_enabled: "Raise hands enabled"
   permissions: "Permissions"
   add_permission: "Add permission"
   student: "Student"

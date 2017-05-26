@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170526192407) do
+ActiveRecord::Schema.define(version: 20170526205357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20170526192407) do
     t.text     "extension_javascript"
     t.string   "extension_javascript_url"
     t.string   "community_link"
+    t.boolean  "has_messages",             default: false
     t.index ["name"], name: "index_organizations_on_name", using: :btree
     t.index ["public"], name: "index_organizations_on_public", using: :btree
   end

@@ -17,6 +17,7 @@ describe Organization do
                 'OrganizationCreated', {
                 organization: {
                     logo_url: 'MyString',
+                    community_link: nil,
                     theme_stylesheet_url: 'http://office.localmumuki.io/stylesheets/pdep-da39a3ee5e6b4b0d3255bfef95601890afd80709.css',
                     extension_javascript_url: 'http://office.localmumuki.io/javascripts/pdep-da39a3ee5e6b4b0d3255bfef95601890afd80709.js',
                     terms_of_service: nil,
@@ -26,7 +27,8 @@ describe Organization do
                     contact_email: 'MyString',
                     books: ['MyString'],
                     locale: 'es',
-                    login_methods: ['MyString']
+                    login_methods: ['MyString'],
+                    has_messages: false
                 }.deep_stringify_keys
             }
             )
