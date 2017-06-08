@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20170526205357) do
     t.text     "extension_javascript"
     t.string   "extension_javascript_url"
     t.string   "community_link"
-    t.boolean  "has_messages",             default: false
+    t.boolean  "raise_hand_enabled",       default: false
     t.index ["name"], name: "index_organizations_on_name", using: :btree
     t.index ["public"], name: "index_organizations_on_public", using: :btree
   end
