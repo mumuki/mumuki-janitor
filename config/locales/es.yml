@@ -43,6 +43,7 @@ en:
   visibility: "Visibilidad"
   locale: "Idioma"
   new_organization: "Nueva organización"
+  raise_hand_enabled: "Permitir levantar la mano"
   users: "Usuarios"
   first_name: "Nombre"
   first_name_placeholder: "Juana"

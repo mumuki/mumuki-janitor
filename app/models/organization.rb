@@ -77,6 +77,8 @@ class Organization < ApplicationRecord
     defaults = base
     {
         logo_url: defaults&.logo_url,
+        community_link: defaults&.community_link,
+        raise_hand_enabled: defaults&.raise_hand_enabled,
         theme_stylesheet: defaults&.theme_stylesheet,
         extension_javascript: defaults&.extension_javascript,
         theme_stylesheet_url: defaults&.theme_stylesheet_url,
