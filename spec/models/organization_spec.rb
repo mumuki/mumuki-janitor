@@ -28,7 +28,7 @@ describe Organization do
                     books: ['MyString'],
                     locale: 'es',
                     login_methods: ['MyString'],
-                    has_messages: false
+                    raise_hand_enabled: false
                 }.deep_stringify_keys
             }
             )

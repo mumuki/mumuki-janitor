@@ -71,7 +71,7 @@ describe Api::OrganizationsController, type: :controller do
                                                               login_methods: ['MyString'],
                                                               theme_stylesheet_url: 'http://office.localmumuki.io/stylesheets/private-da39a3ee5e6b4b0d3255bfef95601890afd80709.css',
                                                               extension_javascript: '',
-                                                              has_messages: false,
+                                                              raise_hand_enabled: false,
                                                               community_link: nil,
                                                               extension_javascript_url: 'http://office.localmumuki.io/javascripts/private-da39a3ee5e6b4b0d3255bfef95601890afd80709.js'
                                                              }) }
@@ -113,7 +113,7 @@ describe Api::OrganizationsController, type: :controller do
                                                           login_methods: ['user_pass'],
                                                           theme_stylesheet_url: 'http://office.localmumuki.io/stylesheets/base-30167c3687a77be83c728fc4f596503ced3f32c4.css',
                                                           extension_javascript: 'function defaultJs() {}',
-                                                          has_messages: false,
+                                                          raise_hand_enabled: false,
                                                           community_link: nil,
                                                           extension_javascript_url: 'http://office.localmumuki.io/javascripts/base-7cf7ff791f337c0ae1a0fa84631ac9176c36aecb.js'
                                                          }) }
@@ -213,7 +213,7 @@ describe Api::OrganizationsController, type: :controller do
                                                           theme_stylesheet_url: 'http://office.localmumuki.io/stylesheets/existing-organization-da39a3ee5e6b4b0d3255bfef95601890afd80709.css',
                                                           extension_javascript_url: 'http://office.localmumuki.io/javascripts/existing-organization-da39a3ee5e6b4b0d3255bfef95601890afd80709.js',
                                                           description: 'MyText',
-                                                          has_messages: false,
+                                                          raise_hand_enabled: false,
                                                           community_link: nil,
                                                           terms_of_service: 'Default terms of service'
                                                          }) }

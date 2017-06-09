@@ -60,7 +60,7 @@
     <fieldset class="form-group">
       <label for="raise_hand_enabled"><%= t :raise_hand_enabled %></label>
       <span class="field checkbox complementary complementary-checkbox">
-        <%= check_box_tag 'organization[raise_hand_enabled]', t(:raise_hand_enabled), @organization.has_messages?, class: 'form-control' %>
+        <%= check_box_tag 'organization[raise_hand_enabled]', t(:raise_hand_enabled), @organization.raise_hand_enabled?, class: 'form-control' %>
         <%= label_tag t(:raise_hand_enabled) %>
       </span>
     </fieldset>
