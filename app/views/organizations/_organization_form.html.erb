@@ -45,7 +45,10 @@
       <label for="login_methods"><%= t :login_methods %></label>
       <% login_methods.each do |login_method| %>
           <span class="field checkbox complementary complementary-checkbox">
-            <%= check_box_tag 'organization[login_methods][]', login_method, @organization.has_login_method?(login_method), class: 'form-control' %>
+            <%= check_box_tag 'organization[login_methods][]',
+                              login_method,
+                              @organization.has_login_method?(login_method),
+                              class: 'form-control' %>
             <%= label_tag login_method %>
           </span>
       <% end %>
@@ -60,7 +63,10 @@
     <fieldset class="form-group">
       <label for="raise_hand_enabled"><%= t :raise_hand_enabled %></label>
       <span class="field checkbox complementary complementary-checkbox">
-        <%= check_box_tag 'organization[raise_hand_enabled]', t(:raise_hand_enabled), @organization.raise_hand_enabled?, class: 'form-control' %>
+        <%= check_box_tag 'organization[raise_hand_enabled]',
+                           t(:raise_hand_enabled),
+                           @organization.raise_hand_enabled?,
+                           class: 'form-control' %>
         <%= label_tag t(:raise_hand_enabled) %>
       </span>
     </fieldset>
