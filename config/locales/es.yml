@@ -64,6 +64,8 @@ en:
   owner: "Dueño"
   organization: "Organización"
   content: "Contenido"
+  community_link: "Link a la comunidad"
+  community_link_placeholder: "https://facebook.com/groups/1"
   course: "Curso"
   user_saved_successfully: "Usuario guardado satisfactoriamente"
   new_user: "Nuevo usuario"
