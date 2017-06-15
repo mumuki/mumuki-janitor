@@ -65,6 +65,8 @@ en:
   organization: "Organization"
   content: "Content"
   course: "Course"
+  community_link: "Community Link"
+  community_link_placeholder: "https://facebook.com/groups/1"
   user_saved_successfully: "User saved successfully"
   new_user: "New users"
   search: "Search"

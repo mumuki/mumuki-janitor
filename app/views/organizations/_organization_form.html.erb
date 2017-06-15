@@ -12,6 +12,10 @@
       <%= f.text_field :logo_url, class: 'form-control', placeholder: t(:logo_url_placeholder), required: true %>
     </fieldset>
     <fieldset class="form-group">
+      <label for="community_link"><%= t :community_link %></label>
+      <%= f.text_field :community_link, class: 'form-control', placeholder: t(:community_link_placeholder) %>
+    </fieldset>
+    <fieldset class="form-group">
       <label for="contact_email"><%= t :contact_email %></label>
       <%= f.text_field :contact_email, class: 'form-control', placeholder: t(:contact_email_placeholder), required: true %>
     </fieldset>

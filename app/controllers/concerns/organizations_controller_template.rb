@@ -23,6 +23,7 @@ module OrganizationsControllerTemplate
   def organization_params
     params.require(:organization).permit(:contact_email, :name, :locale, :description, :logo_url,
                                          :public, :theme_stylesheet, :extension_javascript, :terms_of_service,
+                                         :raise_hand_enabled, :community_link,
                                          books: [], login_methods: [])
   end
 end
