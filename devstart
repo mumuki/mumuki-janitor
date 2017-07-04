@@ -14,4 +14,4 @@ echo "[MumukiDevstart::Office] Installing dependencies...."
 bundle install --quiet
 
 echo "[MumukiDevstart::Office] Starting server...."
-rails s -p 3005
+rails s -p 3005 -b 0.0.0.0
