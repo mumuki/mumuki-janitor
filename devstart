@@ -14,7 +14,7 @@ echo "[MumukiDevstart::Office] Installing dependencies...."
 bundle install --quiet
 
 echo "[MumukiDevstart::Office] Configuring database...."
-bundle exec rake db:migrate 2>/dev/null || rake db:create db:schema:load db:seed
+bundle exec rake db:migrate 2>/dev/null || bundle exec rake db:create db:schema:load db:seed
 
 echo "[MumukiDevstart::Office] Starting server...."
 rails s -p 3005 -b 0.0.0.0
