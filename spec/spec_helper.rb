@@ -56,14 +56,14 @@ RSpec::Matchers.define :json_like do |expected, options={}|
     actual.as_json.with_indifferent_access.except(*except) == expected.as_json.with_indifferent_access.except(*except)
   end
 
-  failure_message_for_should do |actual|
+  failure_message do |actual|
     <<-EOS
     expected: #{expected.as_json.with_indifferent_access.except(*except)} (#{expected.class})
          got: #{actual.as_json.with_indifferent_access.except(*except)} (#{actual.class})
     EOS
   end
 
-  failure_message_for_should_not do |actual|
+  failure_message_when_negated do |actual|
     <<-EOS
     expected: value != #{expected.as_json.with_indifferent_access.except(*except)} (#{expected.class})
          got:          #{actual.as_json.with_indifferent_access.except(*except)} (#{actual.class})
