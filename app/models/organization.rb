@@ -2,12 +2,18 @@ class Organization < ApplicationRecord
   INDEXED_ATTRIBUTES = {
       against: [:name, :description]
   }
+
+  serialize :profile, Mumukit::Platform::Organization::Profile
+  serialize :settings, Mumukit::Platform::Organization::Settings
+  serialize :theme, Mumukit::Platform::Organization::Theme
+
   validates :name, uniqueness: true, format: {with: /\A[-A-Za-z0-9_]*\z/}
   validates_presence_of :name, :contact_email, :locale
   validates :books, at_least_one: true
   validates :locale, inclusion: {in: Locale.all}
   before_save :set_default_values!
 
+  include Mumukit::Platform::Organization::Helpers
   include WithSass
   include WithStaticAssets
   include WithSearch
@@ -32,20 +38,8 @@ class Organization < ApplicationRecord
     notify_all_updated! if base?
   end
 
-  def slug
-    Mumukit::Auth::Slug.join name
-  end
-
   def base?
     name == Rails.configuration.base_organization_name
-  end
-
-  def private?
-    !public?
-  end
-
-  def public?
-    public
   end
 
   def to_param

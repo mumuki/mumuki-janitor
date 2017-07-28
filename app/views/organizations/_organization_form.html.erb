@@ -61,13 +61,21 @@
       </span>
     </fieldset>
     <fieldset class="form-group">
-      <label for="raise_hand_enabled"><%= t :raise_hand_enabled %></label>
+      <label for="raise_hand_enabled"><%= t :features %></label>
       <span class="field checkbox complementary complementary-checkbox">
         <%= check_box_tag 'organization[raise_hand_enabled]',
                            t(:raise_hand_enabled),
                            @organization.raise_hand_enabled?,
                            class: 'form-control' %>
         <%= label_tag t(:raise_hand_enabled) %>
+      </span>
+
+      <span class="field checkbox complementary complementary-checkbox">
+        <%= check_box_tag 'organization[feedback_suggestions_enabled]',
+                          t(:feedback_suggestions_enabled),
+                          @organization.feedback_suggestions_enabled?,
+                          class: 'form-control' %>
+        <%= label_tag t(:feedback_suggestions_enabled) %>
       </span>
     </fieldset>
     <button type="submit" class="btn btn-success pull-right"><%= t :submit %></button>
