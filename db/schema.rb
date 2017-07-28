@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170526205357) do
+ActiveRecord::Schema.define(version: 20170728180059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,24 +38,15 @@ ActiveRecord::Schema.define(version: 20170526205357) do
 
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
-    t.text     "description"
-    t.string   "logo_url"
-    t.boolean  "public",                   default: false
-    t.string   "contact_email"
     t.text     "theme_stylesheet"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.text     "books",                    default: [],                 array: true
-    t.string   "locale"
-    t.text     "terms_of_service"
-    t.text     "login_methods",            default: [],                 array: true
-    t.string   "theme_stylesheet_url"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.text     "books",                default: [],                array: true
     t.text     "extension_javascript"
-    t.string   "extension_javascript_url"
-    t.string   "community_link"
-    t.boolean  "raise_hand_enabled",       default: false
+    t.text     "settings",             default: "{}", null: false
+    t.text     "theme",                default: "{}", null: false
+    t.text     "profile",              default: "{}", null: false
     t.index ["name"], name: "index_organizations_on_name", using: :btree
-    t.index ["public"], name: "index_organizations_on_public", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
