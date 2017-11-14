@@ -37,7 +37,6 @@ gem 'nprogress-rails'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-mumuki-styles', '1.3.0'
-  gem 'rails-assets-bootstrap-tagsinput'
 end
 
 group :development do
