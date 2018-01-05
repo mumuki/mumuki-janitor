@@ -2,7 +2,7 @@ class Organization < ApplicationRecord
   INDEXED_ATTRIBUTES = {
       against: [:name, :description]
   }
-  validates :name, uniqueness: true, format: {with: /\A[-A-Za-z0-9_]*\z/}
+  validates :name, uniqueness: true, format: {with: /\A([-a-z0-9_]+(\.[-a-z0-9_]+)*)?\z/}
   validates_presence_of :name, :contact_email, :locale
   validates :books, at_least_one: true
   validates :locale, inclusion: {in: Locale.all}

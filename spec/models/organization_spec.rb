@@ -1,12 +1,28 @@
 require 'spec_helper'
 
 describe Organization do
-  let(:valid_data) { {
-      name: 'a-name',
+  def data(name)
+    {
+      name: name,
       contact_email: 'a@a.com',
       locale: 'es-AR',
       books: ['a-book']
-  } }
+    }
+  end
+
+  let(:valid_data) { data 'a-name' }
+
+  let(:valid_data_2) { data 'a.name'}
+
+  let(:valid_data_3) { data 'a.name.with.subdomains'}
+
+  let(:invalid_data) { data '.a.name.that.starts.with.period'}
+
+  let(:invalid_data_2) { data 'a.name.that.ends.with.period.'}
+
+  let(:invalid_data_3) { data 'a.name.that..has.two.periods.in.a.row'}
+
+  let(:invalid_data_4) { data 'a.name.with.Uppercases'}
 
   describe 'notifications' do
     context '#notify_created!' do
@@ -63,6 +79,16 @@ describe Organization do
     let(:organization) { Organization.new(valid_data.merge(login_methods: ['github'])) }
     it { expect(organization.has_login_method? 'github').to be true }
     it { expect(organization.has_login_method? 'google').to be false }
+  end
+
+  context 'organization name' do
+    it { expect(Organization.new(valid_data).valid?).to be true }
+    it { expect(Organization.new(valid_data_2).valid?).to be true }
+    it { expect(Organization.new(valid_data_3).valid?).to be true }
+    it { expect(Organization.new(invalid_data).valid?).to be false }
+    it { expect(Organization.new(invalid_data_2).valid?).to be false }
+    it { expect(Organization.new(invalid_data_3).valid?).to be false }
+    it { expect(Organization.new(invalid_data_4).valid?).to be false }
   end
 
 end
