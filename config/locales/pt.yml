@@ -1,0 +1,74 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+pt:
+  add_book: 'Adicionar livro'
+  add_permission: 'Adicionar permissão'
+  books: 'Livros'
+  books_placeholder: 'organização / conteúdo'
+  community_link: 'Link da comunidade'
+  community_link_placeholder: 'https://facebook.com/groups/1'
+  contact_email: 'Email de contato'
+  contact_email_placeholder: 'jane.doe@gmail.com'
+  content: 'Conteúdo'
+  course: 'Curso'
+  description: 'Descrição'
+  description_placeholder: 'Esta é uma pequena descrição da organização'
+  editor: 'editor'
+  email: 'O email'
+  email_placeholder: 'jane.doe@gmail.com'
+  extension_javascript: 'Extensão Javascript'
+  extension_javascript_placeholder: 'function foo () {}'
+  first_name: 'Primeiro nome'
+  first_name_placeholder: 'Jane'
+  headmaster: 'Diretor'
+  image_url: 'URL do Avatar'
+  image_url_placeholder: 'https://mumuki.io/logo-alt.png'
+  janitor: 'Zelador'
+  last_name: 'Último nome'
+  last_name_placeholder: 'Corça'
+  locale: 'Localidade'
+  login_methods: 'Métodos de login'
+  logo_url: 'URL do logotipo'
+  logo_url_placeholder: 'https://mumuki.io/logo-alt-large.png'
+  name: 'Nome'
+  name_placeholder: 'mi-organização'
+  new_organization: 'Nova organização'
+  new_user: 'Novos usuários'
+  organization: 'Organização'
+  organization_saved_successfully: 'Organização salvo com sucesso'
+  organizations: 'Organizações'
+  owner: 'Proprietário'
+  permissions: 'Permissões'
+  public: 'Público'
+  raise_hand_enabled: 'Levantar as mãos habilitadas'
+  search: 'Pesquisa'
+  sign_in: 'Entrar'
+  sign_out: 'Sair'
+  student: 'Aluna'
+  submit: 'Enviar'
+  teacher: 'Professor'
+  theme_stylesheet: 'Folha de estilo do tema'
+  theme_stylesheet_placeholder: '.my-class {display: none}'
+  user_saved_successfully: 'Usuário salvo com sucesso'
+  users: 'Comercial'
+  visibility: 'Visibilidade'
+  writer: 'Escritor'
