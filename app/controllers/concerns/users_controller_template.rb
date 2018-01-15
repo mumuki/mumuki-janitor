@@ -10,7 +10,7 @@ module UsersControllerTemplate
   private
 
   def protect_delegation!
-    current_user.protect_delegation! user_params[:permissions]
+    current_user.protect_delegation! user_params[:permissions], @user.permissions
   end
 
   def user_params
