@@ -4,13 +4,13 @@ module UsersControllerTemplate
   included do
     before_action :set_user!, only: [:show, :update]
     before_action :set_new_user!, only: :create
-    before_action :protect_delegation!, only: [:create, :update]
+    before_action :protect_permissions_assignment!, only: [:create, :update]
   end
 
   private
 
-  def protect_delegation!
-    current_user.protect_delegation! user_params[:permissions]
+  def protect_permissions_assignment!
+    current_user.protect_permissions_assignment! user_params[:permissions], @user.permissions
   end
 
   def user_params
