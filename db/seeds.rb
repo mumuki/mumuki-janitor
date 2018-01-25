@@ -1,3 +1,8 @@
+User.create! email: 'sample@mumuki.org',
+             first_name: 'admin',
+             last_name: 'admin',
+             permissions: {owner: '*'} if Rails.env.development?
+
 Organization.create! name: 'base',
                      description: 'Base organization',
                      contact_email: 'info@mumuki.org',
