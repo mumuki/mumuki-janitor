@@ -31,7 +31,7 @@ gem 'mumukit-nuntius', '~> 5.0'
 gem 'mumukit-auth', '~> 7.2'
 gem 'mumukit-core', '~> 1.1'
 gem 'mumukit-login', '~> 4.1'
-gem 'mumukit-platform', '~> 0.4'
+gem 'mumukit-platform', '~> 0.7'
 
 gem 'nprogress-rails'
 
