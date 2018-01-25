@@ -1,14 +1,21 @@
 Rails.application.routes.draw do
 
   Mumukit::Login.configure_login_routes! self
+  organization_regexp = Regexp.new Mumukit::Platform::Organization::Helpers.valid_name_regex.source[2..-3]
 
   root to: 'home#index'
 
-  resources :organizations, only: [:index, :show, :create, :update, :new]
+  resources :organizations,
+                only: [:index, :show, :create, :update, :new],
+                constraints: {id: organization_regexp}
+
   resources :users, only: [:index, :show, :create, :update, :new], constraints: {id: /[^\/]+/}
   namespace :api do
-    resources :users, only: [:create, :update], constraints: {id: /[^\/]+/}
-    resources :organizations, only: [:index, :show, :create, :update]
+    resources :users, only: [:create, :update],  constraints: {id: /[^\/]+/}
+    resources :organizations,
+                  only: [:index, :show, :create, :update],
+                  constraints: {id: organization_regexp}
+
     resources :courses, only: [:create]
     constraints(uid: /[^\/]+/) do
       '/courses/:organization/:course'.tap do |it|
