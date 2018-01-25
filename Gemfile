@@ -36,9 +36,10 @@ gem 'mumukit-platform', '~> 0.4'
 gem 'nprogress-rails'
 
 source 'https://rails-assets.org' do
-  gem 'rails-assets-mumuki-styles', '1.3.0'
   gem 'rails-assets-bootstrap-tagsinput'
 end
+
+gem 'mumuki-styles', '~> 1.16'
 
 group :development do
   gem 'web-console'

@@ -1,6 +1,8 @@
-/*
- *= require bootstrap-tagsinput
- */
-@import "mumuki-styles";
+$icon-font-path: '../assets/bootstrap/';
+$fa-font-path: '../assets';
+$da-font-path: '../assets';
+
+@import "mumuki-styles.scss";
+@import "bootstrap-tagsinput";
 @import "nprogress";
 @import "nprogress-bootstrap";

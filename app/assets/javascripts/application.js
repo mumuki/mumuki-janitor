@@ -10,8 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require mumuki-styles
-//= require bootstrap-sass
-//= require bootstrap-tagsinput
 //= require turbolinks
+//= require mumuki-styles
+//= require bootstrap-tagsinput
 //= require_tree .
