@@ -1,7 +1,7 @@
 class Locale
 
   def self.all
-    %w(es-AR en-US)
+    %w(es-AR en-US pt-BR)
   end
 
   def self.first
