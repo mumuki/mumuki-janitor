@@ -30,4 +30,21 @@ describe 'UserChanged' do
 
     it_behaves_like 'a proper import'
   end
+
+  context 'no changes on nil fields on update' do
+
+    before { User.import_from_json! update_json }
+
+    let(:user_json) { {
+        uid: 'foo@bar.com',
+        first_name: 'Baz',
+        last_name: 'Bar',
+        permissions: {student: 'test/example'}
+    } }
+
+    let(:update_json) { { uid: 'foo@bar.com', first_name: 'Foo' } }
+
+    it_behaves_like 'a proper import'
+    it { expect(User.first.permissions.student? 'test/example').to be true }
+  end
 end
