@@ -10,6 +10,7 @@ environment ENV['RAILS_ENV'] || ENV['RACK_ENV'] || 'development'
 
 on_worker_boot do
   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
+  Mumukit::Nuntius.establish_connection
 end
 
 plugin :tmp_restart
