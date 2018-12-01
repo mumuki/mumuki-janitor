@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'rails', '~> 5.0.7', '>= 5.0.7.1'
 gem 'pg'
 gem 'pg_search', '~> 1.0'
 gem 'puma', '~> 3.0'
@@ -13,7 +13,7 @@ gem 'execjs'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'kaminari', '~> 0.16'
-gem 'bootstrap-kaminari-views', '~> 0.0'
+gem 'bootstrap-kaminari-views', '~> 0.0', '>= 0.0.5'
 
 group :development, :test do
   gem 'byebug', platform: :mri
